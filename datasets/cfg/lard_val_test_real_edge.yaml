@@ -1,0 +1,8 @@
+path: /home/yeli/Nextcloud/lard/yolov8/datasets/lard/YoloFormat
+train: train/images
+val: val/images
+test: test_real_edge/images
+
+nc: 1
+names:
+  0: runway

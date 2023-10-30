@@ -1,0 +1,12 @@
+.vscode/
+
+datasets/lard/*
+datasets/video/*
+
+results/figs/
+results/tables/
+results/videos/
+runs/detect
+weights/*.pt
+
+src/data/LARD
