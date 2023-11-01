@@ -2,15 +2,15 @@ import os
 from LARD.src.dataset.lard_dataset import LardDataset
 
 
-ROOT_PATH = os.environ.get('LARD_DATA_ROOT_PATH')
-zip_folder = f"{ROOT_PATH}/LARD_dataset_decompressed/"
-yolo_folder = f"{ROOT_PATH}/YoloFormat/"
+ROOT_DATA = os.environ.get('LARD_DATA_ROOT_DATA')
+zip_folder = f"{ROOT_DATA}/LARD_dataset_decompressed/"
+yolo_folder = f"{ROOT_DATA}/YoloFormat/"
 
 # 训练集
 dataset = LardDataset(
     train_path=os.path.join(zip_folder, "LARD_train"))
 dataset.export(
-    output_dir=os.path.join(yolo_folder, "train"),
+    output_dir=os.path.join(yolo_folder, "train_all"),
     bbx_format="xywh",  # Options are 'tlbr', 'tlwh', 'xywh', 'corners'
     normalized=True,  # noqa 'multiple' produces 1 file per label, as expected by yolo architectures.
     label_file="multiple",

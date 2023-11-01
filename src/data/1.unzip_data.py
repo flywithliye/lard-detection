@@ -4,7 +4,7 @@ import os
 from tqdm import tqdm
 from typing import List
 
-ROOT_PATH = os.environ.get('LARD_DATA_ROOT_PATH')
+ROOT_DATA = os.environ.get('LARD_DATA_ROOT_DATA')
 
 
 def unzip_single_file(zip_path, dest_folder):
@@ -58,12 +58,12 @@ def unzip_all_files_in_folder(
 
 # 解压训练数据
 unzip_all_files_in_folder(
-    source_folder=f"{ROOT_PATH}/LARD_dataset/LARD_train",
-    dest_folder=f"{ROOT_PATH}/LARD_dataset_decompressed/LARD_train",
+    source_folder=f"{ROOT_DATA}/LARD_dataset/LARD_train",
+    dest_folder=f"{ROOT_DATA}/LARD_dataset_decompressed/LARD_train",
     max_workers=12)
 
 # 解压测试数据
 unzip_all_files_in_folder(
-    source_folder=f"{ROOT_PATH}/LARD_dataset/LARD_test",
-    dest_folder=f"{ROOT_PATH}/LARD_dataset_decompressed/LARD_test",
+    source_folder=f"{ROOT_DATA}/LARD_dataset/LARD_test",
+    dest_folder=f"{ROOT_DATA}/LARD_dataset_decompressed/LARD_test",
     max_workers=2)

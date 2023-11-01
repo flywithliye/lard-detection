@@ -1,0 +1,15 @@
+metrics,test_synth,test_real_nominal,test_real_edge
+"AP (IoU=0.50:0.95, area=all, maxDets=100)",0.728,0.513,0.230
+"AP (IoU=0.50, area=all, maxDets=100)",0.946,0.707,0.333
+"AP (IoU=0.75, area=all, maxDets=100)",0.846,0.570,0.262
+"AP (IoU=0.50:0.95, area=small, maxDets=100)",-1.000,0.107,0.007
+"AP (IoU=0.50:0.95, area=medium, maxDets=100)",0.599,0.343,0.129
+"AP (IoU=0.50:0.95, area=large, maxDets=100)",0.783,0.756,0.328
+"AR (IoU=0.50:0.95, area=all, maxDets=1)",0.763,0.537,0.241
+"AR (IoU=0.50:0.95, area=all, maxDets=10)",0.763,0.537,0.241
+"AR (IoU=0.50:0.95, area=all, maxDets=100)",0.763,0.537,0.241
+"AR (IoU=0.50:0.95, area=small, maxDets=100)",-1.000,0.120,0.007
+"AR (IoU=0.50:0.95, area=medium, maxDets=100)",0.655,0.381,0.141
+"AR (IoU=0.50:0.95, area=large, maxDets=100)",0.818,0.784,0.343
+Average inference time (ms),7.902,8.347,8.020
+FPS,126.553,119.803,124.687

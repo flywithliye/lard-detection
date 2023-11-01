@@ -3,9 +3,14 @@
 datasets/lard/*
 datasets/video/*
 
-results/figs/
-results/tables/
-results/videos/
+results/figs/*.jpg
+results/figs/eda/*.jpg
+results/figs/test/*.jpg
+results/figs/train/*.jpg
+
+results/tables/*.csv
+results/videos/*.mp4
+
 runs/detect
 weights/*.pt
 

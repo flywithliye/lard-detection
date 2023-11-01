@@ -1,0 +1,16 @@
+ident,name,type,iso_country,latitude_deg,longitude_deg,elevation_ft
+BIRK,Reykjavik Airport,medium_airport,IS,64.1299972534,-21.9405994415,48.0
+DAAG,Houari Boumediene Airport,large_airport,DZ,36.693886,3.214531,82.0
+DIAP,Félix-Houphouët-Boigny International Airport,medium_airport,CI,5.26139,-3.92629,21.0
+KMSY,Louis Armstrong New Orleans International Airport,large_airport,US,29.99340057373047,-90.25800323486328,4.0
+KSFO,San Francisco International Airport,large_airport,US,37.61899948120117,-122.375,13.0
+LFMP,Perpignan-Rivesaltes (Llabanère) Airport,medium_airport,FR,42.74039840698242,2.8706700801849365,144.0
+LFPO,Paris-Orly Airport,large_airport,FR,48.72333,2.37944,291.0
+LFQQ,Lille-Lesquin Airport,medium_airport,FR,50.563332,3.086886,157.0
+LFST,Strasbourg Airport,medium_airport,FR,48.53829956054688,7.628230094909668,505.0
+LICJ,Falcone–Borsellino Airport,large_airport,IT,38.175999,13.091,65.0
+LIRN,Naples International Airport,large_airport,IT,40.886002,14.2908,294.0
+LPPT,Humberto Delgado Airport (Lisbon Portela Airport),large_airport,PT,38.7813,-9.13592,374.0
+LWSK,Skopje International Airport,large_airport,MK,41.961601,21.621401,781.0
+SLTR,Teniente Av. Jorge Henrich Arauz Airport,medium_airport,BO,-14.8186998367,-64.9179992676,509.0
+VABB,Chhatrapati Shivaji International Airport,large_airport,IN,19.0886993408,72.8678970337,39.0

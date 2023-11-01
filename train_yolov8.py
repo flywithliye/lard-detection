@@ -5,11 +5,13 @@ model_name = 'yolov8n'
 model_stru = '-p2'
 model_cfg = '_train_val'
 assert model_name in ['yolov8n', 'yolov8s', 'yolov8m', 'yolov8l', 'yolov8x']
+assert model_cfg in ['-p2', '-p6']
 
 # 路径构建
 exp_name = f'{model_name}{model_stru}{model_cfg}_TEST'
 path_yaml = f'{model_name}{model_stru}.yaml'
 path_weights = f'weights/{model_name}.pt'
+
 print(f"实验名称: {exp_name}")
 
 # 实例化YOLO模型
@@ -25,5 +27,5 @@ results = model.train(
     device=[0],
     workers=12,
     name=f"{exp_name}/train",
-    use_custom_aug=False,
+    use_custom_aug=False, # 是否启用自定义数据增强
 )
