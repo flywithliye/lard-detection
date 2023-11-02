@@ -1,3 +1,6 @@
 [submodule "3rdparty/ultralytics"]
 	path = 3rdparty/ultralytics
 	url = https://github.com/flywithliye/ultralytics.git
+[submodule "3rdparty/mmdetection"]
+	path = 3rdparty/mmdetection
+	url = https://github.com/flywithliye/mmdetection.git
