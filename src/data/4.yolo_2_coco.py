@@ -4,7 +4,7 @@ from PIL import Image
 from tqdm import tqdm
 
 
-ROOT_DATA = os.environ.get('LARD_DATA_ROOT_DATA')
+ROOT_DATA = os.environ.get('LARD_DATA_ROOT_PATH')
 
 
 # 创建JSON文件夹
@@ -96,87 +96,61 @@ def yolo_to_coco(path, json_filename, is_real=False, is_mini=False):
 
 # 全量数据集
 # 全部训练集
-yolo_to_coco(
-    f"{ROOT_DATA}/YoloFormat/train_all",
-    "instances_train_all.json")
-
-# 训练&验证
-yolo_to_coco(
-    f"{ROOT_DATA}/YoloFormat/train",
-    "instances_train.json")
-yolo_to_coco(
-    f"{ROOT_DATA}/YoloFormat/val",
-    "instances_val.json")
-
-# 测试集
-yolo_to_coco(
-    f"{ROOT_DATA}/YoloFormat/test_synth",
-    "instances_test_synth.json")
-yolo_to_coco(
-    f"{ROOT_DATA}/YoloFormat/test_real_nominal",
-    "instances_test_real_nominal.json",
-    is_real=True)
-yolo_to_coco(
-    f"{ROOT_DATA}/YoloFormat/test_real_edge",
-    "instances_test_real_edge.json",
-    is_real=True)
-
-
-# # mini数据集
-# # 全部训练集
 # yolo_to_coco(
 #     f"{ROOT_DATA}/YoloFormat/train_all",
-#     "instances_train_all_mini.json",
-#     is_mini=True)
+#     "instances_train_all.json")
 
 # # 训练&验证
 # yolo_to_coco(
 #     f"{ROOT_DATA}/YoloFormat/train",
-#     "instances_train_mini.json",
-#     is_mini=True)
+#     "instances_train.json")
 # yolo_to_coco(
 #     f"{ROOT_DATA}/YoloFormat/val",
-#     "instances_val_mini.json",
-#     is_mini=True)
+#     "instances_val.json")
 
 # # 测试集
 # yolo_to_coco(
 #     f"{ROOT_DATA}/YoloFormat/test_synth",
-#     "instances_test_synth_mini.json",
-#     is_mini=True)
+#     "instances_test_synth.json")
 # yolo_to_coco(
 #     f"{ROOT_DATA}/YoloFormat/test_real_nominal",
-#     "instances_test_real_nominal_mini.json",
-#     is_real=True,
-#     is_mini=True)
+#     "instances_test_real_nominal.json",
+#     is_real=True)
 # yolo_to_coco(
 #     f"{ROOT_DATA}/YoloFormat/test_real_edge",
-#     "instances_test_real_edge_mini.json",
-#     is_real=True,
-#     is_mini=True)
+#     "instances_test_real_edge.json",
+#     is_real=True)
 
-# 定义要调用的函数列表
-# functions = [
-#    (yolo_to_coco, f"{ROOT_DATA}/YoloFormat/train_all", "instances_train_all.json"),  # noqa
-#    (yolo_to_coco, f"{ROOT_DATA}/YoloFormat/train", "instances_train.json"),  # noqa
-#    (yolo_to_coco, f"{ROOT_DATA}/YoloFormat/val", "instances_val.json"),  # noqa
-#    (yolo_to_coco, f"{ROOT_DATA}/YoloFormat/test_synth", "instances_test_synth.json"),  # noqa
-#    (yolo_to_coco, f"{ROOT_DATA}/YoloFormat/test_real_edge", "instances_test_real_edge.json", True),  # noqa
-#    (yolo_to_coco, f"{ROOT_DATA}/YoloFormat/test_real_nominal", "instances_test_real_nominal.json", True),  # noqa
 
-#    (yolo_to_coco, f"{ROOT_DATA}/YoloFormat/train_all", "instances_train_all_mini.json", True),  # noqa
-#    (yolo_to_coco, f"{ROOT_DATA}/YoloFormat/train", "instances_train_mini.json", True),  # noqa
-#    (yolo_to_coco, f"{ROOT_DATA}/YoloFormat/val", "instances_val_mini.json", True),  # noqa
-#    (yolo_to_coco, f"{ROOT_DATA}/YoloFormat/test_synth", "instances_test_synth_mini.json", True),  # noqa
-#    (yolo_to_coco, f"{ROOT_DATA}/YoloFormat/test_real_edge", "instances_test_real_edge_mini.json", True, True),  # noqa
-#    (yolo_to_coco, f"{ROOT_DATA}/YoloFormat/test_real_nominal", "instances_test_real_nominal_mini.json", True, True),  # noqa
-# ]
+# # mini数据集
+# 全部训练集
+yolo_to_coco(
+    f"{ROOT_DATA}/YoloFormat/train_all",
+    "instances_train_all_mini.json",
+    is_mini=True)
 
-# # 创建一个线程池
-# with ThreadPoolExecutor() as executor:
-#     # 使用submit方法将函数添加到线程池
-#     futures = [executor.submit(func, *args) for func, *args in functions]
+# 训练&验证
+yolo_to_coco(
+    f"{ROOT_DATA}/YoloFormat/train",
+    "instances_train_mini.json",
+    is_mini=True)
+yolo_to_coco(
+    f"{ROOT_DATA}/YoloFormat/val",
+    "instances_val_mini.json",
+    is_mini=True)
 
-#     # 等待所有函数完成
-#     for future in futures:
-#         future.result()
+# 测试集
+yolo_to_coco(
+    f"{ROOT_DATA}/YoloFormat/test_synth",
+    "instances_test_synth_mini.json",
+    is_mini=True)
+yolo_to_coco(
+    f"{ROOT_DATA}/YoloFormat/test_real_nominal",
+    "instances_test_real_nominal_mini.json",
+    is_real=True,
+    is_mini=True)
+yolo_to_coco(
+    f"{ROOT_DATA}/YoloFormat/test_real_edge",
+    "instances_test_real_edge_mini.json",
+    is_real=True,
+    is_mini=True)

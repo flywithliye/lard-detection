@@ -8,10 +8,15 @@ results/figs/eda/*.jpg
 results/figs/test/*.jpg
 results/figs/train/*.jpg
 
-results/tables/*.csv
+results/tables/eda/*.csv
+results/tables/metrics/*.csv
+
 results/videos/*.mp4
 
-runs/detect
+runs/ultralytics
+runs/mmdetection
 weights/*.pt
 
 src/data/LARD
+
+*.log
