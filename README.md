@@ -84,6 +84,8 @@ pip install -v -e .
 
 * [ ] TODO
 
+对子模块进行上述修改后，若出现diff文件并提示dirty，则在vscode中勾选 `git.ignoreSubmodules`
+
 # 其他
 
 * [ ] TODO
