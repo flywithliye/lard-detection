@@ -13,6 +13,14 @@
 ## mmdet
 
 ```bash
+# 添加子模块
+git submodule add https://github.com/flywithliye/mmdetection.git 3rdparty/mmdetection
+git submodule init
+git submodule update
+git add .gitmodules 3rdparty/mmdetection
+git commit -m "Added mmdetection submodule"
+
+# 下载安装
 git clone https://github.com/flywithliye/mmdetection.git
 cd mmdetection
 pip install -v -e .
@@ -24,6 +32,14 @@ pip install -v -e .
 ## ultralytics
 
 ```bash
+# 添加子模块
+git submodule add https://github.com/flywithliye/ultralytics.git 3rdparty/ultralytics
+git submodule init
+git submodule update
+git add .gitmodules 3rdparty/ultralytics
+git commit -m "Added ultralytics submodule"
+
+# 下载安装
 git clone https://github.com/flywithliye/ultralytics.git
 cd ultralytics
 pip install -v -e .
@@ -66,7 +82,8 @@ pip install -v -e .
 
 > 以下内容可通过执行 `src/code_mmdet/prepare_mmdet.ipynb`文件实现
 
+* [ ] TODO
 
 # 其他
 
-TODO
+* [ ] TODO
