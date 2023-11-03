@@ -45,6 +45,15 @@ cd ultralytics
 pip install -v -e .
 ```
 
+安装完成后，执行 `pip list | grep -e mmdet -e ultralytics，有如下输出`
+
+```bash
+mmdet                       3.2.0                /{project_path}/3rdparty/mmdetection
+ultralytics                 8.0.203              /{project_path}/3rdparty/ultralytics
+```
+
+
+
 # ultralytics配置
 
 > 以下内容可通过执行 `src/code_ultralytics/prepare_ultralytics.ipynb`文件实现

@@ -13,8 +13,8 @@ results/tables/metrics/*.csv
 
 results/videos/*.mp4
 
-runs/ultralytics
-runs/mmdetection
+runs/ultralytics/*
+runs/mmdetection/*
 weights/*.pt
 
 src/data/LARD

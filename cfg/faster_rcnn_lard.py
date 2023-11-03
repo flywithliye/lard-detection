@@ -1,7 +1,12 @@
 auto_scale_lr = dict(base_batch_size=128, enable=False)
 backend_args = None
+
 model_name = 'faster_rcnn'
-work_dir = f'runs/mmdetection/{model_name}/'
+model_stru = ''
+model_cfg = '_train_val'
+exp_name = f'{model_name}{model_stru}{model_cfg}'
+
+work_dir = f'runs/mmdetection/{exp_name}/train'
 data_root = 'datasets/lard/'
 dataset_type = 'LardDataset'
 input_size = (
@@ -9,7 +14,7 @@ input_size = (
     640,
 )
 num_workers = 12
-num_epochs = 2
+num_epochs = 20
 batch_size = dict(
     train=10,
     val=20,
@@ -18,15 +23,15 @@ batch_size = dict(
 data_preprocessor = dict(
     bgr_to_rgb=True,
     mean=[
-        122.02546603,
-        141.12094067,
-        164.56260058,
+        122.00711516,
+        141.11828193,
+        164.56574534
     ],
     pad_size_divisor=32,
     std=[
-        46.92374909,
-        54.82440862,
-        70.39951964,
+        46.91310377,
+        54.8164231,
+        70.38650678
     ],
     type='DetDataPreprocessor')
 default_hooks = dict(
