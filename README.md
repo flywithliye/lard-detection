@@ -1,10 +1,21 @@
+# LARD-Detection
+
+围绕LARD数据集展开的目标检测研究
+
+# 下载
+
+```bash
+git clone --recurse-submodules https://github.com/flywithliye/lard-detection.git
+git submodule update --init --recursive
+```
+
 # 系统配置
 
 1. 创建环境变量 `vim ~/.bashrc`
 
    ```bash
    export LARD_DATA_ROOT_PATH='/home/yeli/yeli/data/lard'
-   export LARD_YOLO_ROOT_PATH='/home/yeli/Nextcloud/lard/yolov8'
+   export LARD_PROJECT_ROOT_PATH='/home/yeli/Nextcloud/lard/lard-detection'
    ```
 2. 激活环境变量 `source ~/.bashrc`
 
@@ -52,8 +63,6 @@ mmdet                       3.2.0                /{project_path}/3rdparty/mmdete
 ultralytics                 8.0.203              /{project_path}/3rdparty/ultralytics
 ```
 
-
-
 # ultralytics配置
 
 > 以下内容可通过执行 `src/code_ultralytics/prepare_ultralytics.ipynb`文件实现
@@ -91,7 +100,100 @@ ultralytics                 8.0.203              /{project_path}/3rdparty/ultral
 
 > 以下内容可通过执行 `src/code_mmdet/prepare_mmdet.ipynb`文件实现
 
-* [ ] TODO
+1. 在数据集 `mmdetection/mmdet/datasets/lard.py`下构建LARD数据集类:
+
+   ```python
+   from mmdet.registry import DATASETS
+   from .coco import CocoDataset
+
+
+   @DATASETS.register_module()
+   class LardDataset(CocoDataset):
+       """Dataset for LARD."""
+
+       METAINFO = {
+           'classes':
+           ('runway',),
+           # palette is a list of color tuples, which is used for visualization.
+           'palette':
+           [(220, 20, 60),]
+       }
+   ```
+2. 在初始化部分 `mmdetection/mmdet/datasets/__init__.py`注册LARD数据集类：
+
+   ```python
+   from .lard import LardDataset
+
+   __all__ = [
+       'XMLDataset', 'CocoDataset', 'LardDataset', 'DeepFashionDataset', 'VOCDataset',
+       'CityscapesDataset', 'LVISDataset', 'LVISV05Dataset', 'LVISV1Dataset',
+       'WIDERFaceDataset', 'get_loading_pipeline', 'CocoPanopticDataset',
+       'MultiImageMixDataset', 'OpenImagesDataset', 'OpenImagesChallengeDataset',
+       'AspectRatioBatchSampler', 'ClassAwareSampler', 'MultiSourceSampler',
+       'GroupMultiSourceSampler', 'BaseDetDataset', 'CrowdHumanDataset',
+       'Objects365V1Dataset', 'Objects365V2Dataset', 'DSDLDetDataset',
+       'BaseVideoDataset', 'MOTChallengeDataset', 'TrackImgSampler',
+       'ReIDDataset', 'YouTubeVISDataset', 'TrackAspectRatioBatchSampler',
+       'ADE20KPanopticDataset', 'CocoCaptionDataset', 'RefCocoDataset',
+       'BaseSegDataset', 'ADE20KSegDataset', 'CocoSegDataset',
+       'ADE20KInstanceDataset', 'iSAIDDataset', 'V3DetDataset', 'ConcatDataset'
+   ]
+   ```
+3. 在 `mmdetection/mmdet/evaluation/functional/class_names.py`中添加LARD类别名字定义:
+
+   ```python
+   def lard_classes() -> list:
+       """Class names of LARD."""
+       return [
+           'runway',
+       ]
+   ```
+4. 在 `mmdetection/mmdet/evaluation/functional/__init__.py`内注册LARD类别：
+
+   ```python
+   from .class_names import (cityscapes_classes, coco_classes, lard_classes,
+                               coco_panoptic_classes, dataset_aliases, get_classes,
+                               imagenet_det_classes, imagenet_vid_classes,
+                               objects365v1_classes, objects365v2_classes,
+                               oid_challenge_classes, oid_v6_classes, voc_classes)
+
+   __all__ = [
+       'voc_classes', 'imagenet_det_classes', 'imagenet_vid_classes',
+       'coco_classes', 'lard_classes', 'cityscapes_classes', 'dataset_aliases', 'get_classes',
+       'average_precision', 'eval_map', 'print_map_summary', 'eval_recalls',
+       'print_recall_summary', 'plot_num_recall', 'plot_iou_recall',
+       'oid_v6_classes', 'oid_challenge_classes', 'INSTANCE_OFFSET',
+       'pq_compute_single_core', 'pq_compute_multi_core', 'bbox_overlaps',
+       'objects365v1_classes', 'objects365v2_classes', 'coco_panoptic_classes',
+       'evaluateImgLists', 'YTVIS', 'YTVISeval'
+   ]
+   ```
+5. 修改`mmdetection/mmdet/models/dense_heads/base_dense_head.py`文件
+
+    **Before modification**
+    ```python
+    if getattr(self.loss_cls, 'custom_cls_channels', False):
+        scores = self.loss_cls.get_activation(cls_score)
+    elif self.use_sigmoid_cls:
+        scores = cls_score.sigmoid()
+    else:
+        # remind that we set FG labels to [0, num_class-1]
+        # since mmdet v2.0
+        # BG cat_id: num_class
+        scores = cls_score.softmax(-1)[:, :-1]
+    ```
+    **After modification**
+    ```python
+    if False: # getattr(self.loss_cls, 'custom_cls_channels', False):  # Change made here
+        scores = self.loss_cls.get_activation(cls_score)
+    elif self.use_sigmoid_cls:
+        scores = cls_score.sigmoid()
+    else:
+        # remind that we set FG labels to [0, num_class-1]
+        # since mmdet v2.0
+        # BG cat_id: num_class
+        scores = cls_score.softmax(-1)[:, :-1]
+    ```
 
 对子模块进行上述修改后，若出现diff文件并提示dirty，则在vscode中勾选 `git.ignoreSubmodules`
 

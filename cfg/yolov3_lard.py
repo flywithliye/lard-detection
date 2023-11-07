@@ -20,6 +20,7 @@ batch_size = dict(
     val=32,
     test=32
 )
+
 data_preprocessor = dict(
     bgr_to_rgb=True,
     mean=[
@@ -143,12 +144,17 @@ optim_wrapper = dict(
     optimizer=dict(lr=0.001, momentum=0.9, type='SGD', weight_decay=0.0005),
     type='OptimWrapper')
 param_scheduler = [
-    dict(begin=0, by_epoch=True, end=1, start_factor=0.1, type='LinearLR'),
+    dict(begin=0, by_epoch=True, end=5, start_factor=0.1, type='LinearLR'),
     dict(
-        by_epoch=True, gamma=0.1, milestones=[
+        begin=5,
+        by_epoch=True,
+        end=num_epochs,
+        gamma=0.1,
+        milestones=[
             int(num_epochs*0.8),
             int(num_epochs*0.9),
-        ], type='MultiStepLR'),
+        ],
+        type='MultiStepLR'),
 ]
 resume = False
 train_cfg = dict(
@@ -268,7 +274,7 @@ test_evaluator = dict(
     backend_args=None,
     format_only=True,
     metric='bbox',
-    outfile_prefix=f'runs/{model_name}/coco_detection/prediction',
+    outfile_prefix=f'runs/mmdetection/{exp_name}/test/coco_detection/prediction_test_synth',
     type='CocoMetric')
 vis_backends = [
     dict(type='LocalVisBackend'),

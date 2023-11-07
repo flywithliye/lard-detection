@@ -2,7 +2,7 @@ import os
 from LARD.src.dataset.lard_dataset import LardDataset
 
 
-ROOT_DATA = os.environ.get('LARD_DATA_ROOT_DATA')
+ROOT_DATA = os.environ.get('LARD_DATA_ROOT_PATH')
 zip_folder = f"{ROOT_DATA}/LARD_dataset_decompressed/"
 yolo_folder = f"{ROOT_DATA}/YoloFormat/"
 

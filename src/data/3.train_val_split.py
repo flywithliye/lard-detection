@@ -2,20 +2,19 @@ import os
 import random
 
 
-ROOT_DATA = os.environ.get('LARD_DATA_ROOT_DATA')
-yolo_folder = f"{ROOT_DATA}/YoloFormat/"
+ROOT_DATA = os.environ.get('LARD_DATA_ROOT_PATH')
 
 # 1. 数据集划分
 # 设置随机数生成器的种子
 random.seed(0)
 
 # 设置路径
-src_image_dir = os.path.abspath(f'{yolo_folder}/train_all/images')
-src_label_dir = os.path.abspath(f'{yolo_folder}/train_all/labels')
-dst_train_image_dir = os.path.abspath(f'{yolo_folder}/train/images')
-dst_train_label_dir = os.path.abspath(f'{yolo_folder}/train/labels')
-dst_val_image_dir = os.path.abspath(f'{yolo_folder}/val/images')
-dst_val_label_dir = os.path.abspath(f'{yolo_folder}/val/labels')
+src_image_dir = os.path.abspath(f'{ROOT_DATA}/YoloFormat/train_all/images')
+src_label_dir = os.path.abspath(f'{ROOT_DATA}/YoloFormat/train_all/labels')
+dst_train_image_dir = os.path.abspath(f'{ROOT_DATA}/YoloFormat/train/images')
+dst_train_label_dir = os.path.abspath(f'{ROOT_DATA}/YoloFormat/train/labels')
+dst_val_image_dir = os.path.abspath(f'{ROOT_DATA}/YoloFormat/val/images')
+dst_val_label_dir = os.path.abspath(f'{ROOT_DATA}/YoloFormat/val/labels')
 
 # 创建目录
 os.makedirs(dst_train_image_dir, exist_ok=True)

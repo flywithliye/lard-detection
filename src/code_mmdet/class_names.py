@@ -91,7 +91,7 @@ def coco_classes() -> list:
 def lard_classes() -> list:
     """Class names of LARD."""
     return [
-        'runway'
+        'runway',
     ]
 
 

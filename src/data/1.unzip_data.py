@@ -4,7 +4,7 @@ import os
 from tqdm import tqdm
 from typing import List
 
-ROOT_DATA = os.environ.get('LARD_DATA_ROOT_DATA')
+ROOT_DATA = os.environ.get('LARD_DATA_ROOT_PATH')
 
 
 def unzip_single_file(zip_path, dest_folder):

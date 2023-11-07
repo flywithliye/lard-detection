@@ -1,4 +1,7 @@
+import os
 from ultralytics import YOLO
+
+ROOT_PROJECT = os.environ.get('LARD_PROJECT_ROOT_PATH')
 
 # 变量定义
 model_name = 'yolov8n'
@@ -10,8 +13,9 @@ assert model_stru in ['-p2', '-p6']
 # 路径构建
 exp_name = f'TEST_{model_name}{model_stru}{model_cfg}'
 path_yaml = f'{model_name}{model_stru}.yaml'
-path_weights = f'weights/{model_name}.pt'
-path_trans = 'datasets/cfg/lard_transform.json'
+path_weights = f'{ROOT_PROJECT}/weights/{model_name}.pt'
+path_trans = f'{ROOT_PROJECT}/datasets/cfg/lard_transform.json'
+path_data = f'{ROOT_PROJECT}/datasets/cfg/lard_val_test_synth.yaml'
 
 print(f"实验名称: {exp_name}")
 
@@ -20,15 +24,14 @@ model = YOLO(path_yaml, task='detect').load(weights=path_weights)
 
 # 训练模型
 results = model.train(
-    data='datasets/cfg/lard_val_test_synth.yaml',
+    data=path_data,
     epochs=20,
     batch=32,
-    imgsz=640,
     imgsz=640,
     cache=False,
     device=[0],
     workers=12,
-    project='runs/ultralytics',
+    project='runs/ultralytics_test',
     name=f'{exp_name}/train',
     custom_aug=True,  # 是否启用自定义数据增强
     path_transform=path_trans,

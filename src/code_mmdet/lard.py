@@ -9,8 +9,8 @@ class LardDataset(CocoDataset):
 
     METAINFO = {
         'classes':
-        ('runway'),
+        ('runway',),
         # palette is a list of color tuples, which is used for visualization.
         'palette':
-        [(220, 20, 60)]
+        [(220, 20, 60),]
     }

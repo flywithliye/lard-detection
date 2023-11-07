@@ -1,7 +1,7 @@
 auto_scale_lr = dict(base_batch_size=128, enable=False)
 backend_args = None
 
-model_name = 'faster_rcnn'
+model_name = 'ssd'
 model_stru = ''
 model_cfg = '_train_val'
 exp_name = f'{model_name}{model_stru}{model_cfg}'
@@ -10,15 +10,15 @@ work_dir = f'runs/mmdetection/{exp_name}/train'
 data_root = 'datasets/lard/'
 dataset_type = 'LardDataset'
 input_size = (
-    640,
-    640,
+    300,
+    300,
 )
 num_workers = 12
-num_epochs = 20
+num_epochs = 50
 batch_size = dict(
-    train=10,
-    val=20,
-    test=20
+    train=32,
+    val=64,
+    test=64
 )
 
 data_preprocessor = dict(
@@ -28,7 +28,7 @@ data_preprocessor = dict(
         141.11828193,
         164.56574534
     ],
-    pad_size_divisor=32,
+    pad_size_divisor=1,
     std=[
         46.91310377,
         54.8164231,
@@ -56,85 +56,60 @@ log_level = 'INFO'
 log_processor = dict(by_epoch=True, type='LogProcessor', window_size=50)
 model = dict(
     backbone=dict(
-        depth=50,
-        frozen_stages=1,
-        init_cfg=dict(checkpoint='torchvision://resnet50', type='Pretrained'),
-        norm_cfg=dict(requires_grad=True, type='BN'),
-        norm_eval=True,
-        num_stages=4,
-        out_indices=(
-            0,
-            1,
-            2,
-            3,
+        ceil_mode=True,
+        depth=16,
+        init_cfg=dict(
+            checkpoint='open-mmlab://vgg16_caffe', type='Pretrained'),
+        out_feature_indices=(
+            22,
+            34,
         ),
-        style='pytorch',
-        type='ResNet'),
-    data_preprocessor=data_preprocessor,
-    neck=dict(
-        in_channels=[
-            256,
-            512,
-            1024,
-            2048,
-        ],
-        num_outs=5,
-        out_channels=256,
-        type='FPN'),
-    roi_head=dict(
-        bbox_head=dict(
-            bbox_coder=dict(
-                target_means=[
-                    0.0,
-                    0.0,
-                    0.0,
-                    0.0,
-                ],
-                target_stds=[
-                    0.1,
-                    0.1,
-                    0.2,
-                    0.2,
-                ],
-                type='DeltaXYWHBBoxCoder'),
-            fc_out_channels=1024,
-            in_channels=256,
-            loss_bbox=dict(loss_weight=1.0, type='L1Loss'),
-            loss_cls=dict(
-                loss_weight=1.0, type='CrossEntropyLoss', use_sigmoid=False),
-            num_classes=1,
-            reg_class_agnostic=False,
-            roi_feat_size=7,
-            type='Shared2FCBBoxHead'),
-        bbox_roi_extractor=dict(
-            featmap_strides=[
-                4,
-                8,
-                16,
-                32,
-            ],
-            out_channels=256,
-            roi_layer=dict(output_size=7, sampling_ratio=0, type='RoIAlign'),
-            type='SingleRoIExtractor'),
-        type='StandardRoIHead'),
-    rpn_head=dict(
+        out_indices=(
+            3,
+            4,
+        ),
+        type='SSDVGG',
+        with_last_pool=False),
+    bbox_head=dict(
         anchor_generator=dict(
+            basesize_ratio_range=(
+                0.15,
+                0.9,
+            ),
+            input_size=input_size[0],
             ratios=[
-                0.5,
-                1.0,
-                2.0,
+                [
+                    2,
+                ],
+                [
+                    2,
+                    3,
+                ],
+                [
+                    2,
+                    3,
+                ],
+                [
+                    2,
+                    3,
+                ],
+                [
+                    2,
+                ],
+                [
+                    2,
+                ],
             ],
-            scales=[
-                8,
-            ],
+            scale_major=False,
             strides=[
-                4,
                 8,
                 16,
                 32,
                 64,
+                100,
+                300,
             ],
-            type='AnchorGenerator'),
+            type='SSDAnchorGenerator'),
         bbox_coder=dict(
             target_means=[
                 0.0,
@@ -143,70 +118,73 @@ model = dict(
                 0.0,
             ],
             target_stds=[
-                1.0,
-                1.0,
-                1.0,
-                1.0,
+                0.1,
+                0.1,
+                0.2,
+                0.2,
             ],
             type='DeltaXYWHBBoxCoder'),
-        feat_channels=256,
-        in_channels=256,
-        loss_bbox=dict(loss_weight=1.0, type='L1Loss'),
-        loss_cls=dict(
-            loss_weight=1.0, type='CrossEntropyLoss', use_sigmoid=True),
-        type='RPNHead'),
+        in_channels=(
+            512,
+            1024,
+            512,
+            256,
+            256,
+            256,
+        ),
+        num_classes=1,
+        type='SSDHead'),
+    data_preprocessor=data_preprocessor,
+    neck=dict(
+        in_channels=(
+            512,
+            1024,
+        ),
+        l2_norm_scale=20,
+        level_paddings=(
+            1,
+            1,
+            0,
+            0,
+        ),
+        level_strides=(
+            2,
+            2,
+            1,
+            1,
+        ),
+        out_channels=(
+            512,
+            1024,
+            512,
+            256,
+            256,
+            256,
+        ),
+        type='SSDNeck'),
     test_cfg=dict(
-        rcnn=dict(
-            max_per_img=100,
-            nms=dict(iou_threshold=0.5, type='nms'),
-            score_thr=0.05),
-        rpn=dict(
-            max_per_img=1000,
-            min_bbox_size=0,
-            nms=dict(iou_threshold=0.7, type='nms'),
-            nms_pre=1000)),
+        max_per_img=200,
+        min_bbox_size=0,
+        nms=dict(iou_threshold=0.45, type='nms'),
+        nms_pre=1000,
+        score_thr=0.02),
     train_cfg=dict(
-        rcnn=dict(
-            assigner=dict(
-                ignore_iof_thr=-1,
-                match_low_quality=False,
-                min_pos_iou=0.5,
-                neg_iou_thr=0.5,
-                pos_iou_thr=0.5,
-                type='MaxIoUAssigner'),
-            debug=False,
-            pos_weight=-1,
-            sampler=dict(
-                add_gt_as_proposals=True,
-                neg_pos_ub=-1,
-                num=512,
-                pos_fraction=0.25,
-                type='RandomSampler')),
-        rpn=dict(
-            allowed_border=-1,
-            assigner=dict(
-                ignore_iof_thr=-1,
-                match_low_quality=True,
-                min_pos_iou=0.3,
-                neg_iou_thr=0.3,
-                pos_iou_thr=0.7,
-                type='MaxIoUAssigner'),
-            debug=False,
-            pos_weight=-1,
-            sampler=dict(
-                add_gt_as_proposals=False,
-                neg_pos_ub=-1,
-                num=256,
-                pos_fraction=0.5,
-                type='RandomSampler')),
-        rpn_proposal=dict(
-            max_per_img=1000,
-            min_bbox_size=0,
-            nms=dict(iou_threshold=0.7, type='nms'),
-            nms_pre=2000)),
-    type='FasterRCNN')
+        allowed_border=-1,
+        assigner=dict(
+            gt_max_assign_all=False,
+            ignore_iof_thr=-1,
+            min_pos_iou=0.0,
+            neg_iou_thr=0.5,
+            pos_iou_thr=0.5,
+            type='MaxIoUAssigner'),
+        debug=False,
+        neg_pos_ratio=3,
+        pos_weight=-1,
+        sampler=dict(type='PseudoSampler'),
+        smoothl1_beta=1.0),
+    type='SingleStageDetector')
 optim_wrapper = dict(
-    optimizer=dict(lr=0.02, momentum=0.9, type='SGD', weight_decay=0.0001),
+    optimizer=dict(lr=0.002, momentum=0.9, type='SGD', weight_decay=0.0005),
     type='OptimWrapper')
 param_scheduler = [
     dict(
@@ -230,12 +208,46 @@ train_cfg = dict(
 train_pipeline = [
     dict(backend_args=None, type='LoadImageFromFile'),
     dict(type='LoadAnnotations', with_bbox=True),
-    dict(keep_ratio=True, scale=input_size, type='Resize'),
+    dict(
+        mean=[
+            123.675,
+            116.28,
+            103.53,
+        ],
+        ratio_range=(
+            1,
+            4,
+        ),
+        to_rgb=True,
+        type='Expand'),
+    dict(
+        min_crop_size=0.3,
+        min_ious=(
+            0.1,
+            0.3,
+            0.5,
+            0.7,
+            0.9,
+        ),
+        type='MinIoURandomCrop'),
+    dict(keep_ratio=False, scale=input_size, type='Resize'),
     dict(prob=0.5, type='RandomFlip'),
+    dict(
+        brightness_delta=32,
+        contrast_range=(
+            0.5,
+            1.5,
+        ),
+        hue_delta=18,
+        saturation_range=(
+            0.5,
+            1.5,
+        ),
+        type='PhotoMetricDistortion'),
     dict(type='PackDetInputs'),
 ]
 train_dataloader = dict(
-    batch_sampler=dict(type='AspectRatioBatchSampler'),
+    batch_sampler=None,
     batch_size=batch_size['train'],
     dataset=dict(
         dataset=dict(
@@ -247,15 +259,14 @@ train_dataloader = dict(
             pipeline=train_pipeline,
             type=dataset_type),
         times=1,
-        type='RepeatDataset'
-    ),
+        type='RepeatDataset'),
     num_workers=num_workers,
     persistent_workers=True,
     sampler=dict(shuffle=True, type='DefaultSampler'))
 val_cfg = dict(type='ValLoop')
 val_pipeline = [
     dict(backend_args=None, type='LoadImageFromFile'),
-    dict(keep_ratio=True, scale=input_size, type='Resize'),
+    dict(keep_ratio=False, scale=input_size, type='Resize'),
     dict(type='LoadAnnotations', with_bbox=True),
     dict(
         meta_keys=(
@@ -290,7 +301,7 @@ val_evaluator = dict(
 test_cfg = dict(type='TestLoop')
 test_pipeline = [
     dict(backend_args=None, type='LoadImageFromFile'),
-    dict(keep_ratio=True, scale=input_size, type='Resize'),
+    dict(keep_ratio=False, scale=input_size, type='Resize'),
     dict(type='LoadAnnotations', with_bbox=True),
     dict(
         meta_keys=(
