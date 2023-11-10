@@ -6,9 +6,8 @@ __pycache__/
 datasets/lard/*
 datasets/video/*
 
-logs/
-
 results/figs/eda/*.jpg
+results/figs/eda/*.html
 results/figs/test/*.jpg
 results/figs/train/*.jpg
 
@@ -20,8 +19,11 @@ results/tables/metrics/
 results/videos/*.mp4
 
 runs/ultralytics/*
+!runs/ultralytics/.gitkeep
 runs/mmdetection/*
-weights/*.pt
+!runs/mmdetection/.gitkeep
+
+weights/
 
 src/data/LARD
 

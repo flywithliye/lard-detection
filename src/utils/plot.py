@@ -80,7 +80,7 @@ def plot_mmdet_fastern_rcnn_train_log(df_train, df_val, exp_name: str):
     axs = axs.flatten()
     if len(df_train):
         axs[0].plot(df_train.index, df_train['lr'], label='lr')
-        axs[0].legend()
+        axs[0].legend(frameon=True)
         axs[0].set_title('Learning Rate vs Epoch')
         axs[0].set_xlabel('Epoch')
         axs[0].set_ylabel('Learning Rate')
@@ -106,7 +106,7 @@ def plot_mmdet_fastern_rcnn_train_log(df_train, df_val, exp_name: str):
             df_train.index,
             df_train['loss_bbox'],
             label='loss_bbox')
-        axs[1].legend()
+        axs[1].legend(frameon=True)
         axs[1].set_title('Loss vs Epoch')
         axs[1].set_xlabel('Epoch')
         axs[1].set_ylabel('Loss')
@@ -116,7 +116,7 @@ def plot_mmdet_fastern_rcnn_train_log(df_train, df_val, exp_name: str):
             df_train.index,
             df_train['acc'],
             label='acc')
-        axs[2].legend()
+        axs[2].legend(frameon=True)
         axs[2].set_title('ACC vs Epoch')
         axs[2].set_xlabel('Epoch')
         axs[2].set_ylabel('ACC')
@@ -136,7 +136,7 @@ def plot_mmdet_fastern_rcnn_train_log(df_train, df_val, exp_name: str):
             df_val.index,
             df_val['coco/bbox_mAP_75'],
             label='bbox_mAP_75')
-        axs[3].legend()
+        axs[3].legend(frameon=True)
         axs[3].set_title('coco/bbox_mAP vs Step')
         axs[3].set_xlabel('Epoch')
         axs[3].set_ylabel('coco/bbox_mAP')
@@ -155,7 +155,7 @@ def plot_mmdet_ssd_train_log(df_train, df_val, exp_name: str):
     axs = axs.flatten()
     if len(df_train):
         axs[0].plot(df_train.index, df_train['lr'], label='lr')
-        axs[0].legend()
+        axs[0].legend(frameon=True)
         axs[0].set_title('Learning Rate vs Epoch')
         axs[0].set_xlabel('Epoch')
         axs[0].set_ylabel('Learning Rate')
@@ -164,7 +164,7 @@ def plot_mmdet_ssd_train_log(df_train, df_val, exp_name: str):
         axs[1].plot(df_train.index, df_train['loss'], label='loss')
         axs[1].plot(df_train.index, df_train['loss_cls'], label='loss_cls')
         axs[1].plot(df_train.index, df_train['loss_bbox'], label='loss_bbox')
-        axs[1].legend()
+        axs[1].legend(frameon=True)
         axs[1].set_title('Loss vs Epoch')
         axs[1].set_xlabel('Epoch')
         axs[1].set_ylabel('Loss')
@@ -184,7 +184,7 @@ def plot_mmdet_ssd_train_log(df_train, df_val, exp_name: str):
             df_val.index,
             df_val['coco/bbox_mAP_75'],
             label='bbox_mAP_75')
-        axs[3].legend()
+        axs[3].legend(frameon=True)
         axs[3].set_title('coco/bbox_mAP vs Step')
         axs[3].set_xlabel('Epoch')
         axs[3].set_ylabel('coco/bbox_mAP')
@@ -203,14 +203,14 @@ def plot_mmdet_yolov3_train_log(df_train, df_val, exp_name: str):
     axs = axs.flatten()
     if len(df_train):
         axs[0].plot(df_train.index, df_train['lr'], label='lr')
-        axs[0].legend()
+        axs[0].legend(frameon=True)
         axs[0].set_title('Learning Rate vs Epoch')
         axs[0].set_xlabel('Epoch')
         axs[0].set_ylabel('Learning Rate')
         axs[0].set_xlim(left=0)
 
         axs[1].plot(df_train.index, df_train['grad_norm'], label='grad_norm')
-        axs[1].legend()
+        axs[1].legend(frameon=True)
         axs[1].set_title('Gradient Norm vs Epoch')
         axs[1].set_xlabel('Epoch')
         axs[1].set_ylabel('Gradient Norm')
@@ -221,7 +221,7 @@ def plot_mmdet_yolov3_train_log(df_train, df_val, exp_name: str):
         axs[2].plot(df_train.index, df_train['loss_conf'], label='loss_conf')
         axs[2].plot(df_train.index, df_train['loss_xy'], label='loss_xy')
         axs[2].plot(df_train.index, df_train['loss_wh'], label='loss_wh')
-        axs[2].legend()
+        axs[2].legend(frameon=True)
         axs[2].set_title('Loss vs Epoch')
         axs[2].set_xlabel('Epoch')
         axs[2].set_ylabel('Loss')
@@ -241,7 +241,7 @@ def plot_mmdet_yolov3_train_log(df_train, df_val, exp_name: str):
             df_val.index,
             df_val['coco/bbox_mAP_75'],
             label='bbox_mAP_75')
-        axs[3].legend()
+        axs[3].legend(frameon=True)
         axs[3].set_title('coco/bbox_mAP vs Step')
         axs[3].set_xlabel('Epoch')
         axs[3].set_ylabel('coco/bbox_mAP')
@@ -251,4 +251,57 @@ def plot_mmdet_yolov3_train_log(df_train, df_val, exp_name: str):
     plt.savefig(
         f'results/figs/train/train_log_{exp_name}.jpg',
         dpi=600, bbox_inches='tight')
+    plt.show()
+
+
+def plot_ultralytics_yolov8_train_log(df_train_val, exp_name: str):
+
+    _, axes = plt.subplots(2, 2, figsize=(7, 6), dpi=100)
+    axes = axes.flatten()
+
+    axes[0].plot(df_train_val.index, df_train_val['train/box_loss'],
+                label='Training bounding box loss')
+    axes[0].plot(df_train_val.index, df_train_val['train/cls_loss'],
+                label='Training classification loss')
+    axes[0].plot(df_train_val.index, df_train_val['train/dfl_loss'],
+                label='Training DFL loss')
+    axes[0].legend(loc='upper right', frameon=True)
+
+    axes[1].plot(df_train_val.index, df_train_val['val/box_loss'],
+                label='Validation bounding box loss')
+    axes[1].plot(df_train_val.index, df_train_val['val/cls_loss'],
+                label='Validation classification loss')
+    axes[1].plot(df_train_val.index, df_train_val['val/dfl_loss'],
+                label='Validation DFL loss')
+    axes[1].legend(loc='upper right', frameon=True)
+
+    axes[2].plot(df_train_val.index, df_train_val['metrics/precision(B)'], label='Precision')
+    axes[2].plot(df_train_val.index, df_train_val['metrics/recall(B)'], label='Recall')
+    axes[2].plot(df_train_val.index, df_train_val['metrics/mAP50(B)'], label='mAP50')
+    axes[2].plot(df_train_val.index, df_train_val['metrics/mAP50-95(B)'], label='mAP50-95')
+    axes[2].legend(loc='lower right', ncol=2, frameon=True)
+
+    axes[3].plot(df_train_val.index, df_train_val['lr/pg0'], label='Learning rate for group 0')
+    axes[3].plot(df_train_val.index, df_train_val['lr/pg1'], label='Learning rate for group 1')
+    axes[3].plot(df_train_val.index, df_train_val['lr/pg2'], label='Learning rate for group 2')
+    axes[3].legend(loc='lower right', frameon=True)
+
+    axes[0].set_xlabel('epoch')
+    axes[1].set_xlabel('epoch')
+    axes[2].set_xlabel('epoch')
+    axes[3].set_xlabel('epoch')
+
+    axes[0].set_ylabel('loss')
+    axes[1].set_ylabel('loss')
+    axes[2].set_ylabel('metrics')
+    axes[3].set_ylabel('learning rate')
+
+    axes[0].set_title('Train loss')
+    axes[1].set_title('Validation loss')
+    axes[2].set_title('Validation metrics')
+    axes[3].set_title('Learning rate')
+
+    plt.tight_layout()
+    plt.savefig(f'results/figs/train/train_log_{exp_name}.jpg',
+                dpi=600, bbox_inches='tight')
     plt.show()

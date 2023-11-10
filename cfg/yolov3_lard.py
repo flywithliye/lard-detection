@@ -3,22 +3,22 @@ backend_args = None
 
 model_name = 'yolov3'
 model_stru = ''
-model_cfg = '_train_val'
+model_cfg = ''
 exp_name = f'{model_name}{model_stru}{model_cfg}'
 
 work_dir = f'runs/mmdetection/{exp_name}/train'
 data_root = 'datasets/lard/'
 dataset_type = 'LardDataset'
 input_size = (
-    640,
-    640,
+    608,
+    608,
 )
-num_workers = 12
-num_epochs = 20
+num_workers = 64
+num_epochs = 300
 batch_size = dict(
-    train=6,
-    val=32,
-    test=32
+    train=64,
+    val=64,
+    test=64
 )
 
 data_preprocessor = dict(
@@ -129,9 +129,9 @@ model = dict(
         conf_thr=0.005,
         max_per_img=100,
         min_bbox_size=0,
-        nms=dict(iou_threshold=0.45, type='nms'),
+        nms=dict(iou_threshold=0.6, type='nms'),
         nms_pre=1000,
-        score_thr=0.05),
+        score_thr=0.2),
     train_cfg=dict(
         assigner=dict(
             min_pos_iou=0,
@@ -144,9 +144,9 @@ optim_wrapper = dict(
     optimizer=dict(lr=0.001, momentum=0.9, type='SGD', weight_decay=0.0005),
     type='OptimWrapper')
 param_scheduler = [
-    dict(begin=0, by_epoch=True, end=5, start_factor=0.1, type='LinearLR'),
+    dict(begin=0, by_epoch=True, end=3, start_factor=0.001, type='LinearLR'),
     dict(
-        begin=5,
+        begin=3,
         by_epoch=True,
         end=num_epochs,
         gamma=0.1,

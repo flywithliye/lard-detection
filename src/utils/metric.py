@@ -33,6 +33,21 @@ def get_coco_imgname_2_imgid(annotation_file: str) -> dict:
     return imgname_2_imgid
 
 
+def get_coco_imgid_2_imgname(annotation_file: str) -> dict:
+
+    # 获取一个字典 id_2_name {图片id: 图片名(无拓展名)}
+    coco = COCO(annotation_file=annotation_file)
+    img_ids = coco.getImgIds()
+
+    imgid_2_imgname = {}
+    for img_id in img_ids:
+        img_info = coco.loadImgs(img_id)[0]
+        filename = os.path.splitext(img_info['file_name'])[0]  # 无拓展名的文件名
+        imgid_2_imgname[img_id] = filename
+
+    return imgid_2_imgname
+
+
 def cal_coco_metrics(annotation_file: str, prediction_file: str):
 
     coco_true = COCO(annotation_file=annotation_file)

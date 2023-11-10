@@ -3,7 +3,7 @@ backend_args = None
 
 model_name = 'ssd'
 model_stru = ''
-model_cfg = '_train_val'
+model_cfg = ''
 exp_name = f'{model_name}{model_stru}{model_cfg}'
 
 work_dir = f'runs/mmdetection/{exp_name}/train'
@@ -13,10 +13,10 @@ input_size = (
     300,
     300,
 )
-num_workers = 12
-num_epochs = 50
+num_workers = 64
+num_epochs = 300
 batch_size = dict(
-    train=32,
+    train=64,
     val=64,
     test=64
 )
@@ -163,11 +163,11 @@ model = dict(
         ),
         type='SSDNeck'),
     test_cfg=dict(
-        max_per_img=200,
+        max_per_img=100,
         min_bbox_size=0,
-        nms=dict(iou_threshold=0.45, type='nms'),
+        nms=dict(iou_threshold=0.6, type='nms'),
         nms_pre=1000,
-        score_thr=0.02),
+        score_thr=0.2),
     train_cfg=dict(
         allowed_border=-1,
         assigner=dict(
@@ -188,9 +188,9 @@ optim_wrapper = dict(
     type='OptimWrapper')
 param_scheduler = [
     dict(
-        begin=0, by_epoch=True, end=5, start_factor=0.001, type='LinearLR'),
+        begin=0, by_epoch=True, end=3, start_factor=0.001, type='LinearLR'),
     dict(
-        begin=5,
+        begin=3,
         by_epoch=True,
         end=num_epochs,
         gamma=0.1,

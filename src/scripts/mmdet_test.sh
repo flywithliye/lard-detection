@@ -1,16 +1,16 @@
 #!/bin/bash
 
-# 使用方式：./test_model.sh <cfg_path> <best_model_path> <exp_name>
-
-cfg_path=$1
-best_model_path=$2
-exp_name=$3
+# 使用方式：./mmdet_test.sh <cfg_path> <best_model_path> <exp_name>
 
 # 确保脚本参数数量正确
 if [ "$#" -ne 3 ]; then
     echo "使用方式: $0 <cfg_path> <best_model_path> <exp_name>"
     exit 1
 fi
+
+cfg_path=$1
+best_model_path=$2
+exp_name=$3
 
 # 测试-synth
 python 3rdparty/mmdetection/tools/test.py \

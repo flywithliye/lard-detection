@@ -56,7 +56,7 @@ cd ultralytics
 pip install -v -e .
 ```
 
-安装完成后，执行 `pip list | grep -e mmdet -e ultralytics，有如下输出`
+安装完成后，执行 `pip list | grep -e mmdet -e ultralytics`有如下输出
 
 ```bash
 mmdet                       3.2.0                /{project_path}/3rdparty/mmdetection
@@ -168,32 +168,35 @@ ultralytics                 8.0.203              /{project_path}/3rdparty/ultral
        'evaluateImgLists', 'YTVIS', 'YTVISeval'
    ]
    ```
-5. 修改`mmdetection/mmdet/models/dense_heads/base_dense_head.py`文件
+5. 修改 `mmdetection/mmdet/models/dense_heads/base_dense_head.py`文件
 
-    **Before modification**
-    ```python
-    if getattr(self.loss_cls, 'custom_cls_channels', False):
-        scores = self.loss_cls.get_activation(cls_score)
-    elif self.use_sigmoid_cls:
-        scores = cls_score.sigmoid()
-    else:
-        # remind that we set FG labels to [0, num_class-1]
-        # since mmdet v2.0
-        # BG cat_id: num_class
-        scores = cls_score.softmax(-1)[:, :-1]
-    ```
-    **After modification**
-    ```python
-    if False: # getattr(self.loss_cls, 'custom_cls_channels', False):  # Change made here
-        scores = self.loss_cls.get_activation(cls_score)
-    elif self.use_sigmoid_cls:
-        scores = cls_score.sigmoid()
-    else:
-        # remind that we set FG labels to [0, num_class-1]
-        # since mmdet v2.0
-        # BG cat_id: num_class
-        scores = cls_score.softmax(-1)[:, :-1]
-    ```
+   **Before modification**
+
+   ```python
+   if getattr(self.loss_cls, 'custom_cls_channels', False):
+       scores = self.loss_cls.get_activation(cls_score)
+   elif self.use_sigmoid_cls:
+       scores = cls_score.sigmoid()
+   else:
+       # remind that we set FG labels to [0, num_class-1]
+       # since mmdet v2.0
+       # BG cat_id: num_class
+       scores = cls_score.softmax(-1)[:, :-1]
+   ```
+
+   **After modification**
+
+   ```python
+   if False: # getattr(self.loss_cls, 'custom_cls_channels', False):  # Change made here
+       scores = self.loss_cls.get_activation(cls_score)
+   elif self.use_sigmoid_cls:
+       scores = cls_score.sigmoid()
+   else:
+       # remind that we set FG labels to [0, num_class-1]
+       # since mmdet v2.0
+       # BG cat_id: num_class
+       scores = cls_score.softmax(-1)[:, :-1]
+   ```
 
 对子模块进行上述修改后，若出现diff文件并提示dirty，则在vscode中勾选 `git.ignoreSubmodules`
 

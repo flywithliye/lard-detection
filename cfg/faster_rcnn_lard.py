@@ -3,22 +3,22 @@ backend_args = None
 
 model_name = 'faster_rcnn'
 model_stru = ''
-model_cfg = '_train_val'
+model_cfg = ''
 exp_name = f'{model_name}{model_stru}{model_cfg}'
 
 work_dir = f'runs/mmdetection/{exp_name}/train'
 data_root = 'datasets/lard/'
 dataset_type = 'LardDataset'
 input_size = (
-    640,
-    640,
+    1333,
+    800,
 )
-num_workers = 12
-num_epochs = 20
+num_workers = 64
+num_epochs = 300
 batch_size = dict(
-    train=10,
-    val=20,
-    test=20
+    train=64,
+    val=64,
+    test=64
 )
 
 data_preprocessor = dict(
@@ -158,8 +158,8 @@ model = dict(
     test_cfg=dict(
         rcnn=dict(
             max_per_img=100,
-            nms=dict(iou_threshold=0.5, type='nms'),
-            score_thr=0.05),
+            nms=dict(iou_threshold=0.6, type='nms'),
+            score_thr=0.2),
         rpn=dict(
             max_per_img=1000,
             min_bbox_size=0,
@@ -210,9 +210,9 @@ optim_wrapper = dict(
     type='OptimWrapper')
 param_scheduler = [
     dict(
-        begin=0, by_epoch=True, end=5, start_factor=0.001, type='LinearLR'),
+        begin=0, by_epoch=True, end=3, start_factor=0.001, type='LinearLR'),
     dict(
-        begin=5,
+        begin=3,
         by_epoch=True,
         end=num_epochs,
         gamma=0.1,
