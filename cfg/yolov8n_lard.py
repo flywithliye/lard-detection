@@ -24,7 +24,7 @@ print(f"实验名称: {exp_name}")
 num_gpu = 8
 device = [i for i in range(num_gpu)]
 
-num_workers = 64
+num_workers = 48
 num_epochs = 300
 batch_size = 64
 

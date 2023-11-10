@@ -13,7 +13,7 @@ input_size = (
     300,
     300,
 )
-num_workers = 64
+num_workers = 48
 num_epochs = 300
 batch_size = dict(
     train=64,

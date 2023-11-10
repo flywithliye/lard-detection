@@ -19,6 +19,17 @@ git submodule update --init --recursive
    ```
 2. 激活环境变量 `source ~/.bashrc`
 
+# 创建环境
+
+```bash
+conda create -n lard
+conda activate lard
+
+conda install python
+pip3 install torch torchvision torchaudio --index-url https://download.pytorch.org/whl/cu118
+
+```
+
 # 安装第三方包
 
 ## mmdet
