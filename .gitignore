@@ -3,6 +3,8 @@
 *.pyc
 __pycache__/
 
+logs/*.log
+
 datasets/lard/*
 datasets/video/*
 
