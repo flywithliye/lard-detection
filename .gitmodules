@@ -4,3 +4,6 @@
 [submodule "3rdparty/mmdetection"]
 	path = 3rdparty/mmdetection
 	url = https://github.com/flywithliye/mmdetection.git
+[submodule "src/data/LARD"]
+	path = src/data/LARD
+	url = https://github.com/flywithliye/LARD.git
