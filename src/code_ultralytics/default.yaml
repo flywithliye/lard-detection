@@ -38,7 +38,7 @@ overlap_mask: True  # (bool) masks should overlap during training (segment train
 mask_ratio: 4  # (int) mask downsample ratio (segment train only)
 # Classification
 dropout: 0.0  # (float) use dropout regularization (classify train only)
-use_custom_aug: False # 使用自定义albumentations
+custom_aug: False # 使用自定义albumentations
 path_transform:  # 自定义albumentations文件路径
 
 # Val/Test settings ----------------------------------------------------------------------------------------------------

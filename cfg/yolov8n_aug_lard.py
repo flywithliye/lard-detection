@@ -6,7 +6,7 @@ ROOT_PROJECT = os.environ.get('LARD_PROJECT_ROOT_PATH')
 # 变量定义
 model_name = 'yolov8n'
 model_stru = ''  
-model_cfg = ''  # _aug
+model_cfg = '_aug'  # _aug
 
 assert model_name in ['yolov8n', 'yolov8s', 'yolov8m', 'yolov8l', 'yolov8x']
 assert model_stru in ['', '-p2', '-p6']
@@ -47,6 +47,6 @@ results = model.train(
     optimizer='auto',
     close_mosaic=10,
     warmup_epochs=3,
-    custom_aug=False,  # 是否启用自定义数据增强
+    custom_aug=True,  # 是否启用自定义数据增强
     path_transform=path_trans,  # 自定义数据增强配置文件路径
 )

@@ -5,6 +5,8 @@ ROOT_PROJECT = os.environ.get('LARD_PROJECT_ROOT_PATH')
 print(ROOT_DATA)
 print(ROOT_PROJECT)
 
+os.makedirs(f'{ROOT_PROJECT}/datasets/lard')
+
 if not os.path.exists(f'{ROOT_PROJECT}/datasets/lard/annotations'):
     os.symlink(f'{ROOT_DATA}/annotations',
                f'{ROOT_PROJECT}/datasets/lard/annotations')

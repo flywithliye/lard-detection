@@ -96,61 +96,61 @@ def yolo_to_coco(path, json_filename, is_real=False, is_mini=False):
 
 # 全量数据集
 # 全部训练集
-# yolo_to_coco(
-#     f"{ROOT_DATA}/YoloFormat/train_all",
-#     "instances_train_all.json")
-
-# # 训练&验证
-# yolo_to_coco(
-#     f"{ROOT_DATA}/YoloFormat/train",
-#     "instances_train.json")
-# yolo_to_coco(
-#     f"{ROOT_DATA}/YoloFormat/val",
-#     "instances_val.json")
-
-# # 测试集
-# yolo_to_coco(
-#     f"{ROOT_DATA}/YoloFormat/test_synth",
-#     "instances_test_synth.json")
-# yolo_to_coco(
-#     f"{ROOT_DATA}/YoloFormat/test_real_nominal",
-#     "instances_test_real_nominal.json",
-#     is_real=True)
-# yolo_to_coco(
-#     f"{ROOT_DATA}/YoloFormat/test_real_edge",
-#     "instances_test_real_edge.json",
-#     is_real=True)
-
-
-# # mini数据集
-# 全部训练集
 yolo_to_coco(
     f"{ROOT_DATA}/YoloFormat/train_all",
-    "instances_train_all_mini.json",
-    is_mini=True)
+    "instances_train_all.json")
 
 # 训练&验证
 yolo_to_coco(
     f"{ROOT_DATA}/YoloFormat/train",
-    "instances_train_mini.json",
-    is_mini=True)
+    "instances_train.json")
 yolo_to_coco(
     f"{ROOT_DATA}/YoloFormat/val",
-    "instances_val_mini.json",
-    is_mini=True)
+    "instances_val.json")
 
 # 测试集
 yolo_to_coco(
     f"{ROOT_DATA}/YoloFormat/test_synth",
-    "instances_test_synth_mini.json",
-    is_mini=True)
+    "instances_test_synth.json")
 yolo_to_coco(
     f"{ROOT_DATA}/YoloFormat/test_real_nominal",
-    "instances_test_real_nominal_mini.json",
-    is_real=True,
-    is_mini=True)
+    "instances_test_real_nominal.json",
+    is_real=True)
 yolo_to_coco(
     f"{ROOT_DATA}/YoloFormat/test_real_edge",
-    "instances_test_real_edge_mini.json",
-    is_real=True,
-    is_mini=True)
+    "instances_test_real_edge.json",
+    is_real=True)
+
+
+# # mini数据集
+# 全部训练集
+# yolo_to_coco(
+#     f"{ROOT_DATA}/YoloFormat/train_all",
+#     "instances_train_all_mini.json",
+#     is_mini=True)
+
+# # 训练&验证
+# yolo_to_coco(
+#     f"{ROOT_DATA}/YoloFormat/train",
+#     "instances_train_mini.json",
+#     is_mini=True)
+# yolo_to_coco(
+#     f"{ROOT_DATA}/YoloFormat/val",
+#     "instances_val_mini.json",
+#     is_mini=True)
+
+# # 测试集
+# yolo_to_coco(
+#     f"{ROOT_DATA}/YoloFormat/test_synth",
+#     "instances_test_synth_mini.json",
+#     is_mini=True)
+# yolo_to_coco(
+#     f"{ROOT_DATA}/YoloFormat/test_real_nominal",
+#     "instances_test_real_nominal_mini.json",
+#     is_real=True,
+#     is_mini=True)
+# yolo_to_coco(
+#     f"{ROOT_DATA}/YoloFormat/test_real_edge",
+#     "instances_test_real_edge_mini.json",
+#     is_real=True,
+#     is_mini=True)

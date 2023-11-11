@@ -1,4 +1,4 @@
-path: /home/yeli/Nextcloud/lard/lard-detection/datasets/lard/YoloFormat
+path: /home/yeli/workspace/lard/lard-detection/datasets/lard/YoloFormat
 train: train_all/images
 val: test_synth/images
 test: test_synth/images

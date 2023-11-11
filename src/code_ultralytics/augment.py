@@ -810,7 +810,7 @@ class Albumentations:
                 T.transforms[4].transforms[0].height = imgsz
                 T.transforms[-1].width = imgsz # Resize
                 T.transforms[-1].height = imgsz
-            self.transform = T
+                self.transform = T
 
             LOGGER.info(prefix + ', '.join(f'{x}'.replace('always_apply=False, ', '') for x in T if x.p))
         except ImportError:  # package not installed, skip

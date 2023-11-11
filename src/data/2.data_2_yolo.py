@@ -1,6 +1,8 @@
 import os
 from LARD.src.dataset.lard_dataset import LardDataset
 
+# pandas<v2.1.0 
+# FutureWarning: The behavior of DataFrame concatenation with empty or all-NA entries is deprecated. In a future version, this will no longer exclude empty or all-NA columns when determining the result dtypes. To retain the old behavior, exclude the relevant entries before the concat operation.
 
 ROOT_DATA = os.environ.get('LARD_DATA_ROOT_PATH')
 zip_folder = f"{ROOT_DATA}/LARD_dataset_decompressed/"
@@ -36,6 +38,7 @@ dataset.export(
 )
 
 # 测试集-真实-Nominal
+# cd ~/workspace/lard/lard-dataset/LARD_dataset_decompressed/LARD_test/LARD_test_real/LARD_test_real_nominal
 # mv Test_Real_Nominal.csv LARD_test_real_nominal.csv
 dataset = LardDataset(
     test_path=os.path.join(zip_folder, "LARD_test/LARD_test_real/LARD_test_real_nominal"))  # noqa
@@ -51,6 +54,7 @@ dataset.export(
 )
 
 # 测试集-真实-Edge
+# cd ~/workspace/lard/lard-dataset/LARD_dataset_decompressed/LARD_test/LARD_test_real/LARD_test_real_edge_cases
 # mv Test_Real_Edge_Cases.csv LARD_test_real_edge_cases.csv
 dataset = LardDataset(
     train_path=os.path.join(zip_folder, "LARD_test/LARD_test_real/LARD_test_real_edge_cases"))  # noqa

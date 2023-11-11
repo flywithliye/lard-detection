@@ -27,6 +27,4 @@ runs/mmdetection/*
 
 weights/
 
-src/data/LARD
-
 *.log

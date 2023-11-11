@@ -24,15 +24,15 @@ batch_size = dict(
 data_preprocessor = dict(
     bgr_to_rgb=True,
     mean=[
-        122.00711516,
-        141.11828193,
-        164.56574534
+        121.97881021,
+        141.08208522,
+        164.55199028
     ],
     pad_size_divisor=1,
     std=[
-        46.91310377,
-        54.8164231,
-        70.38650678
+        46.94337701,
+        54.84993929,
+        70.40161638
     ],
     type='DetDataPreprocessor')
 default_hooks = dict(
