@@ -7,3 +7,6 @@
 [submodule "src/data/LARD"]
 	path = src/data/LARD
 	url = https://github.com/flywithliye/LARD.git
+[submodule "3rdparty/mmyolo"]
+	path = 3rdparty/mmyolo
+	url = https://github.com/flywithliye/mmyolo.git
