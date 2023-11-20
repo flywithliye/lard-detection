@@ -6,6 +6,7 @@ __pycache__/
 logs/*.log
 
 datasets/lard/*
+datasets/coco/*
 datasets/video/*
 
 results/figs/eda/*.jpg

@@ -18,7 +18,7 @@ def write_detections_2_database(lib_type: str, exp_name: str):
 
         # 预测JSON
         if lib_type == 'ultralytics':
-            path_predictions = f"runs/ultralytics/{exp_name}/test_{data_type}/predictions.json"
+            path_predictions = f"runs/ultralytics/{exp_name}/{data_type}/predictions.json"
         else:
             path_predictions = f"runs/mmdetection/{exp_name}/test/coco_detection/prediction_{data_type}.bbox.json"
 

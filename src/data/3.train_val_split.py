@@ -30,7 +30,7 @@ filenames = [os.path.splitext(f)[0] for f in os.listdir(
 random.shuffle(filenames)
 
 # 划分训练集和验证集，例如，将90%的数据用于训练，10%的数据用于验证
-ratio_train = 0.9
+ratio_train = 0.8
 train_filenames = filenames[:int(ratio_train * len(filenames))]
 val_filenames = filenames[int(ratio_train * len(filenames)):]
 

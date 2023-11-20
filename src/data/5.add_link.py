@@ -5,7 +5,7 @@ ROOT_PROJECT = os.environ.get('LARD_PROJECT_ROOT_PATH')
 print(ROOT_DATA)
 print(ROOT_PROJECT)
 
-os.makedirs(f'{ROOT_PROJECT}/datasets/lard')
+os.makedirs(f'{ROOT_PROJECT}/datasets/lard', exist_ok=True)
 
 if not os.path.exists(f'{ROOT_PROJECT}/datasets/lard/annotations'):
     os.symlink(f'{ROOT_DATA}/annotations',
@@ -14,3 +14,5 @@ if not os.path.exists(f'{ROOT_PROJECT}/datasets/lard/annotations'):
 if not os.path.exists(f'{ROOT_PROJECT}/datasets/lard/YoloFormat'):
     os.symlink(f'{ROOT_DATA}/YoloFormat',
                f'{ROOT_PROJECT}/datasets/lard/YoloFormat')
+
+# ln -s /home/yeli/workspace/lard/coco-datasets/coco /home/yeli/workspace/lard/lard-detection/datasets/coco

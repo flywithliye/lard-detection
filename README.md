@@ -33,6 +33,7 @@ pip3 install torch torchvision torchaudio --index-url https://download.pytorch.o
 # 安装第三方包
 
 ## 其他
+
 ```bash
 pip install fiftyone
 pip install fiftyone-db-ubuntu2204
@@ -40,6 +41,7 @@ pip install scienceplots
 ```
 
 ## LARD
+
 ```bash
 # 添加子模块
 git submodule add https://github.com/flywithliye/LARD.git src/data/LARD
@@ -67,6 +69,17 @@ pip install -v -e .
 # thus any local modifications made to the code will take effect without reinstallation.
 ```
 
+## mmyolo
+
+```bash
+# 添加子模块
+git submodule add https://github.com/flywithliye/mmyolo.git 3rdparty/mmyolo
+git submodule init
+git submodule update
+git add .gitmodules 3rdparty/mmyolo
+git commit -m "Added mmdetection submodule"
+```
+
 ## ultralytics
 
 ```bash
@@ -83,36 +96,43 @@ cd ultralytics
 pip install -v -e .
 ```
 
-安装完成后，执行 `pip list | grep -e mmdet -e ultralytics`有如下输出
+安装完成后，执行 `pip list | grep -e mmdetection -e mmyolo -e ultralytics`有如下输出
 
 ```bash
-mmdet                       3.2.0                /{project_path}/3rdparty/mmdetection
-ultralytics                 8.0.203              /{project_path}/3rdparty/ultralytics
+mmdet                         3.2.0                /home/yeli/workspace/lard/lard-detection/3rdparty/mmdetection
+mmyolo                        0.6.0                /home/yeli/workspace/lard/lard-detection/3rdparty/mmyolo
+ultralytics                   8.0.203              /home/yeli/workspace/lard/lard-detection/3rdparty/ultralytics
 ```
 
 # LARD配置
+
 1. lard_dataset.py文件import部分:
-    ```python
-    from src.labeling.labels import Labels
-    ```
-    修改为
-    ```python
-    from LARD.src.labeling.labels import Labels
-    ```
 
+   ```python
+   from src.labeling.labels import Labels
+   ```
+
+   修改为
+
+   ```python
+   from LARD.src.labeling.labels import Labels
+   ```
 2. lard_dataset.py文件注释掉224行补充以下内容:
-    ```python
-    dataset_dir = output_dir
-    ```
 
+   ```python
+   dataset_dir = output_dir
+   ```
 3. labels.py文件import部分:
-    ```python
-    from src.labeling.export_config import CORNERS_NAMES
-    ```
-    修改为
-    ```python
-    from LARD.src.labeling.export_config import CORNERS_NAMES
-    ```
+
+   ```python
+   from src.labeling.export_config import CORNERS_NAMES
+   ```
+
+   修改为
+
+   ```python
+   from LARD.src.labeling.export_config import CORNERS_NAMES
+   ```
 
 # ultralytics配置
 

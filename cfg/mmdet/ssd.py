@@ -1,5 +1,6 @@
-auto_scale_lr = dict(base_batch_size=128, enable=False)
+auto_scale_lr = dict(base_batch_size=64, enable=True)  # (8 GPUs) x (8 samples per GPU)
 backend_args = None
+cudnn_benchmark = True
 
 model_name = 'ssd'
 model_stru = ''
@@ -10,15 +11,15 @@ work_dir = f'runs/mmdetection/{exp_name}/train'
 data_root = 'datasets/lard/'
 dataset_type = 'LardDataset'
 input_size = (
-    300,
-    300,
+    512,
+    512,
 )
-num_workers = 48
-num_epochs = 300
+num_workers = 8
+num_epochs = 500
 batch_size = dict(
-    train=64,
-    val=64,
-    test=64
+    train=8,
+    val=8,
+    test=8
 )
 
 data_preprocessor = dict(
@@ -30,9 +31,9 @@ data_preprocessor = dict(
     ],
     pad_size_divisor=1,
     std=[
-        46.94337701,
-        54.84993929,
-        70.40161638
+        1,
+        1,
+        1
     ],
     type='DetDataPreprocessor')
 default_hooks = dict(
@@ -41,11 +42,20 @@ default_hooks = dict(
         save_best='auto',
         max_keep_ckpts=1,
         type='CheckpointHook'),
+    early_stopping=dict(
+        type="EarlyStoppingHook",
+        monitor="coco/bbox_mAP",
+        patience=50,
+        min_delta=0.005),
     logger=dict(interval=50, type='LoggerHook'),
     param_scheduler=dict(type='ParamSchedulerHook'),
     sampler_seed=dict(type='DistSamplerSeedHook'),
     timer=dict(type='IterTimerHook'),
     visualization=dict(type='DetVisualizationHook'))
+custom_hooks = [
+    dict(type='NumClassCheckHook'),
+    dict(interval=50, priority='VERY_LOW', type='CheckInvalidLossHook'),
+]
 default_scope = 'mmdet'
 env_cfg = dict(
     cudnn_benchmark=False,
@@ -167,7 +177,7 @@ model = dict(
         min_bbox_size=0,
         nms=dict(iou_threshold=0.6, type='nms'),
         nms_pre=1000,
-        score_thr=0.2),
+        score_thr=0.001),
     train_cfg=dict(
         allowed_border=-1,
         assigner=dict(
@@ -195,8 +205,8 @@ param_scheduler = [
         end=num_epochs,
         gamma=0.1,
         milestones=[
+            int(num_epochs*0.7),
             int(num_epochs*0.8),
-            int(num_epochs*0.9),
         ],
         type='MultiStepLR'),
 ]
@@ -210,9 +220,9 @@ train_pipeline = [
     dict(type='LoadAnnotations', with_bbox=True),
     dict(
         mean=[
-            123.675,
-            116.28,
-            103.53,
+            121.97881021,
+            141.08208522,
+            164.55199028
         ],
         ratio_range=(
             1,
