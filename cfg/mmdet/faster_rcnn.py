@@ -1,11 +1,14 @@
-auto_scale_lr = dict(base_batch_size=16, enable=True)  # (8 GPUs) x (2 samples per GPU)
+# (8 GPUs) x (2 samples per GPU)
+auto_scale_lr = dict(base_batch_size=16, enable=True)
 backend_args = None
 
+# 实验参数
 model_name = 'faster_rcnn'
 model_stru = ''
 model_cfg = ''
 exp_name = f'{model_name}{model_stru}{model_cfg}'
 
+# 数据集
 work_dir = f'runs/mmdetection/{exp_name}/train'
 data_root = 'datasets/lard/'
 dataset_type = 'LardDataset'
@@ -13,6 +16,8 @@ input_size = (
     1333,
     800,
 )
+
+# 常用修改参数
 num_workers = 8
 num_epochs = 500
 batch_size = dict(
@@ -21,18 +26,26 @@ batch_size = dict(
     test=2
 )
 
+# 随机性控制
+randomness = dict(
+    seed=0,
+    diff_rank_seed=True,
+    deterministic=True
+)
+
+# 一些参数
 data_preprocessor = dict(
     bgr_to_rgb=True,
     mean=[
-        121.97881021,
-        141.08208522,
-        164.55199028
+        122.00711516,
+        141.11828193,
+        164.56574534
     ],
     pad_size_divisor=32,
     std=[
-        46.94337701,
-        54.84993929,
-        70.40161638
+        46.91310377,
+        54.8164231,
+        70.38650678
     ],
     type='DetDataPreprocessor')
 default_hooks = dict(
@@ -46,7 +59,7 @@ default_hooks = dict(
         monitor="coco/bbox_mAP",
         patience=50,
         min_delta=0.005),
-    logger=dict(interval=50, type='LoggerHook'),
+    logger=dict(interval=25, type='LoggerHook'),
     param_scheduler=dict(type='ParamSchedulerHook'),
     sampler_seed=dict(type='DistSamplerSeedHook'),
     timer=dict(type='IterTimerHook'),
@@ -59,6 +72,8 @@ env_cfg = dict(
 load_from = None
 log_level = 'INFO'
 log_processor = dict(by_epoch=True, type='LogProcessor', window_size=50)
+
+# 模型定义
 model = dict(
     backbone=dict(
         depth=50,
@@ -210,6 +225,8 @@ model = dict(
             nms=dict(iou_threshold=0.7, type='nms'),
             nms_pre=2000)),
     type='FasterRCNN')
+
+# 优化器和调度器
 optim_wrapper = dict(
     optimizer=dict(lr=0.02, momentum=0.9, type='SGD', weight_decay=0.0001),
     type='OptimWrapper')
@@ -227,6 +244,8 @@ param_scheduler = [
         ],
         type='MultiStepLR'),
 ]
+
+# 模型训练配置
 resume = False
 train_cfg = dict(
     max_epochs=num_epochs,
@@ -257,6 +276,8 @@ train_dataloader = dict(
     num_workers=num_workers,
     persistent_workers=True,
     sampler=dict(shuffle=True, type='DefaultSampler'))
+
+# 模型验证配置
 val_cfg = dict(type='ValLoop')
 val_pipeline = [
     dict(backend_args=None, type='LoadImageFromFile'),
@@ -292,6 +313,8 @@ val_evaluator = dict(
     format_only=False,
     metric='bbox',
     type='CocoMetric')
+
+# 模型测试配置
 test_cfg = dict(type='TestLoop')
 test_pipeline = [
     dict(backend_args=None, type='LoadImageFromFile'),
@@ -328,6 +351,8 @@ test_evaluator = dict(
     metric='bbox',
     outfile_prefix=f'runs/mmdetection/{exp_name}/test/coco_detection/prediction_test_synth',
     type='CocoMetric')
+
+# 可视化配置
 vis_backends = [
     dict(type='LocalVisBackend'),
     dict(type='TensorboardVisBackend'),

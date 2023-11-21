@@ -52,6 +52,10 @@ git add .gitmodules src/data/LARD
 
 ## mmdet
 
+pip install -U openmim
+mim install mmengine
+pip install "mmcv>=2.0.0rc4,<2.1.0"
+
 ```bash
 # 添加子模块
 git submodule add https://github.com/flywithliye/mmdetection.git 3rdparty/mmdetection

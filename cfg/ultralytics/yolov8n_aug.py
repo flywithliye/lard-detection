@@ -1,6 +1,8 @@
 import os
+import sys
 from ultralytics import YOLO
-from src.tools.pushplus import send_info
+sys.path.append('/home/yeli/workspace/lard/lard-detection/')
+from src.tools.pushplus import send_info  # noqa
 
 ROOT_PROJECT = os.environ.get('LARD_PROJECT_ROOT_PATH')
 
@@ -33,7 +35,7 @@ model = YOLO(path_yaml, task='detect').load(weights=path_weights)
 results = model.train(
     data=path_data,
     epochs=num_epochs,
-    patience=patience,
+    patience=patience,  # 无显著改善停止训练
     batch=batch_size,
     imgsz=640,
     cache=True,
@@ -47,10 +49,8 @@ results = model.train(
     deterministic=True,
     lr0=batch_size*0.01/(16*8), # 16=2*8
     warmup_epochs=3,
-    album=0.0,
+    album=0.5,
     path_transform=path_trans,
 )
 
-send_info(f"{exp_name}训练完成")
-
-# bash ./src/scripts/ultra_train.sh yolov8n
+# bash ./src/scripts/ultra_train.sh yolov8n_aug

@@ -5,6 +5,7 @@ __pycache__/
 
 logs/*.log
 
+datasets/cat/*
 datasets/lard/*
 datasets/coco/*
 datasets/video/*
@@ -25,6 +26,8 @@ runs/ultralytics/*
 !runs/ultralytics/.gitkeep
 runs/mmdetection/*
 !runs/mmdetection/.gitkeep
+runs/mmyolo/*
+!runs/mmyolo/.gitkeep
 
 weights/
 

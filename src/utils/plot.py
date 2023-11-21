@@ -229,7 +229,7 @@ def plot_mmdet_fastern_rcnn_train_log(df_train, df_val, exp_name: str):
     if len(df_train):
         axs[0].plot(df_train.index, df_train['lr'], label='lr')
         axs[0].legend(frameon=True)
-        axs[0].set_title('Learning Rate vs Epoch')
+        axs[0].set_title('Learning Rate')
         axs[0].set_xlabel('Epoch')
         axs[0].set_ylabel('Learning Rate')
         axs[0].set_xlim(left=0)
@@ -255,7 +255,7 @@ def plot_mmdet_fastern_rcnn_train_log(df_train, df_val, exp_name: str):
             df_train['loss_bbox'],
             label='loss_bbox')
         axs[1].legend(frameon=True)
-        axs[1].set_title('Loss vs Epoch')
+        axs[1].set_title('Loss')
         axs[1].set_xlabel('Epoch')
         axs[1].set_ylabel('Loss')
         axs[1].set_xlim(left=0)
@@ -265,7 +265,7 @@ def plot_mmdet_fastern_rcnn_train_log(df_train, df_val, exp_name: str):
             df_train['acc'],
             label='acc')
         axs[2].legend(frameon=True)
-        axs[2].set_title('ACC vs Epoch')
+        axs[2].set_title('ACC')
         axs[2].set_xlabel('Epoch')
         axs[2].set_ylabel('ACC')
         axs[2].set_xlim(left=0)
@@ -285,7 +285,7 @@ def plot_mmdet_fastern_rcnn_train_log(df_train, df_val, exp_name: str):
             df_val['coco/bbox_mAP_75'],
             label='bbox_mAP_75')
         axs[3].legend(frameon=True)
-        axs[3].set_title('coco/bbox_mAP vs Step')
+        axs[3].set_title('coco/bbox_mAP')
         axs[3].set_xlabel('Epoch')
         axs[3].set_ylabel('coco/bbox_mAP')
         axs[3].set_xlim(left=0)
@@ -304,7 +304,7 @@ def plot_mmdet_ssd_train_log(df_train, df_val, exp_name: str):
     if len(df_train):
         axs[0].plot(df_train.index, df_train['lr'], label='lr')
         axs[0].legend(frameon=True)
-        axs[0].set_title('Learning Rate vs Epoch')
+        axs[0].set_title('Learning Rate')
         axs[0].set_xlabel('Epoch')
         axs[0].set_ylabel('Learning Rate')
         axs[0].set_xlim(left=0)
@@ -313,7 +313,7 @@ def plot_mmdet_ssd_train_log(df_train, df_val, exp_name: str):
         axs[1].plot(df_train.index, df_train['loss_cls'], label='loss_cls')
         axs[1].plot(df_train.index, df_train['loss_bbox'], label='loss_bbox')
         axs[1].legend(frameon=True)
-        axs[1].set_title('Loss vs Epoch')
+        axs[1].set_title('Loss')
         axs[1].set_xlabel('Epoch')
         axs[1].set_ylabel('Loss')
         axs[1].set_xlim(left=0)
@@ -333,7 +333,7 @@ def plot_mmdet_ssd_train_log(df_train, df_val, exp_name: str):
             df_val['coco/bbox_mAP_75'],
             label='bbox_mAP_75')
         axs[3].legend(frameon=True)
-        axs[3].set_title('coco/bbox_mAP vs Step')
+        axs[3].set_title('coco/bbox_mAP')
         axs[3].set_xlabel('Epoch')
         axs[3].set_ylabel('coco/bbox_mAP')
         axs[3].set_xlim(left=0)
@@ -352,14 +352,14 @@ def plot_mmdet_yolov3_train_log(df_train, df_val, exp_name: str):
     if len(df_train):
         axs[0].plot(df_train.index, df_train['lr'], label='lr')
         axs[0].legend(frameon=True)
-        axs[0].set_title('Learning Rate vs Epoch')
+        axs[0].set_title('Learning Rate')
         axs[0].set_xlabel('Epoch')
         axs[0].set_ylabel('Learning Rate')
         axs[0].set_xlim(left=0)
 
         axs[1].plot(df_train.index, df_train['grad_norm'], label='grad_norm')
         axs[1].legend(frameon=True)
-        axs[1].set_title('Gradient Norm vs Epoch')
+        axs[1].set_title('Gradient Norm')
         axs[1].set_xlabel('Epoch')
         axs[1].set_ylabel('Gradient Norm')
         axs[1].set_xlim(left=0)
@@ -370,7 +370,7 @@ def plot_mmdet_yolov3_train_log(df_train, df_val, exp_name: str):
         axs[2].plot(df_train.index, df_train['loss_xy'], label='loss_xy')
         axs[2].plot(df_train.index, df_train['loss_wh'], label='loss_wh')
         axs[2].legend(frameon=True)
-        axs[2].set_title('Loss vs Epoch')
+        axs[2].set_title('Loss')
         axs[2].set_xlabel('Epoch')
         axs[2].set_ylabel('Loss')
         axs[2].set_xlim(left=0)
@@ -390,7 +390,7 @@ def plot_mmdet_yolov3_train_log(df_train, df_val, exp_name: str):
             df_val['coco/bbox_mAP_75'],
             label='bbox_mAP_75')
         axs[3].legend(frameon=True)
-        axs[3].set_title('coco/bbox_mAP vs Step')
+        axs[3].set_title('coco/bbox_mAP')
         axs[3].set_xlabel('Epoch')
         axs[3].set_ylabel('coco/bbox_mAP')
         axs[3].set_xlim(left=0)
