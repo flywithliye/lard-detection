@@ -11,4 +11,6 @@ fi
 model_name=$1
 
 # 使用传入的参数启动训练进程
-setsid python cfg/ultra/${model_name}.py > logs/train_${model_name}.log 2>&1 &
+setsid python cfg/ultra/${model_name}.py > logs/ultralytics_train_${model_name}.log 2>&1 &
+
+# ./scripts/ultralytics_train.sh yolov8n 10

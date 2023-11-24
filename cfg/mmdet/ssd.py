@@ -1,4 +1,5 @@
-auto_scale_lr = dict(base_batch_size=64, enable=True)  # (8 GPUs) x (8 samples per GPU)
+  # (8 GPUs) x (8 samples per GPU)
+auto_scale_lr = dict(base_batch_size=64, enable=True)
 backend_args = None
 
 # 实验参数

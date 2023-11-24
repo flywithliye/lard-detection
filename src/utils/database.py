@@ -10,7 +10,7 @@ keep_fileds = ["id", "filepath", "tags", "metadata", "ground_truth_detections"]
 
 def write_detections_2_database(lib_type: str, exp_name: str):
 
-    assert lib_type in ['mmdetection', 'ultralytics']
+    assert lib_type in ['mmdetection', 'mmyolo', 'ultralytics']
 
     for data_type in ['test_synth', 'test_real_nominal', 'test_real_edge']:
 
@@ -19,8 +19,10 @@ def write_detections_2_database(lib_type: str, exp_name: str):
         # 预测JSON
         if lib_type == 'ultralytics':
             path_predictions = f"runs/ultralytics/{exp_name}/{data_type}/predictions.json"
-        else:
+        elif lib_type == 'mmdetection':
             path_predictions = f"runs/mmdetection/{exp_name}/test/coco_detection/prediction_{data_type}.bbox.json"
+        else:
+            path_predictions = f"runs/mmyolo/{exp_name}/test/coco_detection/prediction_{data_type}.bbox.json"
 
         # 标签JSON
         path_annotations = f"datasets/lard/annotations/instances_{data_type}.json"

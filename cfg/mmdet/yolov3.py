@@ -1,4 +1,5 @@
-auto_scale_lr = dict(base_batch_size=64, enable=True)  # (8 GPUs) x (8 samples per GPU)
+# (8 GPUs) x (8 samples per GPU)
+auto_scale_lr = dict(base_batch_size=64, enable=True)
 backend_args = None
 
 # 实验参数
@@ -81,9 +82,9 @@ model = dict(
     bbox_head=dict(
         anchor_generator=dict(
             base_sizes=[
-                [(120, 76), (198, 113), (366, 188)],
-                [(42, 22), (46, 41), (75, 52)],
-                [(10, 14), (19, 19), (26, 31)]
+                [(115, 73), (191, 110), (350, 182)],
+                [(39, 21), (45, 40), (73, 51)],
+                [(10, 14), (19, 18), (25, 30)]
             ],
             strides=[
                 32,
