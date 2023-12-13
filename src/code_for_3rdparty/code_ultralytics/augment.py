@@ -785,7 +785,7 @@ class Albumentations:
     compression.
     """
 
-    def __init__(self, p=1.0, custom_aug=False, path_transform="", imgsz=640):
+    def __init__(self, p=1.0, album=0.0, path_transform="", imgsz=640):
         """Initialize the transform object for YOLO bbox formatted params."""
         self.p = p
         self.transform = None
@@ -804,10 +804,11 @@ class Albumentations:
                 A.RandomGamma(p=0.0),
                 A.ImageCompression(quality_lower=75, p=0.0)]  # transforms
             self.transform = A.Compose(T, bbox_params=A.BboxParams(format='yolo', label_fields=['class_labels']))
-            if custom_aug:
+            if album > 0.0:
                 T = A.load(path_transform) # albumentations.core.composition.Compose
                 T.transforms[4].transforms[0].width = imgsz # RandomSizedBBoxSafeCrop
                 T.transforms[4].transforms[0].height = imgsz
+                T.p = album
                 self.transform = T
 
             LOGGER.info(prefix + ', '.join(f'{x}'.replace('always_apply=False, ', '') for x in T if x.p))
@@ -945,7 +946,7 @@ def v8_transforms(dataset, imgsz, hyp, stretch=False):
     return Compose([
         pre_transform,
         MixUp(dataset, pre_transform=pre_transform, p=hyp.mixup),
-        Albumentations(p=1.0, custom_aug=hyp.custom_aug, path_transform=hyp.path_transform, imgsz=hyp.imgsz),
+        Albumentations(p=1.0, album=hyp.album, path_transform=hyp.path_transform, imgsz=hyp.imgsz),
         RandomHSV(hgain=hyp.hsv_h, sgain=hyp.hsv_s, vgain=hyp.hsv_v),
         RandomFlip(direction='vertical', p=hyp.flipud),
         RandomFlip(direction='horizontal', p=hyp.fliplr, flip_idx=flip_idx)])  # transforms

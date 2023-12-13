@@ -24,11 +24,11 @@ fi
 # 根据multi_gpu参数调整训练命令
 if [[ $num_gpu > 1 ]]; then
     # 在多GPU模式下启动训练
-    echo "模型: ${model_name} 多GPU训练: ${num_gpu}"
+    echo_rb "模型: ${model_name} 多GPU训练: ${num_gpu}"
     setsid bash ./3rdparty/mmyolo/tools/dist_train.sh cfg/mmyolo/${model_name}.py ${num_gpu} > logs/mmyolo_train_${model_name}.log 2>&1 &
 else
     # 在单GPU模式下启动训练
-    echo "模型: ${model_name} 单GPU训练"
+    echo_rb "模型: ${model_name} 单GPU训练"
     setsid python 3rdparty/mmyolo/tools/train.py cfg/mmyolo/${model_name}.py > logs/mmyolo_train_${model_name}.log 2>&1 &
 fi
 

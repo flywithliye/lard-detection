@@ -8,13 +8,13 @@ ROOT_PROJECT = os.environ.get('LARD_PROJECT_ROOT_PATH')
 
 # 变量定义
 model_name = 'yolov8n'
-model_stru = ''
-model_cfg = ''
+model_stru = '-p2'
+model_cfg = '_pre'
 
 # 路径构建
 exp_name = f'{model_name}{model_stru}{model_cfg}'
 path_yaml = f'{ROOT_PROJECT}/cfg/ultralytics/models/{model_name}{model_stru}.yaml'
-path_weights = f'{ROOT_PROJECT}/cfg/ultralytics//weights/{model_name}.pt'
+path_weights = f'{ROOT_PROJECT}/runs/ultralytics/pretrain/yolov8n-p2/train4/weights/best.pt'
 path_trans = f'{ROOT_PROJECT}/datasets/cfg/lard_transform.json'
 path_data = f'{ROOT_PROJECT}/cfg/ultralytics/datasets/lard_val_test_synth.yaml'
 
@@ -48,7 +48,7 @@ results = model.train(
     seed=0,
     deterministic=True,
     close_mosaic=20,
-    lr0=batch_size*0.01/(16*8),
+    lr0=batch_size*0.01/(16*8), # 16=2*8
     warmup_epochs=3,
     album=0.0,
     path_transform=path_trans,
@@ -56,4 +56,4 @@ results = model.train(
 
 send_info(exp_name)
 
-# bash ./scripts/ultralytics_train.sh yolov8n
+# bash ./scripts/ultralytics_train.sh yolov8n_p2_pre

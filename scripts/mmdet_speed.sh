@@ -7,7 +7,7 @@ best_model_path=$2
 
 # 确保脚本参数数量正确
 if [ "$#" -ne 2 ]; then
-    echo "使用方式: $0 <cfg_path> <best_model_path>"
+    echo_rb "使用方式: $0 <cfg_path> <best_model_path>"
     exit 1
 fi
 

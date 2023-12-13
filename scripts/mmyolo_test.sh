@@ -4,7 +4,7 @@
 
 # 确保脚本参数数量正确
 if [ "$#" -ne 3 ]; then
-    echo "使用方式: $0 <cfg_path> <best_model_path> <exp_name>"
+    echo_rb "使用方式: $0 <cfg_path> <best_model_path> <exp_name>"
     exit 1
 fi
 

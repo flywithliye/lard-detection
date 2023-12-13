@@ -38,8 +38,9 @@ overlap_mask: True  # (bool) masks should overlap during training (segment train
 mask_ratio: 4  # (int) mask downsample ratio (segment train only)
 # Classification
 dropout: 0.0  # (float) use dropout regularization (classify train only)
-custom_aug: False # 使用自定义albumentations
-path_transform:  # 自定义albumentations文件路径
+album: 0.0 # albumentations概率
+path_transform:  # albumentations文件路径3
+iou_type: CIoU  # bbox回归损失中的iou类型
 
 # Val/Test settings ----------------------------------------------------------------------------------------------------
 val: True  # (bool) validate/test during training

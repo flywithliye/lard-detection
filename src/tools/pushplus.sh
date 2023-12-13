@@ -11,7 +11,7 @@ token="7be5c5ddf7f047fea75c9bb8c589d42f"
 
 # 获取命令行参数
 title=$1    # 第一个参数是标题
-content=$2  # 第二个参数是内容··
+content=$2  # 第二个参数是内容
 
 # 检查是否提供了所有必要的参数
 if [ -z "$title" ] || [ -z "$content" ]; then
