@@ -3,7 +3,7 @@
 source ~/func.sh
 
 # Neck模块测试-标准模型
-neck_types=('bifpn')
+neck_types=('bifpn' 'afpn' 'cbam_bifpn' 'cbam_afpn')
 for neck_type in "${neck_types[@]}"; do
     echo_rb "正在测试 $neck_type 模型"
     yolo detect train \
@@ -15,7 +15,7 @@ for neck_type in "${neck_types[@]}"; do
 done
 
 # Neck模块测试-p2模型
-neck_types=('bifpn')
+neck_types=('bifpn' 'afpn' 'cbam_bifpn' 'cbam_afpn')
 for neck_type in "${neck_types[@]}"; do
     echo_rb "正在测试 p2_$neck_type 模型"
     yolo detect train \

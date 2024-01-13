@@ -1,7 +1,7 @@
 #!/bin/bash
 
 # 使用方式：./ultralytics_train.sh <model_name>
-echo_rb() { echo -e "\e[1;31m$1\e[0m"; }
+source ~/func.sh
 
 # 确保脚本参数数量正确
 if [ "$#" -ne 1 ]; then

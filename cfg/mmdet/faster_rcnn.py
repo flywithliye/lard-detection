@@ -355,8 +355,7 @@ test_evaluator = dict(
 # 可视化配置
 vis_backends = [
     dict(type='LocalVisBackend'),
-    dict(type='TensorboardVisBackend'),
-]
+    dict(type='TensorboardVisBackend')]
 visualizer = dict(
     name='visualizer',
     type='DetLocalVisualizer',

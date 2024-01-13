@@ -13,7 +13,7 @@ model_cfg = ''
 
 # 路径构建
 exp_name = f'{model_name}{model_stru}{model_cfg}'
-path_yaml = f'{ROOT_PROJECT}/cfg/ultralytics/models/{model_name}{model_stru}.yaml'
+path_yaml = f'{ROOT_PROJECT}/cfg/ultralytics/models/{model_name}{model_stru}/{model_name}{model_stru}{model_cfg}.yaml'
 path_weights = f'{ROOT_PROJECT}/cfg/ultralytics/weights/{model_name}.pt'
 path_trans = f'{ROOT_PROJECT}/datasets/cfg/lard_transform.json'
 path_data = f'{ROOT_PROJECT}/cfg/ultralytics/datasets/coco.yaml'
@@ -55,4 +55,4 @@ model.train(
 
 send_info(exp_name)
 
-# bash ./scripts/ultralytics_train.sh yolov8n_p2_pretrain
+# bash ./scripts/ultralytics_train.sh pre_coco_yolov8n_p2

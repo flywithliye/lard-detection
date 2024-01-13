@@ -3,7 +3,8 @@
 *.pyc
 __pycache__/
 
-logs/*.log
+logs/train/*
+logs/test/*
 
 datasets/cat/*
 datasets/lard/*

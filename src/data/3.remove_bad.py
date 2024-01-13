@@ -9,6 +9,7 @@ print(ROOT_PROJECT)
 
 path_train = f"{ROOT_DATA}/YoloFormat/train_all"
 
+# 执行本代码后，eda中的相关分析代码将无法发现以下异常样本
 bad_files = ['VABB_32_500_448', 'LWSK_34_500_132']
 bad_files_images = [f"{path_train}/images/{file}.jpeg" for file in bad_files]
 bad_files_labels = [f"{path_train}/labels/{file}.txt" for file in bad_files]

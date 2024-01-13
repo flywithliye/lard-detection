@@ -1,3 +1,4 @@
+import cv2
 import numpy as np
 import matplotlib.pyplot as plt
 import scienceplots
@@ -220,6 +221,74 @@ def plot_pr_curve(
         plt.tight_layout()
         plt.savefig(f'results/figs/test/pr_curve_{exp_name}_{data_type}.jpg', dpi=600, bbox_inches='tight')
         plt.show()
+
+
+def plot_mmdet_centernet_train_log(df_train, df_val, exp_name: str):
+
+    _, axs = plt.subplots(2, 2, figsize=(7, 6), dpi=100)
+    axs = axs.flatten()
+    if len(df_train):
+        axs[0].plot(df_train.index, df_train['lr'], label='lr')
+        axs[0].legend(frameon=True)
+        axs[0].set_title('Learning Rate')
+        axs[0].set_xlabel('Epoch')
+        axs[0].set_ylabel('Learning Rate')
+        axs[0].set_xlim(left=0)
+
+        axs[1].plot(df_train.index, df_train['grad_norm'], label='grad_norm')
+        axs[1].legend(frameon=True)
+        axs[1].set_title('Gradient Norm')
+        axs[1].set_xlabel('Epoch')
+        axs[1].set_ylabel('Gradient Norm')
+        axs[1].set_xlim(left=0)
+
+        axs[2].plot(
+            df_train.index,
+            df_train['loss'],
+            label='loss')
+        axs[2].plot(
+            df_train.index,
+            df_train['loss_center_heatmap'],
+            label='loss_center_heatmap')
+        axs[2].plot(
+            df_train.index,
+            df_train['loss_wh'],
+            label='loss_wh')
+        axs[2].plot(
+            df_train.index,
+            df_train['loss_offset'],
+            label='loss_offset')
+        axs[2].legend(frameon=True)
+        axs[2].set_title('Loss')
+        axs[2].set_xlabel('Epoch')
+        axs[2].set_ylabel('Loss')
+        axs[2].set_xlim(left=0)
+
+    if len(df_val):
+        axs[3].plot(
+            df_val.index,
+            df_val['coco/bbox_mAP'],
+            label='bbox_mAP',
+            linewidth=5)
+        axs[3].plot(
+            df_val.index,
+            df_val['coco/bbox_mAP_50'],
+            label='bbox_mAP_50')
+        axs[3].plot(
+            df_val.index,
+            df_val['coco/bbox_mAP_75'],
+            label='bbox_mAP_75')
+        axs[3].legend(frameon=True)
+        axs[3].set_title('coco/bbox_mAP')
+        axs[3].set_xlabel('Epoch')
+        axs[3].set_ylabel('coco/bbox_mAP')
+        axs[3].set_xlim(left=0)
+
+    plt.tight_layout()
+    plt.savefig(
+        f'results/figs/train/train_log_{exp_name}.jpg',
+        dpi=600, bbox_inches='tight')
+    plt.show()
 
 
 def plot_mmdet_fastern_rcnn_train_log(df_train, df_val, exp_name: str):
@@ -462,13 +531,6 @@ def plot_mmyolo_yolov5_train_log(df_train, df_val, exp_name: str):
         axs[0].set_ylabel('Learning Rate')
         axs[0].set_xlim(left=0)
 
-        # axs[1].plot(df_train.index, df_train['grad_norm'], label='grad_norm')
-        # axs[1].legend(frameon=True)
-        # axs[1].set_title('Gradient Norm')
-        # axs[1].set_xlabel('Epoch')
-        # axs[1].set_ylabel('Gradient Norm')
-        # axs[1].set_xlim(left=0)
-
         axs[2].plot(df_train.index, df_train['loss'], label='loss')
         axs[2].plot(df_train.index, df_train['loss_cls'], label='loss_cls')
         axs[2].plot(df_train.index, df_train['loss_obj'], label='loss_obj')
@@ -538,15 +600,15 @@ def plot_ultralytics_yolov8_train_log(df_train_val, exp_name: str):
     axes[3].plot(df_train_val.index, df_train_val['lr/pg2'], label='Learning rate for group 2')
     axes[3].legend(loc='lower right', frameon=True)
 
-    axes[0].set_xlabel('epoch')
-    axes[1].set_xlabel('epoch')
-    axes[2].set_xlabel('epoch')
-    axes[3].set_xlabel('epoch')
+    axes[0].set_xlabel('Epoch')
+    axes[1].set_xlabel('Epoch')
+    axes[2].set_xlabel('Epoch')
+    axes[3].set_xlabel('Epoch')
 
-    axes[0].set_ylabel('loss')
-    axes[1].set_ylabel('loss')
-    axes[2].set_ylabel('metrics')
-    axes[3].set_ylabel('learning rate')
+    axes[0].set_ylabel('Loss')
+    axes[1].set_ylabel('Loss')
+    axes[2].set_ylabel('Metrics')
+    axes[3].set_ylabel('Learning rate')
 
     axes[0].set_title('Train loss')
     axes[1].set_title('Validation loss')

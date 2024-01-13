@@ -1,9 +1,9 @@
 #!/bin/bash
 
 # 使用方式：./script/mmdet_train.sh <model_name> <multi_gpu>
-echo_rb() { echo -e "\e[1;31m$1\e[0m"; }
+source ~/func.sh
 
-model_list=("faster_rcnn" "ssd" "yolov3" "retinanet")
+model_list=("faster_rcnn" "ssd" "yolov3" "retinanet" "centernet")
 multi_gpu=1  # 默认值为1
 
 # 确保脚本参数数量正确
@@ -32,14 +32,15 @@ fi
 if [[ $num_gpu > 1 ]]; then
     # 在多GPU模式下启动训练
     echo_rb "模型: ${model_name} 多GPU训练: ${num_gpu}"
-    setsid bash ./3rdparty/mmdetection/tools/dist_train.sh cfg/mmdet/${model_name}.py ${num_gpu} > logs/mmdet_train_${model_name}.log 2>&1 &
+    setsid bash ./3rdparty/mmdetection/tools/dist_train.sh cfg/mmdet/${model_name}.py ${num_gpu} > logs/train/mmdet_train_${model_name}.log 2>&1 &
 else
     # 在单GPU模式下启动训练
     echo_rb "模型: ${model_name} 单GPU训练"
-    setsid python 3rdparty/mmdetection/tools/train.py cfg/mmdet/${model_name}.py > logs/mmdet_train_${model_name}.log 2>&1 &
+    setsid python 3rdparty/mmdetection/tools/train.py cfg/mmdet/${model_name}.py > logs/train/mmdet_train_${model_name}.log 2>&1 &
 fi
 
 # ./scripts/mmdet_train.sh faster_rcnn 10
 # ./scripts/mmdet_train.sh ssd 10
 # ./scripts/mmdet_train.sh yolov3 10
 # ./scripts/mmdet_train.sh retinanet 10
+# ./scripts/mmdet_train.sh centernet 10

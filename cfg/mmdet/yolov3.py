@@ -54,6 +54,11 @@ default_hooks = dict(
         save_best='auto',
         max_keep_ckpts=1,
         type='CheckpointHook'),
+    early_stopping=dict(
+        type="EarlyStoppingHook",
+        monitor="coco/bbox_mAP",
+        patience=50,
+        min_delta=0.005),
     logger=dict(interval=25, type='LoggerHook'),
     param_scheduler=dict(type='ParamSchedulerHook'),
     sampler_seed=dict(type='DistSamplerSeedHook'),
@@ -303,8 +308,7 @@ test_evaluator = dict(
 # 可视化配置
 vis_backends = [
     dict(type='LocalVisBackend'),
-    dict(type='TensorboardVisBackend'),
-]
+    dict(type='TensorboardVisBackend')]
 visualizer = dict(
     name='visualizer',
     type='DetLocalVisualizer',

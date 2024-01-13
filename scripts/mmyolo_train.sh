@@ -1,13 +1,14 @@
 #!/bin/bash
 
 # 使用方式：./script/mmyolo_train.sh <model_name> <multi_gpu>
+source ~/func.sh
 
 model_list=("yolov5n" "yolov8n")
 multi_gpu=1  # 默认值为1
 
 # 确保脚本参数数量正确
 if [ "$#" -ne 2 ]; then
-    echo "使用方式: $0 <model_name>  <multi_gpu>，其中 <model_name> 必须是以下之一: ${model_list[*]}"
+    echo_rb "使用方式: $0 <model_name>  <multi_gpu>，其中 <model_name> 必须是以下之一: ${model_list[*]}"
     exit 1
 fi
 
@@ -17,7 +18,7 @@ num_gpu=$2
 
 # 检查model_name是否有效
 if [[ ! " ${model_list[*]} " =~ " ${model_name} " ]]; then
-    echo "错误: model_name 必须是以下之一: ${model_list[*]}"
+    echo_rb "错误: model_name 必须是以下之一: ${model_list[*]}"
     exit 1
 fi
 
