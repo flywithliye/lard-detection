@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="VcsDirectoryMappings">
+    <mapping directory="" vcs="Git" />
+    <mapping directory="$PROJECT_DIR$/3rdparty/Merge_COCO_FILES" vcs="Git" />
+    <mapping directory="$PROJECT_DIR$/3rdparty/mmdetection" vcs="Git" />
+    <mapping directory="$PROJECT_DIR$/3rdparty/mmyolo" vcs="Git" />
+    <mapping directory="$PROJECT_DIR$/3rdparty/ultralytics" vcs="Git" />
+    <mapping directory="$PROJECT_DIR$/src/data/LARD" vcs="Git" />
+  </component>
+</project>

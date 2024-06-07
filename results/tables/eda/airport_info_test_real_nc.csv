@@ -9,9 +9,9 @@ EDDF,Frankfurt Airport,large_airport,DE,50.036521,8.561268,364.0
 EDDH,Hamburg Helmut Schmidt Airport,large_airport,DE,53.630402,9.98823,53.0
 EDDM,Munich Airport,large_airport,DE,48.353802,11.7861,1487.0
 EDDN,Nuremberg Airport,large_airport,DE,49.498699,11.078056,1046.0
-EDDS,Stuttgart Airport,large_airport,DE,48.6898994446,9.22196006775,1276.0
+EDDS,Stuttgart Airport,large_airport,DE,48.689899,9.22196,1276.0
 EDLN,Mönchengladbach Airport,medium_airport,DE,51.230278,6.504444,125.0
-EGBB,Birmingham International Airport,large_airport,GB,52.4538993835,-1.74802994728,327.0
+EGBB,Birmingham International Airport,large_airport,GB,52.453899,-1.74803,327.0
 EGCC,Manchester Airport,large_airport,GB,53.349375,-2.279521,257.0
 EGLC,London City Airport,medium_airport,GB,51.505299,0.055278,19.0
 EGLL,London Heathrow Airport,large_airport,GB,51.4706,-0.461941,83.0
@@ -35,7 +35,7 @@ KATL,Hartsfield Jackson Atlanta International Airport,large_airport,US,33.6367,-
 KELP,El Paso International Airport,medium_airport,US,31.80719948,-106.3779984,3959.0
 KIAH,George Bush Intercontinental Houston Airport,large_airport,US,29.984399795532227,-95.34140014648438,97.0
 KJFK,John F Kennedy International Airport,large_airport,US,40.639447,-73.779317,13.0
-KLAX,Los Angeles / Tom Bradley International Airport,large_airport,US,33.942501,-118.407997,125.0
+KLAX,Los Angeles International Airport,large_airport,US,33.942501,-118.407997,125.0
 KMIA,Miami International Airport,large_airport,US,25.79319953918457,-80.29060363769531,8.0
 KORD,Chicago O'Hare International Airport,large_airport,US,41.9786,-87.9048,672.0
 KSFO,San Francisco International Airport,large_airport,US,37.61899948120117,-122.375,13.0
@@ -48,18 +48,18 @@ LEMD,Adolfo Suárez Madrid–Barajas Airport,large_airport,ES,40.471926,-3.56264
 LEPA,Palma de Mallorca Airport,large_airport,ES,39.551701,2.73881,27.0
 LEVC,Valencia Airport,medium_airport,ES,39.4893,-0.481625,240.0
 LFLL,Lyon Saint-Exupéry Airport,large_airport,FR,45.725556,5.081111,821.0
-LFML,Marseille Provence Airport,large_airport,FR,43.439271922,5.22142410278,74.0
+LFML,Marseille Provence Airport,large_airport,FR,43.438088,5.2125,74.0
 LFMN,Nice-Côte d'Azur Airport,large_airport,FR,43.658401,7.21587,12.0
 LFPG,Charles de Gaulle International Airport,large_airport,FR,49.012798,2.55,392.0
-LFSB,EuroAirport Basel-Mulhouse-Freiburg Airport,large_airport,FR,47.59,7.529167,885.0
-LGIR,Heraklion International Nikos Kazantzakis Airport,large_airport,GR,35.3396987915,25.1802997589,115.0
-LGKP,Karpathos Airport,medium_airport,GR,35.4213981628418,27.145999908447266,66.0
-LGKR,Ioannis Kapodistrias International Airport,medium_airport,GR,39.601898193359375,19.911699295043945,6.0
-LGRP,Diagoras Airport,medium_airport,GR,36.405399322509766,28.086200714111328,17.0
-LGSA,Chania International Airport,medium_airport,GR,35.531700134277344,24.14970016479492,490.0
+LFSB,EuroAirport Basel-Mulhouse-Freiburg,large_airport,FR,47.60068,7.521117,885.0
+LGIR,Heraklion International Nikos Kazantzakis Airport,large_airport,GR,35.339699,25.1803,115.0
+LGKP,Karpathos Airport,medium_airport,GR,35.421398,27.146,66.0
+LGKR,Corfu Ioannis Kapodistrias International Airport,medium_airport,GR,39.601898,19.911699,6.0
+LGRP,Diagoras Airport,medium_airport,GR,36.405399,28.086201,17.0
+LGSA,Chania International Airport,medium_airport,GR,35.5317,24.1497,490.0
 LGSR,Santorini Airport,medium_airport,GR,36.399200439453125,25.47929954528809,127.0
-LGTS,Thessaloniki Macedonia International Airport,large_airport,GR,40.51969909667969,22.97089958190918,22.0
-LHBP,Budapest Liszt Ferenc International Airport,large_airport,HU,47.42976,19.261093,495.0
+LGTS,Thessaloniki Macedonia International Airport,large_airport,GR,40.51928,22.970009,22.0
+LHBP,Budapest Liszt Ferenc International Airport,large_airport,HU,47.43018,19.262393,495.0
 LICJ,Falcone–Borsellino Airport,large_airport,IT,38.175999,13.091,65.0
 LIMF,Turin Airport,large_airport,IT,45.200802,7.64963,989.0
 LIPZ,Venice Marco Polo Airport,large_airport,IT,45.505299,12.3519,7.0
@@ -67,15 +67,15 @@ LIRF,Rome–Fiumicino Leonardo da Vinci International Airport,large_airport,IT,4
 LIRN,Naples International Airport,large_airport,IT,40.886002,14.2908,294.0
 LIRQ,Peretola Airport,medium_airport,IT,43.810001,11.2051,142.0
 LJLJ,Ljubljana Jože Pučnik Airport,large_airport,SI,46.223701,14.4576,1273.0
-LKPR,Václav Havel Airport Prague,large_airport,CZ,50.1008,14.26,1247.0
-LLBG,Ben Gurion International Airport,large_airport,IL,32.01139831542969,34.88669967651367,135.0
+LKPR,Václav Havel Airport Prague,large_airport,CZ,50.103514,14.256992,1247.0
+LLBG,Ben Gurion International Airport,large_airport,IL,32.011398,34.8867,135.0
 LMML,Malta International Airport,large_airport,MT,35.857498,14.4775,300.0
 LOWI,Innsbruck Airport,medium_airport,AT,47.260201,11.344,1907.0
 LOWW,Vienna International Airport,large_airport,AT,48.110298,16.5697,600.0
 LPPT,Humberto Delgado Airport (Lisbon Portela Airport),large_airport,PT,38.7813,-9.13592,374.0
-LSGG,Geneva Cointrin International Airport,large_airport,CH,46.23809814453125,6.108950138092041,1411.0
+LSGG,Geneva Cointrin International Airport,large_airport,CH,46.238098,6.10895,1411.0
 LSZH,Zürich Airport,large_airport,CH,47.458056,8.548056,1417.0
-LSZS,Samedan Airport,medium_airport,CH,46.53409957885742,9.884110450744627,5600.0
+LSZS,Samedan Airport,medium_airport,CH,46.5341,9.88411,5600.0
 LTAI,Antalya International Airport,large_airport,TR,36.898701,30.800501,177.0
 LTBA,İstanbul Atatürk Airport,large_airport,TR,40.971913,28.823714,163.0
 LYBE,Belgrade Nikola Tesla Airport,large_airport,RS,44.818401,20.309099,335.0

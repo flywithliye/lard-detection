@@ -3,7 +3,7 @@ import zipfile
 import os
 from tqdm import tqdm
 from typing import List
-
+from tidecv import TIDE, Data
 ROOT_DATA = os.environ.get('LARD_DATA_ROOT_PATH')
 
 

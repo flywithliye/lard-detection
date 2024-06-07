@@ -138,7 +138,7 @@ def draw_gt_pred(image, anns, preds, catid_2_catname: dict):
     # INFO
     num_gt = len(anns)
     num_pred = len(preds)
-    info = f"{num_gt} Ground {'Truth' if num_gt in [0, 1] else 'Truths'} In Total | {num_pred} {'Prediction' if num_pred in [0, 1] else 'Predictions'} Found"
+    info = f"{num_gt} Ground {'Truth' if num_gt in [0, 1] else 'Truths'} in Total | {num_pred} {'Prediction' if num_pred in [0, 1] else 'Predictions'} Found"
     (w_text, h_text), _ = cv2.getTextSize(info, FONT, 3, 2)
 
     # 绘图
@@ -164,7 +164,8 @@ def plot_pr_curve(
         assert data_type in [
             'test_synth',
             'test_real_nominal',
-            'test_real_edge'
+            'test_real_edge',
+            'test_real'
         ]
 
         print(data_type)
@@ -521,6 +522,7 @@ def plot_mmdet_yolov3_train_log(df_train, df_val, exp_name: str):
 
 def plot_mmyolo_yolov5_train_log(df_train, df_val, exp_name: str):
 
+    # work for yolov7
     _, axs = plt.subplots(2, 2, figsize=(7, 6), dpi=100)
     axs = axs.flatten()
     if len(df_train):
@@ -534,6 +536,54 @@ def plot_mmyolo_yolov5_train_log(df_train, df_val, exp_name: str):
         axs[2].plot(df_train.index, df_train['loss'], label='loss')
         axs[2].plot(df_train.index, df_train['loss_cls'], label='loss_cls')
         axs[2].plot(df_train.index, df_train['loss_obj'], label='loss_obj')
+        axs[2].plot(df_train.index, df_train['loss_bbox'], label='loss_bbox')
+        axs[2].legend(frameon=True)
+        axs[2].set_title('Loss')
+        axs[2].set_xlabel('Epoch')
+        axs[2].set_ylabel('Loss')
+        axs[2].set_xlim(left=0)
+
+    if len(df_val):
+        axs[3].plot(
+            df_val.index,
+            df_val['coco/bbox_mAP'],
+            label='bbox_mAP',
+            linewidth=5)
+        axs[3].plot(
+            df_val.index,
+            df_val['coco/bbox_mAP_50'],
+            label='bbox_mAP_50')
+        axs[3].plot(
+            df_val.index,
+            df_val['coco/bbox_mAP_75'],
+            label='bbox_mAP_75')
+        axs[3].legend(frameon=True)
+        axs[3].set_title('coco/bbox_mAP')
+        axs[3].set_xlabel('Epoch')
+        axs[3].set_ylabel('coco/bbox_mAP')
+        axs[3].set_xlim(left=0)
+
+    plt.tight_layout()
+    plt.savefig(
+        f'results/figs/train/train_log_{exp_name}.jpg',
+        dpi=600, bbox_inches='tight')
+    plt.show()
+
+
+def plot_mmyolo_yolov6_train_log(df_train, df_val, exp_name: str):
+
+    _, axs = plt.subplots(2, 2, figsize=(7, 6), dpi=100)
+    axs = axs.flatten()
+    if len(df_train):
+        axs[0].plot(df_train.index, df_train['lr'], label='lr')
+        axs[0].legend(frameon=True)
+        axs[0].set_title('Learning Rate')
+        axs[0].set_xlabel('Epoch')
+        axs[0].set_ylabel('Learning Rate')
+        axs[0].set_xlim(left=0)
+
+        axs[2].plot(df_train.index, df_train['loss'], label='loss')
+        axs[2].plot(df_train.index, df_train['loss_cls'], label='loss_cls')
         axs[2].plot(df_train.index, df_train['loss_bbox'], label='loss_bbox')
         axs[2].legend(frameon=True)
         axs[2].set_title('Loss')

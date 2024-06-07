@@ -1,0 +1,7 @@
+path: /home/yeli/workspace/lard/lard-detection/datasets/lard/detection
+train: [val/images, test_synth/images]
+val: test_real_edge/images
+
+nc: 1
+names:
+  0: runway

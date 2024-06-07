@@ -26,5 +26,5 @@ send_info() {
 
     # 发送请求
     url="https://www.pushplus.plus/send?token=$token&title=$encoded_title&content=$encoded_content&template=html"
-    curl "$url"
+    curl "$url" > /dev/null 2>&1
 }

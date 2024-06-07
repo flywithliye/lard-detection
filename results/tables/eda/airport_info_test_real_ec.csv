@@ -2,13 +2,13 @@ ident,name,type,iso_country,latitude_deg,longitude_deg,elevation_ft
 CYYR,Goose Bay Airport,medium_airport,CA,53.3191986084,-60.4258003235,160.0
 CYYZ,Toronto Lester B. Pearson International Airport,large_airport,CA,43.6772,-79.6306,569.0
 EBBR,Brussels Airport,large_airport,BE,50.901402,4.48444,175.0
-EGKK,London Gatwick Airport,large_airport,GB,51.148102,-0.190278,202.0
+EGKK,London Gatwick Airport,large_airport,GB,51.148771,-0.192089,202.0
 EHAM,Amsterdam Airport Schiphol,large_airport,NL,52.308601,4.76389,-11.0
 EPWA,Warsaw Chopin Airport,large_airport,PL,52.1656990051,20.9671001434,362.0
 ESSA,Stockholm-Arlanda Airport,large_airport,SE,59.651901245117,17.918600082397,137.0
 FAOR,OR Tambo International Airport,large_airport,ZA,-26.1392,28.246,5558.0
 FMEE,Roland Garros Airport,large_airport,RE,-20.890087,55.518894,66.0
-KLAX,Los Angeles / Tom Bradley International Airport,large_airport,US,33.942501,-118.407997,125.0
+KLAX,Los Angeles International Airport,large_airport,US,33.942501,-118.407997,125.0
 KORD,Chicago O'Hare International Airport,large_airport,US,41.9786,-87.9048,672.0
 KSFO,San Francisco International Airport,large_airport,US,37.61899948120117,-122.375,13.0
 KTME,Houston Executive Airport,small_airport,US,29.80719947814941,-95.8979034423828,166.0
@@ -16,19 +16,19 @@ LBBG,Burgas Airport,large_airport,BG,42.56959915161133,27.515199661254883,135.0
 LEMG,Málaga-Costa del Sol Airport,large_airport,ES,36.6749,-4.49911,53.0
 LFPG,Charles de Gaulle International Airport,large_airport,FR,49.012798,2.55,392.0
 LFPO,Paris-Orly Airport,large_airport,FR,48.72333,2.37944,291.0
-LFSB,EuroAirport Basel-Mulhouse-Freiburg Airport,large_airport,FR,47.59,7.529167,885.0
-LGKR,Ioannis Kapodistrias International Airport,medium_airport,GR,39.601898193359375,19.911699295043945,6.0
+LFSB,EuroAirport Basel-Mulhouse-Freiburg,large_airport,FR,47.60068,7.521117,885.0
+LGKR,Corfu Ioannis Kapodistrias International Airport,medium_airport,GR,39.601898,19.911699,6.0
 LIMF,Turin Airport,large_airport,IT,45.200802,7.64963,989.0
-LKPR,Václav Havel Airport Prague,large_airport,CZ,50.1008,14.26,1247.0
-LLBG,Ben Gurion International Airport,large_airport,IL,32.01139831542969,34.88669967651367,135.0
+LKPR,Václav Havel Airport Prague,large_airport,CZ,50.103514,14.256992,1247.0
+LLBG,Ben Gurion International Airport,large_airport,IL,32.011398,34.8867,135.0
 LPPR,Francisco de Sá Carneiro Airport,large_airport,PT,41.2481002808,-8.68138980865,228.0
 LQSA,Sarajevo International Airport,medium_airport,BA,43.8246,18.331499,1708.0
-LSGG,Geneva Cointrin International Airport,large_airport,CH,46.23809814453125,6.108950138092041,1411.0
+LSGG,Geneva Cointrin International Airport,large_airport,CH,46.238098,6.10895,1411.0
 LSZH,Zürich Airport,large_airport,CH,47.458056,8.548056,1417.0
-LSZS,Samedan Airport,medium_airport,CH,46.53409957885742,9.884110450744627,5600.0
+LSZS,Samedan Airport,medium_airport,CH,46.5341,9.88411,5600.0
 SBSP,Congonhas Airport,medium_airport,BR,-23.627657,-46.654601,2631.0
 SKBO,El Dorado International Airport,large_airport,CO,4.70159,-74.1469,8361.0
-UGTB,Tbilisi International Airport,large_airport,GE,41.6692008972,44.95470047,1624.0
+UGTB,Tbilisi International Airport,large_airport,GE,41.669201,44.9547,1624.0
 VHHH,Hong Kong International Airport,large_airport,HK,22.308901,113.915001,28.0
 VVTS,Tan Son Nhat International Airport,large_airport,VN,10.8188,106.652,33.0
 ZBAA,Beijing Capital International Airport,large_airport,CN,40.0801010131836,116.58499908447266,116.0

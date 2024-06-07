@@ -6,7 +6,7 @@ from LARD.src.dataset.lard_dataset import LardDataset
 
 ROOT_DATA = os.environ.get('LARD_DATA_ROOT_PATH')
 zip_folder = f"{ROOT_DATA}/LARD_dataset_decompressed/"
-yolo_folder = f"{ROOT_DATA}/YoloFormat/"
+yolo_folder = f"{ROOT_DATA}/YoloFormat/detection"
 
 # 训练集
 dataset = LardDataset(
@@ -38,10 +38,12 @@ dataset.export(
 )
 
 # 测试集-真实-Nominal
-# cd ~/workspace/lard/lard-dataset/LARD_dataset_decompressed/LARD_test/LARD_test_real/LARD_test_real_nominal
-# mv Test_Real_Nominal.csv LARD_test_real_nominal.csv
+# cd ~/workspace/lard/lard-dataset/LARD_dataset_decompressed/LARD_test/LARD_test_real/
+# mv LARD_test_real_nominal LARD_test_real_nominal_cases
+# cd LARD_test_real_nominal_cases
+# mv Test_Real_Nominal.csv LARD_test_real_nominal_cases.csv
 dataset = LardDataset(
-    test_path=os.path.join(zip_folder, "LARD_test/LARD_test_real/LARD_test_real_nominal"))  # noqa
+    test_path=os.path.join(zip_folder, "LARD_test/LARD_test_real/LARD_test_real_nominal_cases"))  # noqa
 dataset.export(
     output_dir=os.path.join(yolo_folder, "test_real_nominal"),
     bbx_format="xywh",

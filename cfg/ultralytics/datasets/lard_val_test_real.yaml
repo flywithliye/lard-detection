@@ -1,0 +1,8 @@
+path: /home/yeli/workspace/lard/lard-detection/datasets/lard/detection
+train: train/images
+val: val/images
+test: test_real/images
+
+nc: 1
+names:
+  0: runway

@@ -11,9 +11,9 @@ if not os.path.exists(f'{ROOT_PROJECT}/datasets/lard/annotations'):
     os.symlink(f'{ROOT_DATA}/annotations',
                f'{ROOT_PROJECT}/datasets/lard/annotations')
 
-if not os.path.exists(f'{ROOT_PROJECT}/datasets/lard/YoloFormat'):
-    os.symlink(f'{ROOT_DATA}/YoloFormat',
-               f'{ROOT_PROJECT}/datasets/lard/YoloFormat')
+if not os.path.exists(f'{ROOT_PROJECT}/datasets/lard/detection'):
+    os.symlink(f'{ROOT_DATA}/YoloFormat/detection',
+               f'{ROOT_PROJECT}/datasets/lard/detection')
 
 # ln -s /fileonssd/coco-dataset/coco /home/yeli/workspace/lard/lard-detection/datasets/coco
 # ln -s cfg/ultralytics/weights/ weights

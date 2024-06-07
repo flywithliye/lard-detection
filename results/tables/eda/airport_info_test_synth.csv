@@ -1,5 +1,5 @@
 ident,name,type,iso_country,latitude_deg,longitude_deg,elevation_ft
-CYUL,Montreal / Pierre Elliott Trudeau International Airport,large_airport,CA,45.4706001282,-73.7407989502,118.0
+CYUL,Montreal / Pierre Elliott Trudeau International Airport,large_airport,CA,45.4706,-73.740799,118.0
 CYVR,Vancouver International Airport,large_airport,CA,49.193901062,-123.183998108,14.0
 CYYZ,Toronto Lester B. Pearson International Airport,large_airport,CA,43.6772,-79.6306,569.0
 DAAS,Ain Arnat Airport,medium_airport,DZ,36.178100585900005,5.32449007034,3360.0
@@ -16,14 +16,14 @@ LCPH,Paphos International Airport,medium_airport,CY,34.717999,32.485699,41.0
 LEMD,Adolfo Suárez Madrid–Barajas Airport,large_airport,ES,40.471926,-3.56264,1998.0
 LFRN,Rennes-Saint-Jacques Airport,medium_airport,FR,48.0695,-1.73479,124.0
 LFRS,Nantes Atlantique Airport,medium_airport,FR,47.153198242200006,-1.61073005199,90.0
-LFSB,EuroAirport Basel-Mulhouse-Freiburg Airport,large_airport,FR,47.59,7.529167,885.0
-LGSM,Samos Airport,medium_airport,GR,37.68999862670898,26.911699295043945,19.0
+LFSB,EuroAirport Basel-Mulhouse-Freiburg,large_airport,FR,47.60068,7.521117,885.0
+LGSM,Samos Airport,medium_airport,GR,37.689999,26.911699,19.0
 LICJ,Falcone–Borsellino Airport,large_airport,IT,38.175999,13.091,65.0
 LIRN,Naples International Airport,large_airport,IT,40.886002,14.2908,294.0
 LOWL,Linz-Hörsching Airport / Vogler Air Base,medium_airport,AT,48.2332,14.1875,980.0
 LSZH,Zürich Airport,large_airport,CH,47.458056,8.548056,1417.0
 LTAI,Antalya International Airport,large_airport,TR,36.898701,30.800501,177.0
-LWSK,Skopje International Airport,large_airport,MK,41.961601,21.621401,781.0
+LWSK,Skopje International Airport,large_airport,MK,41.958087,21.622581,781.0
 MDSD,Las Américas International Airport,large_airport,DO,18.42970085144,-69.668899536133,59.0
 OMAD,Al Bateen Executive Airport,medium_airport,AE,24.428301,54.458099,16.0
 RJAA,Narita International Airport,large_airport,JP,35.764702,140.386002,141.0

@@ -113,7 +113,7 @@ def delete_detections_from_database(exp_name: str):
 def delete_all_predictions(dataset):
 
     field_schema = dataset.get_field_schema()
-    
+
     # 要删除字段列表
     fileds_to_delete = []
     for field_name, _ in field_schema.items():

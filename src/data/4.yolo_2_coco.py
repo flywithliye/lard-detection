@@ -97,27 +97,27 @@ def yolo_to_coco(path, json_filename, is_real=False, is_mini=False):
 # 全量数据集
 # 全部训练集
 yolo_to_coco(
-    f"{ROOT_DATA}/YoloFormat/train_all",
+    f"{ROOT_DATA}/YoloFormat/detection/train_all",
     "instances_train_all.json")
 
 # 训练&验证
 yolo_to_coco(
-    f"{ROOT_DATA}/YoloFormat/train",
+    f"{ROOT_DATA}/YoloFormat/detection/train",
     "instances_train.json")
 yolo_to_coco(
-    f"{ROOT_DATA}/YoloFormat/val",
+    f"{ROOT_DATA}/YoloFormat/detection/val",
     "instances_val.json")
 
 # 测试集
 yolo_to_coco(
-    f"{ROOT_DATA}/YoloFormat/test_synth",
+    f"{ROOT_DATA}/YoloFormat/detection/test_synth",
     "instances_test_synth.json")
 yolo_to_coco(
-    f"{ROOT_DATA}/YoloFormat/test_real_nominal",
+    f"{ROOT_DATA}/YoloFormat/detection/test_real_nominal",
     "instances_test_real_nominal.json",
     is_real=True)
 yolo_to_coco(
-    f"{ROOT_DATA}/YoloFormat/test_real_edge",
+    f"{ROOT_DATA}/YoloFormat/detection/test_real_edge",
     "instances_test_real_edge.json",
     is_real=True)
 
@@ -125,32 +125,32 @@ yolo_to_coco(
 # # mini数据集
 # 全部训练集
 # yolo_to_coco(
-#     f"{ROOT_DATA}/YoloFormat/train_all",
+#     f"{ROOT_DATA}/YoloFormat/detection/train_all",
 #     "instances_train_all_mini.json",
 #     is_mini=True)
 
 # # 训练&验证
 # yolo_to_coco(
-#     f"{ROOT_DATA}/YoloFormat/train",
+#     f"{ROOT_DATA}/YoloFormat/detection/train",
 #     "instances_train_mini.json",
 #     is_mini=True)
 # yolo_to_coco(
-#     f"{ROOT_DATA}/YoloFormat/val",
+#     f"{ROOT_DATA}/YoloFormat/detection/val",
 #     "instances_val_mini.json",
 #     is_mini=True)
 
 # # 测试集
 # yolo_to_coco(
-#     f"{ROOT_DATA}/YoloFormat/test_synth",
+#     f"{ROOT_DATA}/YoloFormat/detection/test_synth",
 #     "instances_test_synth_mini.json",
 #     is_mini=True)
 # yolo_to_coco(
-#     f"{ROOT_DATA}/YoloFormat/test_real_nominal",
+#     f"{ROOT_DATA}/YoloFormat/detection/test_real_nominal",
 #     "instances_test_real_nominal_mini.json",
 #     is_real=True,
 #     is_mini=True)
 # yolo_to_coco(
-#     f"{ROOT_DATA}/YoloFormat/test_real_edge",
+#     f"{ROOT_DATA}/YoloFormat/detection/test_real_edge",
 #     "instances_test_real_edge_mini.json",
 #     is_real=True,
 #     is_mini=True)
