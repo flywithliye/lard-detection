@@ -650,6 +650,9 @@ def plot_ultralytics_yolov8_train_log(df_train_val, exp_name: str):
     axes[3].plot(df_train_val.index, df_train_val['lr/pg2'], label='Learning rate for group 2')
     axes[3].legend(loc='lower right', frameon=True)
 
+    axes[0].set_yscale('log')
+    axes[1].set_yscale('log')
+
     axes[0].set_xlabel('Epoch')
     axes[1].set_xlabel('Epoch')
     axes[2].set_xlabel('Epoch')

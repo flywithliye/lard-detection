@@ -433,104 +433,122 @@ run_finetune() {
     mode="finetune"
     echo_rb '所有测试进程已启动'
 
+    # bars
+    python -u cfg/ultralytics/test_finetune.py \
+        --mode=$mode \
+        --finetune_mode=bars_runway_val_test \
+        --cfg=lska_bifpn \
+        --iou_type=EIoU \
+        --aug_json=all \
+        --album=0.10 > logs/test/ultra_test_yolov8n_finetune_bars_runway_lska_bifpn_eiou_aug_all_10_640.log 2>&1
+
+    # msfs
+    python -u cfg/ultralytics/test_finetune.py \
+        --mode=$mode \
+        --finetune_mode=fs2020_runway_test \
+        --cfg=lska_bifpn \
+        --iou_type=EIoU \
+        --aug_json=all \
+        --album=0.10 > logs/test/ultra_test_yolov8n_finetune_fs2020_runway_lska_bifpn_eiou_aug_all_10_640.log 2>&1
+
     # !5%
-    python -u cfg/ultralytics/test_finetune.py \
-        --mode=$mode \
-        --finetune_mode=single \
-        --cfg=lska_bifpn \
-        --iou_type=EIoU \
-        --aug_json=all \
-        --album=0.05 > logs/test/ultra_test_yolov8n_finetune_single_lska_bifpn_eiou_aug_all_05_640.log 2>&1
+    # python -u cfg/ultralytics/test_finetune.py \
+    #     --mode=$mode \
+    #     --finetune_mode=single \
+    #     --cfg=lska_bifpn \
+    #     --iou_type=EIoU \
+    #     --aug_json=all \
+    #     --album=0.05 > logs/test/ultra_test_yolov8n_finetune_single_lska_bifpn_eiou_aug_all_05_640.log 2>&1
 
-    python -u cfg/ultralytics/test_finetune.py \
-        --mode=$mode \
-        --finetune_mode=double \
-        --cfg=lska_bifpn \
-        --iou_type=EIoU \
-        --aug_json=all \
-        --album=0.05 > logs/test/ultra_test_yolov8n_finetune_double_lska_bifpn_eiou_aug_all_05_640.log 2>&1
+    # python -u cfg/ultralytics/test_finetune.py \
+    #     --mode=$mode \
+    #     --finetune_mode=double \
+    #     --cfg=lska_bifpn \
+    #     --iou_type=EIoU \
+    #     --aug_json=all \
+    #     --album=0.05 > logs/test/ultra_test_yolov8n_finetune_double_lska_bifpn_eiou_aug_all_05_640.log 2>&1
         
-    python -u cfg/ultralytics/test_finetune.py \
-        --mode=$mode \
-        --finetune_mode=triple \
-        --cfg=lska_bifpn \
-        --iou_type=EIoU \
-        --aug_json=all \
-        --album=0.05 > logs/test/ultra_test_yolov8n_finetune_triple_lska_bifpn_eiou_aug_all_05_640.log 2>&1
+    # python -u cfg/ultralytics/test_finetune.py \
+    #     --mode=$mode \
+    #     --finetune_mode=triple \
+    #     --cfg=lska_bifpn \
+    #     --iou_type=EIoU \
+    #     --aug_json=all \
+    #     --album=0.05 > logs/test/ultra_test_yolov8n_finetune_triple_lska_bifpn_eiou_aug_all_05_640.log 2>&1
 
-    python -u cfg/ultralytics/test_finetune.py \
-        --mode=$mode \
-        --finetune_mode=triple_split \
-        --cfg=lska_bifpn \
-        --iou_type=EIoU \
-        --aug_json=all \
-        --album=0.05 > logs/test/ultra_test_yolov8n_finetune_triple_split_lska_bifpn_eiou_aug_all_05_640.log 2>&1
+    # python -u cfg/ultralytics/test_finetune.py \
+    #     --mode=$mode \
+    #     --finetune_mode=triple_split \
+    #     --cfg=lska_bifpn \
+    #     --iou_type=EIoU \
+    #     --aug_json=all \
+    #     --album=0.05 > logs/test/ultra_test_yolov8n_finetune_triple_split_lska_bifpn_eiou_aug_all_05_640.log 2>&1
 
-    # !10%
-    python -u cfg/ultralytics/test_finetune.py \
-        --mode=$mode \
-        --finetune_mode=single \
-        --cfg=lska_bifpn \
-        --iou_type=EIoU \
-        --aug_json=all \
-        --album=0.10 > logs/test/ultra_test_yolov8n_finetune_single_lska_bifpn_eiou_aug_all_10_640.log 2>&1
+    # # !10%
+    # python -u cfg/ultralytics/test_finetune.py \
+    #     --mode=$mode \
+    #     --finetune_mode=single \
+    #     --cfg=lska_bifpn \
+    #     --iou_type=EIoU \
+    #     --aug_json=all \
+    #     --album=0.10 > logs/test/ultra_test_yolov8n_finetune_single_lska_bifpn_eiou_aug_all_10_640.log 2>&1
 
-    python -u cfg/ultralytics/test_finetune.py \
-        --mode=$mode \
-        --finetune_mode=double \
-        --cfg=lska_bifpn \
-        --iou_type=EIoU \
-        --aug_json=all \
-        --album=0.10 > logs/test/ultra_test_yolov8n_finetune_double_lska_bifpn_eiou_aug_all_10_640.log 2>&1
+    # python -u cfg/ultralytics/test_finetune.py \
+    #     --mode=$mode \
+    #     --finetune_mode=double \
+    #     --cfg=lska_bifpn \
+    #     --iou_type=EIoU \
+    #     --aug_json=all \
+    #     --album=0.10 > logs/test/ultra_test_yolov8n_finetune_double_lska_bifpn_eiou_aug_all_10_640.log 2>&1
         
-    python -u cfg/ultralytics/test_finetune.py \
-        --mode=$mode \
-        --finetune_mode=triple \
-        --cfg=lska_bifpn \
-        --iou_type=EIoU \
-        --aug_json=all \
-        --album=0.10 > logs/test/ultra_test_yolov8n_finetune_triple_lska_bifpn_eiou_aug_all_10_640.log 2>&1
+    # python -u cfg/ultralytics/test_finetune.py \
+    #     --mode=$mode \
+    #     --finetune_mode=triple \
+    #     --cfg=lska_bifpn \
+    #     --iou_type=EIoU \
+    #     --aug_json=all \
+    #     --album=0.10 > logs/test/ultra_test_yolov8n_finetune_triple_lska_bifpn_eiou_aug_all_10_640.log 2>&1
 
-    python -u cfg/ultralytics/test_finetune.py \
-        --mode=$mode \
-        --finetune_mode=triple_split \
-        --cfg=lska_bifpn \
-        --iou_type=EIoU \
-        --aug_json=all \
-        --album=0.10 > logs/test/ultra_test_yolov8n_finetune_triple_split_lska_bifpn_eiou_aug_all_10_640.log 2>&1
+    # python -u cfg/ultralytics/test_finetune.py \
+    #     --mode=$mode \
+    #     --finetune_mode=triple_split \
+    #     --cfg=lska_bifpn \
+    #     --iou_type=EIoU \
+    #     --aug_json=all \
+    #     --album=0.10 > logs/test/ultra_test_yolov8n_finetune_triple_split_lska_bifpn_eiou_aug_all_10_640.log 2>&1
 
-    # !20%
-    python -u cfg/ultralytics/test_finetune.py \
-        --mode=$mode \
-        --finetune_mode=single \
-        --cfg=lska_bifpn \
-        --iou_type=EIoU \
-        --aug_json=all \
-        --album=0.20 > logs/test/ultra_test_yolov8n_finetune_single_lska_bifpn_eiou_aug_all_20_640.log 2>&1
+    # # !20%
+    # python -u cfg/ultralytics/test_finetune.py \
+    #     --mode=$mode \
+    #     --finetune_mode=single \
+    #     --cfg=lska_bifpn \
+    #     --iou_type=EIoU \
+    #     --aug_json=all \
+    #     --album=0.20 > logs/test/ultra_test_yolov8n_finetune_single_lska_bifpn_eiou_aug_all_20_640.log 2>&1
 
-    python -u cfg/ultralytics/test_finetune.py \
-        --mode=$mode \
-        --finetune_mode=double \
-        --cfg=lska_bifpn \
-        --iou_type=EIoU \
-        --aug_json=all \
-        --album=0.20 > logs/test/ultra_test_yolov8n_finetune_double_lska_bifpn_eiou_aug_all_20_640.log 2>&1
+    # python -u cfg/ultralytics/test_finetune.py \
+    #     --mode=$mode \
+    #     --finetune_mode=double \
+    #     --cfg=lska_bifpn \
+    #     --iou_type=EIoU \
+    #     --aug_json=all \
+    #     --album=0.20 > logs/test/ultra_test_yolov8n_finetune_double_lska_bifpn_eiou_aug_all_20_640.log 2>&1
         
-    python -u cfg/ultralytics/test_finetune.py \
-        --mode=$mode \
-        --finetune_mode=triple \
-        --cfg=lska_bifpn \
-        --iou_type=EIoU \
-        --aug_json=all \
-        --album=0.20 > logs/test/ultra_test_yolov8n_finetune_triple_lska_bifpn_eiou_aug_all_20_640.log 2>&1
+    # python -u cfg/ultralytics/test_finetune.py \
+    #     --mode=$mode \
+    #     --finetune_mode=triple \
+    #     --cfg=lska_bifpn \
+    #     --iou_type=EIoU \
+    #     --aug_json=all \
+    #     --album=0.20 > logs/test/ultra_test_yolov8n_finetune_triple_lska_bifpn_eiou_aug_all_20_640.log 2>&1
 
-    python -u cfg/ultralytics/test_finetune.py \
-        --mode=$mode \
-        --finetune_mode=triple_split \
-        --cfg=lska_bifpn \
-        --iou_type=EIoU \
-        --aug_json=all \
-        --album=0.20 > logs/test/ultra_test_yolov8n_finetune_triple_split_lska_bifpn_eiou_aug_all_20_640.log 2>&1
+    # python -u cfg/ultralytics/test_finetune.py \
+    #     --mode=$mode \
+    #     --finetune_mode=triple_split \
+    #     --cfg=lska_bifpn \
+    #     --iou_type=EIoU \
+    #     --aug_json=all \
+    #     --album=0.20 > logs/test/ultra_test_yolov8n_finetune_triple_split_lska_bifpn_eiou_aug_all_20_640.log 2>&1
 
 
     # python -u cfg/ultralytics/test_finetune.py \

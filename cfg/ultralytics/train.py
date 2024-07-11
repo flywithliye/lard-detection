@@ -58,7 +58,12 @@ def train(args):
     # 训练配置文件路径
     path_yaml = f'{ROOT_PROJECT}/cfg/ultralytics/models/{model}{stru}/{model}{stru}{cfg}.yaml'
     path_trans = f'{ROOT_PROJECT}/cfg/ultralytics/datasets/aug/lard_transform_{args.aug_json}.json'
-    path_data = f'{ROOT_PROJECT}/cfg/ultralytics/datasets/lard_val_test_synth.yaml' if not finetune_mode else f'{ROOT_PROJECT}/cfg/ultralytics/datasets/finetune/{finetune_mode}.yaml'
+    if not finetune_mode:
+        path_data = f'{ROOT_PROJECT}/cfg/ultralytics/datasets/lard_val_test_synth.yaml' 
+    elif finetune_mode in ['single', 'double', 'triple', 'triple_split']:
+        path_data = f'{ROOT_PROJECT}/cfg/ultralytics/datasets/finetune/{finetune_mode}.yaml'
+    else:
+        path_data = f'{ROOT_PROJECT}/cfg/ultralytics/datasets/{finetune_mode}.yaml'
     path_weights = f'{ROOT_PROJECT}/weights/{model}{stru}.pt' if not args.weights else f'{ROOT_PROJECT}/{args.weights}'
 
     # 预训练时使用coco数据集

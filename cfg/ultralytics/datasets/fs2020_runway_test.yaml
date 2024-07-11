@@ -1,0 +1,8 @@
+path: /fileonssd/runway-dataset/fs2020-dataset/fs2020_runway/detection
+train: images/train
+val: images/test
+test: images/test
+
+nc: 1
+names:
+  0: runway

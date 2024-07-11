@@ -1,0 +1,8 @@
+path: /fileonssd/runway-dataset/bars-dataset/bars_runway/detection
+train: images/train2014
+val: images/val2014
+test: images/test2014
+
+nc: 1
+names:
+  0: runway

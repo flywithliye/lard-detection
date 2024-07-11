@@ -87,7 +87,9 @@ def test(args):
         'single': ['test_synth', 'test_real_nominal', 'test_real_edge', 'test_real', 'test'],
         'double': ['test_real_nominal', 'test_real_edge', 'test_real'],
         'triple': ['test_real_edge'],
-        'triple_split': ['test_real_edge']
+        'triple_split': ['test_real_edge'],
+        'bars_runway_val_test': ['bars_runway_val_test'],
+        'msfs_runway_test': ['msfs_runway_test']
     }
 
     # 数据集列表
@@ -97,7 +99,10 @@ def test(args):
     for data_type in all_datasets:
 
         print(f'正在测试: {data_type}')
-        path_data = f'cfg/ultralytics/datasets/lard_val_{data_type}.yaml'
+        if finetune_mode in ['single', 'double', 'triple', 'triple_split']:
+            path_data = f'cfg/ultralytics/datasets/lard_val_{data_type}.yaml'
+        else:
+            path_data = f'cfg/ultralytics/datasets/{data_type}.yaml'
 
         # 实例化YOLO模型
         model = YOLO(trained_model_path, task='detect')
@@ -128,7 +133,12 @@ def test(args):
     for data_type in all_datasets:
 
         print(f'正在评价: {data_type}')
-        path_annotation = f'datasets/lard/annotations/instances_{data_type}.json'
+        if finetune_mode in ['single', 'double', 'triple', 'triple_split']:
+            path_annotation = f'datasets/lard/annotations/instances_{data_type}.json'
+        elif finetune_mode == 'bars_runway_val_test':
+            path_annotation = 'datasets/bars_runway/annotations/instances_test2014_0.json'
+        elif finetune_mode == 'msfs_runway_test':
+            path_annotation = 'datasets/fs2020_runway/annotations/instances_test_0.json'
         path_prediction = f'{project}/{mode}/{exp_name}/{finetune_mode}/test/{data_type}/predictions.json'
         path_prediction_modified = f'{project}/{mode}/{exp_name}/{finetune_mode}/test/{data_type}/predictions_modified.json'
 

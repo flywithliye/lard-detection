@@ -436,6 +436,26 @@ run_finetune() {
     mode="finetune"
     echo_rb '所有训练进程已在后台启动'
 
+    # lard
+    python -u cfg/ultralytics/train.py \
+        --mode=$mode \
+        --finetune_mode=bars_runway_val_test \
+        --weights=runs/ultralytics/finetune/yolov8n_lska_bifpn_EIoU_aug_all_10_640/triple_split/train/weights/best.pt \
+        --cfg=lska_bifpn \
+        --iou_type=EIoU \
+        --aug_json=all \
+        --album=0.10 > logs/train/ultra_train_yolov8n_finetune_bars_runway_lska_bifpn_eiou_aug_all_10_640.log 2>&1
+
+    # msfs
+    # python -u cfg/ultralytics/train.py \
+    #     --mode=$mode \
+    #     --finetune_mode=fs2020_runway_test \
+    #     --weights=runs/ultralytics/finetune/yolov8n_lska_bifpn_EIoU_aug_all_10_640/triple_split/train/weights/best.pt \
+    #     --cfg=lska_bifpn \
+    #     --iou_type=EIoU \
+    #     --aug_json=all \
+    #     --album=0.10 > logs/train/ultra_train_yolov8n_finetune_fs2020_runway_lska_bifpn_eiou_aug_all_10_640.log 2>&1
+
     # !5%
     # python -u cfg/ultralytics/train.py \
     #     --mode=$mode \
@@ -511,41 +531,41 @@ run_finetune() {
     #     --album=0.10 > logs/train/ultra_train_yolov8n_finetune_triple_split_lska_bifpn_eiou_aug_all_10_640.log 2>&1
 
     # !20%
-    python -u cfg/ultralytics/train.py \
-        --mode=$mode \
-        --finetune_mode=single \
-        --weights=runs/ultralytics/merge/yolov8n_lska_bifpn_EIoU_aug_all_20_640/train/weights/best.pt \
-        --cfg=lska_bifpn \
-        --iou_type=EIoU \
-        --aug_json=all \
-        --album=0.20 > logs/train/ultra_train_yolov8n_finetune_single_lska_bifpn_eiou_aug_all_20_640.log 2>&1
+    # python -u cfg/ultralytics/train.py \
+    #     --mode=$mode \
+    #     --finetune_mode=single \
+    #     --weights=runs/ultralytics/merge/yolov8n_lska_bifpn_EIoU_aug_all_20_640/train/weights/best.pt \
+    #     --cfg=lska_bifpn \
+    #     --iou_type=EIoU \
+    #     --aug_json=all \
+    #     --album=0.20 > logs/train/ultra_train_yolov8n_finetune_single_lska_bifpn_eiou_aug_all_20_640.log 2>&1
 
-    python -u cfg/ultralytics/train.py \
-        --mode=$mode \
-        --finetune_mode=double \
-        --weights=runs/ultralytics/merge/yolov8n_lska_bifpn_EIoU_aug_all_20_640/train/weights/best.pt \
-        --cfg=lska_bifpn \
-        --iou_type=EIoU \
-        --aug_json=all \
-        --album=0.20 > logs/train/ultra_train_yolov8n_finetune_double_lska_bifpn_eiou_aug_all_20_640.log 2>&1
+    # python -u cfg/ultralytics/train.py \
+    #     --mode=$mode \
+    #     --finetune_mode=double \
+    #     --weights=runs/ultralytics/merge/yolov8n_lska_bifpn_EIoU_aug_all_20_640/train/weights/best.pt \
+    #     --cfg=lska_bifpn \
+    #     --iou_type=EIoU \
+    #     --aug_json=all \
+    #     --album=0.20 > logs/train/ultra_train_yolov8n_finetune_double_lska_bifpn_eiou_aug_all_20_640.log 2>&1
         
-    python -u cfg/ultralytics/train.py \
-        --mode=$mode \
-        --finetune_mode=triple \
-        --weights=runs/ultralytics/merge/yolov8n_lska_bifpn_EIoU_aug_all_20_640/train/weights/best.pt \
-        --cfg=lska_bifpn \
-        --iou_type=EIoU \
-        --aug_json=all \
-        --album=0.20 > logs/train/ultra_train_yolov8n_finetune_triple_lska_bifpn_eiou_aug_all_20_640.log 2>&1
+    # python -u cfg/ultralytics/train.py \
+    #     --mode=$mode \
+    #     --finetune_mode=triple \
+    #     --weights=runs/ultralytics/merge/yolov8n_lska_bifpn_EIoU_aug_all_20_640/train/weights/best.pt \
+    #     --cfg=lska_bifpn \
+    #     --iou_type=EIoU \
+    #     --aug_json=all \
+    #     --album=0.20 > logs/train/ultra_train_yolov8n_finetune_triple_lska_bifpn_eiou_aug_all_20_640.log 2>&1
 
-    python -u cfg/ultralytics/train.py \
-        --mode=$mode \
-        --finetune_mode=triple_split \
-        --weights=runs/ultralytics/finetune/yolov8n_lska_bifpn_EIoU_aug_all_20_640/double/train/weights/best.pt \
-        --cfg=lska_bifpn \
-        --iou_type=EIoU \
-        --aug_json=all \
-        --album=0.20 > logs/train/ultra_train_yolov8n_finetune_triple_split_lska_bifpn_eiou_aug_all_20_640.log 2>&1
+    # python -u cfg/ultralytics/train.py \
+    #     --mode=$mode \
+    #     --finetune_mode=triple_split \
+    #     --weights=runs/ultralytics/finetune/yolov8n_lska_bifpn_EIoU_aug_all_20_640/double/train/weights/best.pt \
+    #     --cfg=lska_bifpn \
+    #     --iou_type=EIoU \
+    #     --aug_json=all \
+    #     --album=0.20 > logs/train/ultra_train_yolov8n_finetune_triple_split_lska_bifpn_eiou_aug_all_20_640.log 2>&1
 
     # python -u cfg/ultralytics/train.py \
     #     --mode=$mode \
