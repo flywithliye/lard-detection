@@ -368,10 +368,12 @@ run_merge() {
     
     # ATT + FPN + IOU + AUG
     merge_mode="att_fpn_iou_aug"
-    python -u cfg/ultralytics/test.py --mode=$mode --merge_mode=$merge_mode --cfg=lska_bifpn --iou_type=EIoU --aug_json=all --album=0.01 > logs/test/ultra_test_yolov8n_merge_att_fpn_iou_aug_lska_bifpn_eiou_aug_all_01_640_640.log 2>&1
-    python -u cfg/ultralytics/test.py --mode=$mode --merge_mode=$merge_mode --cfg=lska_bifpn --iou_type=EIoU --aug_json=all --album=0.01 --test_size=1280 > logs/test/ultra_test_yolov8n_merge_att_fpn_iou_aug_lska_bifpn_eiou_aug_all_01_640_1280.log 2>&1
+    # python -u cfg/ultralytics/test.py --mode=$mode --merge_mode=$merge_mode --cfg=lska_bifpn --iou_type=EIoU --aug_json=all --album=0.01 > logs/test/ultra_test_yolov8n_merge_att_fpn_iou_aug_lska_bifpn_eiou_aug_all_01_640_640.log 2>&1
+    # python -u cfg/ultralytics/test.py --mode=$mode --merge_mode=$merge_mode --cfg=lska_bifpn --iou_type=EIoU --aug_json=all --album=0.01 --test_size=1280 > logs/test/ultra_test_yolov8n_merge_att_fpn_iou_aug_lska_bifpn_eiou_aug_all_01_640_1280.log 2>&1
     # python -u cfg/ultralytics/test.py --mode=$mode --merge_mode=$merge_mode --cfg=lska_bifpn --iou_type=EIoU --aug_json=all --album=0.05 > logs/test/ultra_test_yolov8n_merge_att_fpn_iou_aug_lska_bifpn_eiou_aug_all_05_640_640.log 2>&1
     # python -u cfg/ultralytics/test.py --mode=$mode --merge_mode=$merge_mode --cfg=lska_bifpn --iou_type=EIoU --aug_json=all --album=0.05 --test_size=1280 > logs/test/ultra_test_yolov8n_merge_att_fpn_iou_aug_lska_bifpn_eiou_aug_all_05_640_1280.log 2>&1
+    python -u cfg/ultralytics/test.py --mode=$mode --merge_mode=$merge_mode --cfg=lska_bifpn --iou_type=EIoU --aug_json=all --album=0.05 --half_fp16 > logs/test/ultra_test_yolov8n_merge_att_fpn_iou_aug_lska_bifpn_eiou_aug_all_05_640_640_fp16.log 2>&1
+    python -u cfg/ultralytics/test.py --mode=$mode --merge_mode=$merge_mode --cfg=lska_bifpn --iou_type=EIoU --aug_json=all --album=0.05 --test_size=1280 --half_fp16 > logs/test/ultra_test_yolov8n_merge_att_fpn_iou_aug_lska_bifpn_eiou_aug_all_05_640_1280_fp16.log 2>&1
     # python -u cfg/ultralytics/test.py --mode=$mode --merge_mode=$merge_mode --cfg=lska_bifpn --iou_type=EIoU --aug_json=all --album=0.10 > logs/test/ultra_test_yolov8n_merge_att_fpn_iou_aug_lska_bifpn_eiou_aug_all_10_640_640.log 2>&1
     # python -u cfg/ultralytics/test.py --mode=$mode --merge_mode=$merge_mode --cfg=lska_bifpn --iou_type=EIoU --aug_json=all --album=0.10 --test_size=1280 > logs/test/ultra_test_yolov8n_merge_att_fpn_iou_aug_lska_bifpn_eiou_aug_all_10_640_1280.log 2>&1
     # python -u cfg/ultralytics/test.py --mode=$mode --merge_mode=$merge_mode --cfg=lska_bifpn --iou_type=EIoU --aug_json=all --album=0.20 > logs/test/ultra_test_yolov8n_merge_att_fpn_iou_aug_lska_bifpn_eiou_aug_all_20_640_640.log 2>&1
@@ -390,8 +392,8 @@ run_merge() {
     # python -u cfg/ultralytics/test.py --mode=$mode --merge_mode=$merge_mode --cfg=lska_bifpn --aug_json=all --album=0.20 --size=1280 --test_size=1280 > logs/test/ultra_test_yolov8n_merge_att_fpn_aug_lska_bifpn_aug_all_20_1280_1280.log 2>&1
 
     # ATT + FPN + IOU + AUG
-    merge_mode="att_fpn_iou_aug"
-    python -u cfg/ultralytics/test.py --mode=$mode --merge_mode=$merge_mode --cfg=lska_bifpn --iou_type=EIoU --aug_json=all --album=0.01 --size=1280 --test_size=1280 > logs/test/ultra_test_yolov8n_merge_att_fpn_iou_aug_lska_bifpn_eiou_aug_all_01_1280_1280.log 2>&1
+    # merge_mode="att_fpn_iou_aug"
+    # python -u cfg/ultralytics/test.py --mode=$mode --merge_mode=$merge_mode --cfg=lska_bifpn --iou_type=EIoU --aug_json=all --album=0.01 --size=1280 --test_size=1280 > logs/test/ultra_test_yolov8n_merge_att_fpn_iou_aug_lska_bifpn_eiou_aug_all_01_1280_1280.log 2>&1
     # python -u cfg/ultralytics/test.py --mode=$mode --merge_mode=$merge_mode --cfg=lska_bifpn --iou_type=EIoU --aug_json=all --album=0.05 --size=1280 --test_size=1280 > logs/test/ultra_test_yolov8n_merge_att_fpn_iou_aug_lska_bifpn_eiou_aug_all_05_1280_1280.log 2>&1
     # python -u cfg/ultralytics/test.py --mode=$mode --merge_mode=$merge_mode --cfg=lska_bifpn --iou_type=EIoU --aug_json=all --album=0.10 --size=1280 --test_size=1280 > logs/test/ultra_test_yolov8n_merge_att_fpn_iou_aug_lska_bifpn_eiou_aug_all_10_1280_1280.log 2>&1
     # python -u cfg/ultralytics/test.py --mode=$mode --merge_mode=$merge_mode --cfg=lska_bifpn --iou_type=EIoU --aug_json=all --album=0.20 --size=1280 --test_size=1280 > logs/test/ultra_test_yolov8n_merge_att_fpn_iou_aug_lska_bifpn_eiou_aug_all_20_1280_1280.log 2>&1

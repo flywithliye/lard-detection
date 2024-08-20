@@ -34,6 +34,7 @@ def parse_arguments():
     parser.add_argument("--nms_conf", type=float, default=0.001, help="NMS-CONF阈值, 过滤掉置信度过低的bbox, 越大越严格")
     parser.add_argument("--nms_iou", type=float, default=0.6, help="NMS-IOU阈值, 过滤掉重合度过高的bbox, 越小越严格")
     parser.add_argument("--max_det", type=int, default=8, help="最大检测数量")
+    parser.add_argument("--half_fp16", action='store_true', help="FP16量化")
     parser.add_argument("--soft_nms", action='store_true', help="使用soft nms")
 
     parser.add_argument("--pretrain", action="store_true", help="是否在coco进行预训练")
@@ -62,6 +63,7 @@ def test(args):
     size = f'_{args.size}'
     mode = args.mode
     merge_mode = args.merge_mode
+    quantization = f'_fp16' if args.half_fp16 else ''    
 
     test_speed = True  # ! 是否计算测试时间
     test_complex = True  # ! 是否计算参数量
@@ -86,6 +88,7 @@ def test(args):
     nms_iou = args.nms_iou
     max_det = args.max_det
     soft_nms = args.soft_nms
+    half_fp16 = args.half_fp16
 
     # 数据集列表
     all_datasets = ['test_synth', 'test_real_nominal', 'test_real_edge', 'test_real', 'test']
@@ -108,10 +111,11 @@ def test(args):
             conf=nms_conf,  # 检测的目标置信度阈值
             iou=nms_iou,  # NMS使用的IOU阈值
             max_det=max_det,  # 最大检测数量
+            half=half_fp16,  # FP16量化
             device=0,  # 设备id
             split='test',  # val时使用的数据集划分
             project=project,
-            name=f'{mode}/{exp_name}/test/{data_type}',
+            name=f'{mode}/{exp_name}/test/{data_type}{quantization}',
             exist_ok=True,  # 允许覆盖
             # 自定义参数
             soft_nms=soft_nms,  # 使用softnms
@@ -126,8 +130,8 @@ def test(args):
 
         print(f'正在评价: {data_type}')
         path_annotation = f'datasets/lard/annotations/instances_{data_type}.json'
-        path_prediction = f'{project}/{mode}/{exp_name}/test/{data_type}/predictions.json'
-        path_prediction_modified = f'{project}/{mode}/{exp_name}/test/{data_type}/predictions_modified.json'
+        path_prediction = f'{project}/{mode}/{exp_name}/test/{data_type}{quantization}/predictions.json'
+        path_prediction_modified = f'{project}/{mode}/{exp_name}/test/{data_type}{quantization}/predictions_modified.json'
 
         # 读取原始JSON文件
         with open(path_prediction, 'r') as f:
@@ -187,6 +191,7 @@ def test(args):
                     conf=nms_conf,
                     iou=nms_iou,
                     max_det=max_det,
+                    half=half_fp16,  # FP16量化
                     device=0,
                     verbose=False
                 )
@@ -216,9 +221,9 @@ def test(args):
         all_metrics = pd.concat([all_metrics, all_speed], axis=0)
 
     # 保存评价指标
-    path_results = f'results/tables/metrics/metrics_{mode}_{exp_name}_{args.test_size}.csv'
+    path_results = f'results/tables/metrics/metrics_{mode}_{exp_name}_{args.test_size}{quantization}.csv'
     if mode == 'merge':
-        path_results = f'results/tables/metrics/metrics_{mode}_{merge_mode}_{exp_name}_{args.test_size}.csv'
+        path_results = f'results/tables/metrics/metrics_{mode}_{merge_mode}_{exp_name}_{args.test_size}{quantization}.csv'
     all_metrics.index.name = 'metrics'
     all_metrics.to_csv(path_results, float_format='%.3f')
 

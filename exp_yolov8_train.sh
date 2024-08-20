@@ -436,7 +436,7 @@ run_finetune() {
     mode="finetune"
     echo_rb '所有训练进程已在后台启动'
 
-    # lard
+    # bars
     python -u cfg/ultralytics/train.py \
         --mode=$mode \
         --finetune_mode=bars_runway_val_test \
