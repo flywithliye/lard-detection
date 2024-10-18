@@ -8,11 +8,11 @@
 
 </head>
 <body >
-    <div id="61ae85184b9f4097bd5d040a231b9921" class="chart-container" style="width:800px; height:450px; "></div>
+    <div id="c11208d81c8340b89ccd6da7ff851a1b" class="chart-container" style="width:800px; height:450px; "></div>
     <script>
-        var chart_61ae85184b9f4097bd5d040a231b9921 = echarts.init(
-            document.getElementById('61ae85184b9f4097bd5d040a231b9921'), 'light', {renderer: 'svg'});
-        var option_61ae85184b9f4097bd5d040a231b9921 = {
+        var chart_c11208d81c8340b89ccd6da7ff851a1b = echarts.init(
+            document.getElementById('c11208d81c8340b89ccd6da7ff851a1b'), 'light', {renderer: 'svg'});
+        var option_c11208d81c8340b89ccd6da7ff851a1b = {
     "backgroundColor": "white",
     "animation": true,
     "animationThreshold": 2000,
@@ -27,16 +27,9 @@
     },
     "series": [
         {
-            "type": "effectScatter",
+            "type": "scatter",
             "name": "Airports in training dataset",
             "coordinateSystem": "geo",
-            "showEffectOn": "render",
-            "rippleEffect": {
-                "show": true,
-                "brushType": "stroke",
-                "scale": 2.5,
-                "period": 4
-            },
             "symbolSize": 11,
             "data": [
                 {
@@ -163,6 +156,12 @@
             "label": {
                 "show": false,
                 "margin": 8
+            },
+            "rippleEffect": {
+                "show": true,
+                "brushType": "stroke",
+                "scale": 2.5,
+                "period": 4
             }
         },
         {
@@ -505,7 +504,7 @@
         },
         {
             "type": "scatter",
-            "name": "Airports in test dataset (Real edge cases)",
+            "name": "Airports in test dataset (Real edge)",
             "coordinateSystem": "geo",
             "symbolSize": 7,
             "data": [
@@ -787,7 +786,7 @@
         },
         {
             "type": "scatter",
-            "name": "Airports in test dataset (Real nominal cases)",
+            "name": "Airports in test dataset (Real nominal)",
             "coordinateSystem": "geo",
             "symbolSize": 5,
             "data": [
@@ -1569,8 +1568,8 @@
             "data": [
                 "Airports in training dataset",
                 "Airports in test dataset (Synthetic)",
-                "Airports in test dataset (Real edge cases)",
-                "Airports in test dataset (Real nominal cases)"
+                "Airports in test dataset (Real edge)",
+                "Airports in test dataset (Real nominal)"
             ],
             "selected": {},
             "show": true,
@@ -1647,17 +1646,17 @@
         "emphasis": {}
     }
 };
-        chart_61ae85184b9f4097bd5d040a231b9921.setOption(option_61ae85184b9f4097bd5d040a231b9921);
+        chart_c11208d81c8340b89ccd6da7ff851a1b.setOption(option_c11208d81c8340b89ccd6da7ff851a1b);
     </script>
 
-    <a id="download" href="">下载</a>
+    <a id="download" href="">下载SVG</a>
     <script>
     const a = window.document.querySelector('#download')
     a.addEventListener('click',()=>{
         const content = document.querySelector('svg').outerHTML
         const blob= new Blob([content], {type: 'xml/svg'})
         a.href = URL.createObjectURL(blob)
-        a.download = 'test.svg'
+        a.download = 'airport_map.svg'
     })
     </script>
     </body>

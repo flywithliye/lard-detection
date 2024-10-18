@@ -1,0 +1,3 @@
+models,test_synth,test_real_nominal,test_real_edge,test_real,test,param,flops,delay,fps
+merge_fpn_iou_yolov8n_bifpn_EIoU_640_640,0.755,0.575,0.359,0.537,0.659,3.027,8.247,8.466,123.3
+base_yolov8n_640_640,0.754,0.586,0.348,0.545,0.662,3.011,8.194,7.756,135.0

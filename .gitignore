@@ -4,31 +4,19 @@
 *.pyc
 __pycache__/
 
-datasets/lard/*
-datasets/coco/*
-datasets/coco128/*
 datasets/video/*
 
 logs/*
+!logs/
+!logs/.gitkeep
 
-papers/csv
-
-results/figs/eda/*.jpg
-results/figs/eda/*.html
-results/figs/paper/*.jpg
 results/figs/test/*.jpg
 results/figs/train/*.jpg
-
-results/images/heatmaps/
-results/images/predictions/
-
-results/tables/eda/
 results/tables/info/
 results/tables/metrics/
-results/tables/ssim/
-
-results/videos/*.mp4
 
 runs/*
+!runs/
+!runs/.gitkeep
 
 weights/

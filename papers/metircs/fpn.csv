@@ -1,0 +1,4 @@
+models,test_synth,test_real_nominal,test_real_edge,test_real,test,param,flops,delay,fps
+fpn_yolov8n_afpn_640_640,0.761,0.574,0.333,0.532,0.66,4.667,15.641,10.212,101.9
+base_yolov8n_640_640,0.754,0.586,0.348,0.545,0.662,3.011,8.194,7.756,135.0
+fpn_yolov8n_bifpn_640_640,0.758,0.591,0.365,0.553,0.666,3.027,8.247,7.772,135.4

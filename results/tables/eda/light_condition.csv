@@ -1,0 +1,7 @@
+dataset,bright,dim,dark
+train,10376,1168,0
+val,2614,272,1
+test_synth,2062,150,0
+test_real_nominal,633,867,0
+test_real_edge,80,226,5
+test_real,713,1093,5

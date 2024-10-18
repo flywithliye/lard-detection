@@ -1,0 +1,12 @@
+models,test_synth,test_real_nominal,test_real_edge,test_real,test,param,flops,delay,fps
+merge_att_fpn_iou_yolov8n_lska_bifpn_NWD_640_640,0.696,0.505,0.317,0.473,0.594,3.106,8.308,8.566,122.9
+merge_att_fpn_iou_yolov8n_lska_bifpn_WIoU_640_640,0.751,0.574,0.365,0.539,0.658,3.106,8.308,8.321,126.5
+merge_att_fpn_iou_yolov8n_lska_bifpn_MDPIoU1_640_640,0.743,0.581,0.347,0.541,0.653,3.106,8.308,8.324,126.4
+merge_att_fpn_iou_yolov8n_lska_bifpn_SIoU_640_640,0.762,0.579,0.357,0.541,0.662,3.106,8.308,8.058,129.8
+base_yolov8n_640_640,0.754,0.586,0.348,0.545,0.662,3.011,8.194,7.756,135.0
+merge_att_fpn_iou_yolov8n_lska_bifpn_ShapeIoU_640_640,0.757,0.587,0.36,0.548,0.664,3.106,8.308,7.761,135.2
+merge_att_fpn_iou_yolov8n_lska_bifpn_MDPIoU2_640_640,0.762,0.594,0.357,0.555,0.67,3.106,8.308,8.182,127.7
+merge_att_fpn_iou_yolov8n_lska_bifpn_DIoU_640_640,0.764,0.595,0.365,0.556,0.671,3.106,8.308,7.751,135.1
+merge_att_fpn_iou_yolov8n_lska_bifpn_GIoU_640_640,0.751,0.591,0.378,0.556,0.665,3.106,8.308,8.071,129.4
+merge_att_fpn_yolov8n_lska_bifpn_640_640,0.761,0.598,0.374,0.559,0.672,3.106,8.308,8.028,129.3
+merge_att_fpn_iou_yolov8n_lska_bifpn_EIoU_640_640,0.762,0.6,0.393,0.563,0.675,3.106,8.308,7.935,131.4

@@ -1,0 +1,7 @@
+models,test_synth,test_real_nominal,test_real_edge,test_real,test,param,flops,delay,fps
+merge_att_fpn_yolov8n_ese_bifpn_640_640,0.755,0.572,0.322,0.53,0.655,,,,
+merge_att_fpn_yolov8n_ta_bifpn_640_640,0.757,0.575,0.338,0.534,0.658,,,,
+merge_att_fpn_yolov8n_sa_bifpn_640_640,0.757,0.575,0.35,0.537,0.661,,,,
+base_yolov8n_640_640,0.754,0.586,0.348,0.545,0.662,3.011,8.194,7.756,135.0
+merge_att_fpn_yolov8n_cpca_bifpn_640_640,0.763,0.589,0.368,0.552,0.67,,,,
+merge_att_fpn_yolov8n_lska_bifpn_640_640,0.761,0.598,0.374,0.559,0.672,3.106,8.308,8.028,129.3
