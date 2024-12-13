@@ -1,3 +1,0 @@
-models,test_synth,test_real_nominal,test_real_edge,test_real,test,param,flops,delay,fps
-up_yolov8n_carafe_640_640,0.754,0.576,0.358,0.539,0.659,3.083,8.373,8.848,121.0
-base_yolov8n_640_640,0.754,0.586,0.348,0.545,0.662,3.011,8.194,7.756,135.0

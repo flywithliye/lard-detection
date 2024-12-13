@@ -1,8 +1,0 @@
-models,test_synth,test_real_nominal,test_real_edge,test_real,test,param,flops,delay,fps
-base_yolov8n_640_640,0.754,0.586,0.348,0.545,0.662,3.011,8.194,7.756,135.0
-merge_att_fpn_iou_yolov8n_lska_bifpn_EIoU_640_640,0.762,0.6,0.393,0.563,0.675,3.106,8.308,7.935,131.4
-merge_att_fpn_iou_aug_yolov8n_lska_bifpn_EIoU_aug_all_5_640_640_fp16,0.757,0.61,0.413,0.578,0.676,3.106,8.308,8.013,130.3
-merge_att_fpn_iou_aug_yolov8n_lska_bifpn_EIoU_aug_all_5_640_640,0.76,0.611,0.413,0.578,0.678,3.106,8.308,8.394,125.3
-merge_att_fpn_iou_aug_yolov8n_lska_bifpn_EIoU_aug_all_5_640_1280_fp16,0.783,0.74,0.521,0.704,0.745,3.106,33.232,13.463,83.5
-merge_att_fpn_iou_aug_yolov8n_lska_bifpn_EIoU_aug_all_5_640_1280,0.785,0.744,0.517,0.707,0.747,3.106,33.232,12.662,89.3
-merge_att_fpn_iou_aug_yolov8n_lska_bifpn_EIoU_aug_all_5_1280_1280,0.848,0.75,0.489,0.709,0.786,3.106,33.232,12.693,90.9

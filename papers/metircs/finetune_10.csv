@@ -1,6 +1,0 @@
-models,test_synth,test_real_nominal,test_real_edge,test_real,test,param,flops,delay,fps
-base_yolov8n_640_640,0.754,0.586,0.348,0.545,0.662,3.011,8.194,7.756,135.0
-finetune_single_yolov8n_lska_bifpn_EIoU_aug_all_10_640_640,0.722,0.584,0.376,0.549,0.645,,,,
-finetune_double_yolov8n_lska_bifpn_EIoU_aug_all_10_640_640,,0.627,0.401,0.59,,,,,
-finetune_triple_yolov8n_lska_bifpn_EIoU_aug_all_10_640_640,,,0.562,,,,,,
-finetune_triple_split_yolov8n_lska_bifpn_EIoU_aug_all_10_640_640,,,0.582,,,,,,
