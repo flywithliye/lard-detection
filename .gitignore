@@ -13,6 +13,7 @@
 __pycache__/
 
 3rdparty/assets
+3rdparty/JSON2YOLO
 
 cfg/ultralytics/pre_coco_yolov8n_p2.py
 cfg/ultralytics/weights/*
