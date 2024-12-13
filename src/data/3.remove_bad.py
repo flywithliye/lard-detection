@@ -9,6 +9,8 @@ print(ROOT_PROJECT)
 
 path_train = f"{ROOT_DATA}/YoloFormat/detection/train_all"
 
+# after this script is executed, the analysis code in `eda` 
+# will not find the following abnomal files.
 # 执行本代码后，eda中的相关分析代码将无法发现以下异常样本
 bad_files = ['VABB_32_500_448', 'LWSK_34_500_132']
 bad_files_images = [f"{path_train}/images/{file}.jpeg" for file in bad_files]

@@ -1,282 +1,218 @@
 # LARD-Detection
 
-围绕LARD数据集展开的目标检测研究
+This is the project code of the paper [YOLO-RWY: A Novel Runway Detection Model for Vision-Based Autonomous Landing of Fixed-Wing Unmanned Aerial Vehicles](https://www.mdpi.com/2504-446X/8/10/571) published in ***Drones***.
 
-# 下载
+> The comments in the projects are mostly still in **Chinese**, we will modify them soon.
 
-```bash
-git clone --recurse-submodules https://github.com/flywithliye/lard-detection.git
-git submodule update --init --recursive
+![Framework](docs/Framework.jpg)
+
+## Installation
+
+First clone the project and create the conda environmrnt.
+
+```shell
+# Download project
+https://github.com/flywithliye/lard-detection.git
+cd lard-detection
+
+# Create conda env
+conda create -n lard python=3.9.7
+pip install -r requirements.txt
 ```
 
-# 系统配置
+Then install all the thirdparty projects in editable mode.
 
-1. 创建环境变量 `vim ~/.bashrc`
+> Before installing the mmdet and mmyolo, you should navigate to their github repositories for instructions on their dependencies.
+>
+> The proposed YOLO-RWY **do not rely on** any codes from mmdet and mmyolo. So if you only need the YOLO-RWY, you can skip the mm parts.
 
-   ```bash
-   export LARD_DATA_ROOT_PATH='/home/yeli/yeli/data/lard'
-   export LARD_PROJECT_ROOT_PATH='/home/yeli/Nextcloud/lard/lard-detection'
-   ```
-2. 激活环境变量 `source ~/.bashrc`
-
-# 创建环境
-
-```bash
-conda create -n lard
-conda activate lard
-
-conda install python
-pip3 install torch torchvision torchaudio --index-url https://download.pytorch.org/whl/cu118
-
-```
-
-# 安装第三方包
-
-## 其他
-
-```bash
-pip install fiftyone
-pip install fiftyone-db-ubuntu2204
-pip install scienceplots
-```
-
-## LARD
-
-```bash
-# 添加子模块
-git submodule add https://github.com/flywithliye/LARD.git src/data/LARD
-git submodule init
-git submodule update
-git add .gitmodules src/data/LARD
-```
-
-## mmdet
-
-pip install -U openmim
-mim install mmengine
-pip install "mmcv>=2.0.0rc4,<2.1.0"
-
-```bash
-# 添加子模块
-git submodule add https://github.com/flywithliye/mmdetection.git 3rdparty/mmdetection
-git submodule init
-git submodule update
-git add .gitmodules 3rdparty/mmdetection
-git commit -m "Added mmdetection submodule"
-
-# 下载安装
-git clone https://github.com/flywithliye/mmdetection.git
-cd mmdetection
+```shell
+# Install the modified thirdparty projects
+cd 3rdparty/ultralytics  # ultralytics for the proposed YOLO-RWY
 pip install -v -e .
-# "-v" means verbose, or more output
-# "-e" means installing a project in editable mode,
-# thus any local modifications made to the code will take effect without reinstallation.
-```
-
-## mmyolo
-
-```bash
-# 添加子模块
-git submodule add https://github.com/flywithliye/mmyolo.git 3rdparty/mmyolo
-git submodule init
-git submodule update
-git add .gitmodules 3rdparty/mmyolo
-git commit -m "Added mmdetection submodule"
-```
-
-## ultralytics
-
-```bash
-# 添加子模块
-git submodule add https://github.com/flywithliye/ultralytics.git 3rdparty/ultralytics
-git submodule init
-git submodule update
-git add .gitmodules 3rdparty/ultralytics
-git commit -m "Added ultralytics submodule"
-
-# 下载安装
-git clone https://github.com/flywithliye/ultralytics.git
-cd ultralytics
+cd ./../../
+cd 3rdparty/mmdetection  # mmdetection for the baselines
 pip install -v -e .
+cd ./../../
+cd 3rdparty/mmyolo  # mmyolo for the baselines
+pip install -v -e .
+cd ./../../
 ```
 
-安装完成后，执行 `pip list | grep -e mmdetection -e mmyolo -e ultralytics`有如下输出
+Set the environment variables according to your specifications. These variables are frequently used in the projects.
+
+```shell
+# modify the .bashrc or .zshrc file to add the following two variables.
+export LARD_DATA_ROOT_PATH='/fileonssd/runway-dataset/lard-dataset'  # indicating the path to data
+export LARD_PROJECT_ROOT_PATH='/home/yeli/workspace/lard/lard-detection'  # indicating the path to the main project
+```
+
+## Project outline
+
+* `3rdparty/`: holds the modified thirdparty projects and codes.
+* `cfg/mmdet`: holds the model configs for **mmdetection** models.
+* `cfg/mmyolo`: holds the model configs for **mmyolo** models.
+* `cfg/ultralytics/datasets`: holds the dataset YAML files and the JSON files of the proposed EDA enhancement module.
+* `cfg/ultralytics/models`: holds the model structure YAML files.
+* `cfg/ultralytics/weights`: holds the pretrained weights of YOLOv8.
+* `cfg/ultralytics/`: holds the **main train and test scripts** of the YOLO-RWY.
+* `datasets/`: holds the links to the datasets. You should prepare this folder according to [Dataset prepare](#dataset-prepare).
+* `logs/`: holds the logs of training and test.
+* `papers/`: holds the notebook for results analysis and visulizations.
+* `results/`: holds the output results of EDA and paper.
+* `runs/`: holds the experimental details during training and test.
+* `scripts/`: holds the scrpts for training, test, and evaluation of mmdet and mmyolo models.
+* `src/`: holds the codes for dataset prepare, data analysis, and tools functions.
+* `weights/`: just a link to the `cfg/ultralytics/weights`.
+
+## Dataset prepare
+
+The structure of the `datasets` folder should look like:
+
+```shell
+.
+├── airports.csv
+├── lard
+│   ├── annotations -> /fileonssd/runway-dataset/lard-dataset/annotations
+│   └── detection -> /fileonssd/runway-dataset/lard-dataset/YoloFormat/detection
+├── LARD_train.csv
+└── move.sh
+```
+
+You can prepare LARD datasets using code from `src/data`, please refer to the [Prepare Lard](docs/Prepare_Lard.md).
+
+## Before start
+
+1. we use `push plus` for notification with `Wechat`, you should comment out all the python code including `send_info`, and all the shell code including `send_info`.
+2. Make sure to change the absolute path for dataset `yaml` files in `cfg/ultralytics/datasets`.
+
+## Train
+
+### Train YOLO-RWY
+
+The training/finetuning codes for YOLO-RWY is `cfg/ultralytics/train.py`. All the command lines for different configurations are in `exp_yolov8_train.sh`.
+
+For directly reproducing the training of YOLO-RWY, run:
 
 ```bash
-mmdet                         3.2.0                /home/yeli/workspace/lard/lard-detection/3rdparty/mmdetection
-mmyolo                        0.6.0                /home/yeli/workspace/lard/lard-detection/3rdparty/mmyolo
-ultralytics                   8.0.203              /home/yeli/workspace/lard/lard-detection/3rdparty/ultralytics
+# simple training
+python cfg/ultralytics/train.py --mode=merge --cfg=lska_bifpn --iou_type=EIoU --aug_json=all --album=0.05
+
+# run in background and save log
+python -u cfg/ultralytics/train.py --mode=merge --cfg=lska_bifpn --iou_type=EIoU --aug_json=all --album=0.05 > logs/train/ultra_train_yolov8n_merge_att_fpn_iou_aug_lska_bifpn_eiou_aug_all_05_640.log 2>&1
 ```
 
-# LARD配置
+For directly reproducing the finetuning of YOLO-RWY, run:
 
-1. lard_dataset.py文件import部分:
+```bash
+# simple training
+python cfg/ultralytics/train.py \
+        --mode=finetune \
+        --finetune_mode=single \
+        --weights=runs/ultralytics/merge/yolov8n_lska_bifpn_EIoU_aug_all_5_640/train/weights/best.pt \
+        --cfg=lska_bifpn \
+        --iou_type=EIoU \
+        --aug_json=all \
+        --album=0.05
 
-   ```python
-   from src.labeling.labels import Labels
-   ```
+# run in background and save log
+python -u cfg/ultralytics/train.py \
+        --mode=finetune \
+        --finetune_mode=single \
+        --weights=runs/ultralytics/merge/yolov8n_lska_bifpn_EIoU_aug_all_5_640/train/weights/best.pt \
+        --cfg=lska_bifpn \
+        --iou_type=EIoU \
+        --aug_json=all \
+        --album=0.05 > logs/train/ultra_train_yolov8n_finetune_single_lska_bifpn_eiou_aug_all_05_640.log 2>&1
+```
 
-   修改为
+For other configurations, please check `exp_yolov8_train.sh`.
 
-   ```python
-   from LARD.src.labeling.labels import Labels
-   ```
-2. lard_dataset.py文件注释掉224行补充以下内容:
+### Train mmdet models
 
-   ```python
-   dataset_dir = output_dir
-   ```
-3. labels.py文件import部分:
+You can run the following command line for the training of mmdet models.
 
-   ```python
-   from src.labeling.export_config import CORNERS_NAMES
-   ```
+```bash
+# train faster_rcnn in mmdet using 10 gpus and with input size of 1333
+./scripts/mmdet_train.sh faster_rcnn 10 1333
 
-   修改为
+# other mmdet models
+./scripts/mmdet_train.sh ssd 10 512
+./scripts/mmdet_train.sh yolov3 10 608
+./scripts/mmdet_train.sh retinanet 10 1333
+./scripts/mmdet_train.sh centernet 10 1280
+```
 
-   ```python
-   from LARD.src.labeling.export_config import CORNERS_NAMES
-   ```
+### Train mmyolo models
 
-# ultralytics配置
+You can run the following command line for the training of mmyolo models.
 
-> 以下内容可通过执行 `src/code_ultralytics/prepare_ultralytics.ipynb`文件实现
+```bash
+# train yolov5 in mmyolo using 10 gpus and with input size of 640
+./scripts/mmyolo_train.sh yolov5n 10 640
 
-1. ultralytics/cfg/default.yaml 追加配置：
+# other mmyolo models
+./scripts/mmyolo_train.sh yolov6n 10 640
+./scripts/mmyolo_train.sh yolov7t 10 640
+./scripts/mmyolo_train.sh yolov8n 10 640
+```
 
-   ```yaml
-   use_custom_aug: False # 使用自定义albumentations
-   path_transform:  # 自定义albumentations文件路径
-   ```
-2. ultralytics/data/augment.py 函数v8_transforms返回值 `Albumentations`部分修改为：
+## Test
 
-   ```python
-   Albumentations(p=1.0, custom_aug=hyp.custom_aug, path_transform=hyp.path_transform, imgsz=hyp.imgsz)
-   ```
-3. ultralytics/data/augment.py `Albumentations`的初始化函数补充形参：
+### Test YOLO-RWY
 
-   ```
-   def __init__(self, p=1.0, custom_aug=False, path_transform="", imgsz=640):
-   ```
-4. ultralytics/data/augment.py `Albumentations`的初始化函数中，注释掉 `check_version`部分。
-5. ultralytics/data/augment.py `Albumentations`的初始化函数中，在 `self.transform`后面补充：
+The test codes for YOLO-RWY is `cfg/ultralytics/test.py`. All the command lines for different configurations are in `exp_yolov8_test.sh`.
 
-   ```python
-   if custom_aug:
-       T = A.load(path_transform)  # albumentations.core.composition.Compose
-       T.transforms[4].transforms[0].width = imgsz  # RandomSizedBBoxSafeCrop
-       T.transforms[4].transforms[0].height = imgsz
-       T.transforms[-1].width = imgsz  # Resize
-       T.transforms[-1].height = imgsz
-   self.transform = T
-   ```
+For directly reproducing the test of YOLO-RWY, run:
 
-# mmdet配置
+```bash
+# simple test
+python cfg/ultralytics/test.py --mode=merge --merge_mode=att_fpn_iou_aug --cfg=lska_bifpn --iou_type=EIoU --aug_json=all --album=0.05
 
-> 以下内容可通过执行 `src/code_mmdet/prepare_mmdet.ipynb`文件实现
+# simple test using image size of 1280
+python cfg/ultralytics/test.py --mode=merge --merge_mode=att_fpn_iou_aug  --cfg=lska_bifpn --iou_type=EIoU --aug_json=all --album=0.05 --test_size=1280
 
-1. 在数据集 `mmdetection/mmdet/datasets/lard.py`下构建LARD数据集类:
+# run in background
+python -u cfg/ultralytics/test.py --mode=merge --merge_mode=att_fpn_iou_aug --cfg=lska_bifpn --iou_type=EIoU --aug_json=all --album=0.05 > logs/test/ultra_test_yolov8n_merge_att_fpn_iou_aug_lska_bifpn_eiou_aug_all_05_640_640.log 2>&1
 
-   ```python
-   from mmdet.registry import DATASETS
-   from .coco import CocoDataset
+python -u cfg/ultralytics/test.py --mode=merge --merge_mode=att_fpn_iou_aug --cfg=lska_bifpn --iou_type=EIoU --aug_json=all --album=0.05 --test_size=1280 > logs/test/ultra_test_yolov8n_merge_att_fpn_iou_aug_lska_bifpn_eiou_aug_all_05_640_1280.log 2>&1
+```
 
+for testing the finetuned YOLO-RWY, run:
 
-   @DATASETS.register_module()
-   class LardDataset(CocoDataset):
-       """Dataset for LARD."""
+```bash
+@123
+```
 
-       METAINFO = {
-           'classes':
-           ('runway',),
-           # palette is a list of color tuples, which is used for visualization.
-           'palette':
-           [(220, 20, 60),]
-       }
-   ```
-2. 在初始化部分 `mmdetection/mmdet/datasets/__init__.py`注册LARD数据集类：
+### Test mmdet models
 
-   ```python
-   from .lard import LardDataset
+Please check the corresponding notebook files in the root path of this project.
 
-   __all__ = [
-       'XMLDataset', 'CocoDataset', 'LardDataset', 'DeepFashionDataset', 'VOCDataset',
-       'CityscapesDataset', 'LVISDataset', 'LVISV05Dataset', 'LVISV1Dataset',
-       'WIDERFaceDataset', 'get_loading_pipeline', 'CocoPanopticDataset',
-       'MultiImageMixDataset', 'OpenImagesDataset', 'OpenImagesChallengeDataset',
-       'AspectRatioBatchSampler', 'ClassAwareSampler', 'MultiSourceSampler',
-       'GroupMultiSourceSampler', 'BaseDetDataset', 'CrowdHumanDataset',
-       'Objects365V1Dataset', 'Objects365V2Dataset', 'DSDLDetDataset',
-       'BaseVideoDataset', 'MOTChallengeDataset', 'TrackImgSampler',
-       'ReIDDataset', 'YouTubeVISDataset', 'TrackAspectRatioBatchSampler',
-       'ADE20KPanopticDataset', 'CocoCaptionDataset', 'RefCocoDataset',
-       'BaseSegDataset', 'ADE20KSegDataset', 'CocoSegDataset',
-       'ADE20KInstanceDataset', 'iSAIDDataset', 'V3DetDataset', 'ConcatDataset'
-   ]
-   ```
-3. 在 `mmdetection/mmdet/evaluation/functional/class_names.py`中添加LARD类别名字定义:
+### Test mmyolo models
 
-   ```python
-   def lard_classes() -> list:
-       """Class names of LARD."""
-       return [
-           'runway',
-       ]
-   ```
-4. 在 `mmdetection/mmdet/evaluation/functional/__init__.py`内注册LARD类别：
+Please check the corresponding notebook files in the root path of this project.
 
-   ```python
-   from .class_names import (cityscapes_classes, coco_classes, lard_classes,
-                               coco_panoptic_classes, dataset_aliases, get_classes,
-                               imagenet_det_classes, imagenet_vid_classes,
-                               objects365v1_classes, objects365v2_classes,
-                               oid_challenge_classes, oid_v6_classes, voc_classes)
+## Deployment
 
-   __all__ = [
-       'voc_classes', 'imagenet_det_classes', 'imagenet_vid_classes',
-       'coco_classes', 'lard_classes', 'cityscapes_classes', 'dataset_aliases', 'get_classes',
-       'average_precision', 'eval_map', 'print_map_summary', 'eval_recalls',
-       'print_recall_summary', 'plot_num_recall', 'plot_iou_recall',
-       'oid_v6_classes', 'oid_challenge_classes', 'INSTANCE_OFFSET',
-       'pq_compute_single_core', 'pq_compute_multi_core', 'bbox_overlaps',
-       'objects365v1_classes', 'objects365v2_classes', 'coco_panoptic_classes',
-       'evaluateImgLists', 'YTVIS', 'YTVISeval'
-   ]
-   ```
-5. 修改 `mmdetection/mmdet/models/dense_heads/base_dense_head.py`文件
+The deployment are performed under NVIDIA Jetson Orin.
 
-   **Before modification**
+Coming soon.
 
-   ```python
-   if getattr(self.loss_cls, 'custom_cls_channels', False):
-       scores = self.loss_cls.get_activation(cls_score)
-   elif self.use_sigmoid_cls:
-       scores = cls_score.sigmoid()
-   else:
-       # remind that we set FG labels to [0, num_class-1]
-       # since mmdet v2.0
-       # BG cat_id: num_class
-       scores = cls_score.softmax(-1)[:, :-1]
-   ```
+## Citations
 
-   **After modification**
+If this project helps in your research, you are welcome to cite the paper.
 
-   ```python
-   if False: # getattr(self.loss_cls, 'custom_cls_channels', False):  # Change made here
-       scores = self.loss_cls.get_activation(cls_score)
-   elif self.use_sigmoid_cls:
-       scores = cls_score.sigmoid()
-   else:
-       # remind that we set FG labels to [0, num_class-1]
-       # since mmdet v2.0
-       # BG cat_id: num_class
-       scores = cls_score.softmax(-1)[:, :-1]
-   ```
-
-对子模块进行上述修改后，若出现diff文件并提示dirty，则在vscode中勾选 `git.ignoreSubmodules`
-
-# 其他
-
-* [ ] TODO
-
-# 
+```bibtex
+@Article{drones8100571,
+AUTHOR = {Li, Ye and Xia, Yu and Zheng, Guangji and Guo, Xiaoyang and Li, Qingfeng},
+TITLE = {YOLO-RWY: A Novel Runway Detection Model for Vision-Based Autonomous Landing of Fixed-Wing Unmanned Aerial Vehicles},
+JOURNAL = {Drones},
+VOLUME = {8},
+YEAR = {2024},
+NUMBER = {10},
+ARTICLE-NUMBER = {571},
+URL = {https://www.mdpi.com/2504-446X/8/10/571},
+ISSN = {2504-446X},
+DOI = {10.3390/drones8100571}
+}
+```

@@ -8,6 +8,7 @@ ROOT_DATA = os.environ.get('LARD_DATA_ROOT_PATH')
 zip_folder = f"{ROOT_DATA}/LARD_dataset_decompressed/"
 yolo_folder = f"{ROOT_DATA}/YoloFormat/detection"
 
+# training set
 # 训练集
 dataset = LardDataset(
     train_path=os.path.join(zip_folder, "LARD_train"))
@@ -22,6 +23,7 @@ dataset.export(
     ext="txt"
 )
 
+# test set - synth 
 # 测试集-合成
 dataset = LardDataset(
     test_path=os.path.join(zip_folder, "LARD_test/LARD_test_synth")
@@ -37,7 +39,9 @@ dataset.export(
     ext="txt"
 )
 
+# test set - real nominal 
 # 测试集-真实-Nominal
+# ! you should run the following lines for consistance
 # cd ~/workspace/lard/lard-dataset/LARD_dataset_decompressed/LARD_test/LARD_test_real/
 # mv LARD_test_real_nominal LARD_test_real_nominal_cases
 # cd LARD_test_real_nominal_cases
@@ -55,7 +59,9 @@ dataset.export(
     ext="txt"
 )
 
+# test set - real edge
 # 测试集-真实-Edge
+# ! you should run the following lines for consistance
 # cd ~/workspace/lard/lard-dataset/LARD_dataset_decompressed/LARD_test/LARD_test_real/LARD_test_real_edge_cases
 # mv Test_Real_Edge_Cases.csv LARD_test_real_edge_cases.csv
 dataset = LardDataset(

@@ -1,22 +1,53 @@
-.vscode/
+# 保留一个目录本身，但不保留其内部的所有文件
+# path/to/directory/**
+# !path/to/directory/
 
+# 忽略路径下的所有文件 但保留所有的子目录
+# path/to/directory/*
+# !path/to/directory/**/
+
+.vscode/
 .DS_Store
 *.pyc
 __pycache__/
 
-datasets/video/*
+3rdparty/assets
 
-logs/*
-!logs/
-!logs/.gitkeep
+cfg/ultralytics/weights/*
 
-results/figs/test/*.jpg
-results/figs/train/*.jpg
+datasets/bars_runway/
+datasets/coco/
+datasets/coco128/
+datasets/fs2020_runway/
+datasets/video/
+
+logs/
+
+papers/airport_weather_eda/figs
+papers/metrics
+
+results/figs/eda/
+results/figs/papers/
+results/figs/train/
+results/figs/test/
+
+results/images/heatmaps/
+results/images/predictions/
+
 results/tables/info/
 results/tables/metrics/
+results/videos/
 
-runs/*
+runs/**
 !runs/
-!runs/.gitkeep
 
-weights/
+src/code_for_3rdparty
+src/tools/pushplus.py
+src/tools/pushplus.sh
+src/eda_cn
+src/others
+src/tools/pushplus.sh
+src/tools/pushplus.py
+src/tools/etc.sh
+
+quantization.ipynb

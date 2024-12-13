@@ -1,14 +1,14 @@
 # (8 GPUs) x (2 samples per GPU)
 auto_scale_lr = dict(base_batch_size=16, enable=True)
 
-# 实验参数
+# params 实验参数
 model_name = 'faster_rcnn'
 model_stru = ''
 model_cfg = ''
 img_size = 1333
 exp_name = f'{model_name}{model_stru}{model_cfg}_{img_size}'
 
-# 数据集
+# dataset 数据集
 work_dir = f'runs/mmdetection/{exp_name}/train'
 data_root = 'datasets/lard/'
 dataset_type = 'LardDataset'
@@ -17,7 +17,7 @@ input_size = (
     800,
 )
 
-# 常用修改参数
+# frequent params 常用修改参数
 num_workers = 8
 num_epochs = 500
 batch_size = dict(
@@ -26,14 +26,14 @@ batch_size = dict(
     test=2
 )
 
-# 随机性控制
+# randomness 随机性控制
 randomness = dict(
     seed=0,
     diff_rank_seed=True,
     deterministic=True
 )
 
-# 一些参数
+# some params 一些参数
 data_preprocessor = dict(
     bgr_to_rgb=True,
     mean=[
@@ -73,7 +73,7 @@ load_from = None
 log_level = 'INFO'
 log_processor = dict(by_epoch=True, type='LogProcessor', window_size=50)
 
-# 模型定义
+# model 模型定义
 model = dict(
     backbone=dict(
         depth=50,
@@ -226,7 +226,7 @@ model = dict(
             nms_pre=2000)),
     type='FasterRCNN')
 
-# 优化器和调度器
+# optimizer and scheduler 优化器和调度器
 optim_wrapper = dict(
     optimizer=dict(lr=0.02, momentum=0.9, type='SGD', weight_decay=0.0001),
     type='OptimWrapper')
@@ -245,7 +245,7 @@ param_scheduler = [
         type='MultiStepLR'),
 ]
 
-# 模型训练配置
+# training configs 模型训练配置
 resume = False
 train_cfg = dict(
     max_epochs=num_epochs,
@@ -277,7 +277,7 @@ train_dataloader = dict(
     persistent_workers=True,
     sampler=dict(shuffle=True, type='DefaultSampler'))
 
-# 模型验证配置
+# val configs 模型验证配置
 val_cfg = dict(type='ValLoop')
 val_pipeline = [
     dict(backend_args=None, type='LoadImageFromFile'),
@@ -314,7 +314,7 @@ val_evaluator = dict(
     metric='bbox',
     type='CocoMetric')
 
-# 模型测试配置
+# test configs 模型测试配置
 test_cfg = dict(type='TestLoop')
 test_pipeline = [
     dict(backend_args=None, type='LoadImageFromFile'),
@@ -352,7 +352,7 @@ test_evaluator = dict(
     outfile_prefix=f'runs/mmdetection/{exp_name}/test/coco_detection/prediction_test_synth',
     type='CocoMetric')
 
-# 可视化配置
+# vis configs 可视化配置
 vis_backends = [
     dict(type='LocalVisBackend'),
     dict(type='TensorboardVisBackend')]

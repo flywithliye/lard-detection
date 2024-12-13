@@ -4,6 +4,7 @@ from ultralytics import YOLO
 sys.path.append('/home/yeli/workspace/lard/lard-detection/')
 from src.tools.pushplus import send_info  # noqa
 
+# ! We haven't used this code for a while
 ROOT_PROJECT = os.environ.get('LARD_PROJECT_ROOT_PATH')
 
 # 变量定义

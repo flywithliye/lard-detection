@@ -1,3 +1,5 @@
+!# ! This file is used to transfer images to NVIDIA Jetson Orin for evaluation.
+
 # 定义本地和远程目录
 LOCAL_DIR="/home/yeli/workspace/lard/lard-detection/datasets/lard/detection/test_real/images"
 REMOTE_DIR="/home/yeli/test"

@@ -1,34 +1,39 @@
 #!/bin/bash
 
-# 使用方式：./exp_yolov8_test.sh <mode>
+# Usage:./exp_yolov8_test.sh <mode>
 
+# import util functions 
 # 导入函数
 source src/tools/func.sh
 source src/tools/pushplus.sh
 
+# Make sure the usage is correct
 # 确保脚本参数数量正确
 if [ "$#" -ne 1 ]; then
-    echo_rb "使用方式: $0 <mode>"
+    echo_rb "Usage: $0 <mode>"
     exit 1
 fi
 
+# Mode params
 # 模式参数
 mode=$1
 valid_modes=("all" "base" "att" "tf" "fpn" "iou" "aug" "up" "merge" "finetune")
 if [[ ! " ${valid_modes[*]} " =~ " ${mode} " ]]; then
-    echo_rb "错误: mode 必须是以下之一: ${valid_modes[*]}"
+    echo_rb "Error: mode must be one of: ${valid_modes[*]}"
     exit 1
 fi
 
-read -p "您选择了模式 '$mode' 确定继续吗？(y/N): " confirm
+read -p "You select model '$mode', are you sure to continue? (y/N): " confirm
 if [[ "$confirm" != "y" && "$confirm" != "Y" ]]; then
-    echo "操作已取消"
+    echo "cencel"
     exit 0
 fi
 
+# Define experiments
+# 实验定义
 run_base() {
     mode="base"
-    echo_rb '所有测试进程已启动'
+    echo_rb 'All test processes have started in the background'
 
     # n_640
     python -u cfg/ultralytics/test.py --mode=$mode > "logs/test/ultra_test_yolov8n_base_640.log" 2>&1
@@ -46,11 +51,11 @@ run_base() {
     # python -u cfg/ultralytics/test.py --mode=$mode --stru=p2 --size=1280 > "logs/test/ultra_test_yolov8n_p2_base_1280.log" 2>&1
     # python -u cfg/ultralytics/test.py --mode=$mode --model=yolov8s --size=1280 > "logs/test/ultra_test_yolov8s_base_1280.log" 2>&1
         
-    send_info "实验: $mode" '全部测试实验结束'
+    send_info "Exp: $mode" 'All training experiments have been completed.'
 }
 
 run_att() {
-    echo_rb '所有测试进程已启动'
+    echo_rb 'All test processes have started in the background'
 
     # n_640
     mode="att"
@@ -119,11 +124,11 @@ run_att() {
     # python -u cfg/ultralytics/test.py --mode=$mode --stru=p2 --cfg=lsk --size=1280 > "logs/test/ultra_test_yolov8n_p2_att_lsk_1280.log" 2>&1
     # python -u cfg/ultralytics/test.py --mode=$mode --stru=p2 --cfg=lska --size=1280 > "logs/test/ultra_test_yolov8n_p2_att_lska_1280.log" 2>&1
 
-    send_info "实验: $mode" '全部测试实验结束'
+    send_info "Exp: $mode" 'All training experiments have been completed.'
 }
 
 run_tf() {
-    echo_rb "所有测试进程已启动"
+    echo_rb "All test processes have started in the background"
 
     # n_640
     mode="tf"
@@ -140,12 +145,12 @@ run_tf() {
     # p2_n_1280
     # python -u cfg/ultralytics/test.py --mode=$mode --stru=p2 --cfg=vit --size=1280 > "logs/test/ultra_test_yolov8n_p2_tf_vit_1280.log" 2>&1
 
-    send_info "实验: $mode" '全部测试实验结束'
+    send_info "Exp: $mode" 'All training experiments have been completed.'
 }
 
 run_fpn() {
     mode="fpn"
-    echo_rb '所有测试进程已启动'
+    echo_rb 'All test processes have started in the background'
 
     # n_640
     python -u cfg/ultralytics/test.py --mode=$mode --cfg=bifpn > "logs/test/ultra_test_yolov8n_fpn_bifpn_640.log" 2>&1
@@ -188,12 +193,12 @@ run_fpn() {
     # python -u cfg/ultralytics/test.py --mode=$mode --stru=p2 --cfg=c2f_se_carafe_bifpn --size=1280 > logs/test/ultra_test_yolov8n_p2_att_c2f_se_up_carafe_fpn_bifpn_1280.log 2>&1
     # python -u cfg/ultralytics/test.py --mode=$mode --stru=p2 --cfg=dysample_bifpn --size=1280 > logs/test/ultra_test_yolov8n_p2_up_dysample_fpn_bifpn_1280.log 2>&1
 
-    send_info "实验: $mode" '全部测试实验结束'
+    send_info "Exp: $mode" 'All training experiments have been completed.'
 }
 
 run_iou() { 
     mode="iou"
-    echo_rb '所有测试进程已启动'
+    echo_rb 'All test processes have started in the background'
 
     # n_640
     python -u cfg/ultralytics/test.py --mode=$mode --iou_type=GIoU > logs/test/ultra_test_yolov8n_iou_giou_640.log 2>&1
@@ -228,12 +233,12 @@ run_iou() {
     # python -u cfg/ultralytics/test.py --mode=$mode --iou_type=ShapeIoU --size=1280 > "logs/test/ultra_test_yolov8n_iou_shapeiou_1280.log" 2>&1
     # python -u cfg/ultralytics/test.py --mode=$mode --iou_type=NWD --size=1280 > "logs/test/ultra_test_yolov8n_iou_nwd_1280.log" 2>&1
 
-    send_info "实验: $mode" '全部测试实验结束'
+    send_info "Exp: $mode" 'All training experiments have been completed.'
 }
 
 run_up() {
     mode="up"
-    echo_rb '所有测试进程已启动'
+    echo_rb 'All test processes have started in the background'
 
     # n_640
     python -u cfg/ultralytics/test.py --mode=$mode --cfg=carafe > "logs/test/ultra_test_yolov8n_up_carafe_640.log" 2>&1
@@ -245,12 +250,12 @@ run_up() {
     # python -u cfg/ultralytics/test.py --mode=$mode --cfg=carafe --size=1280  > "logs/test/ultra_test_yolov8n_up_carafe_1280.log" 2>&1
     # python -u cfg/ultralytics/test.py --mode=$mode --stru=p2 --cfg=carafe --size=1280  > "logs/test/ultra_test_yolov8n_p2_up_carafe_1280.log" 2>&1
     
-    send_info "实验: $mode" '全部测试实验结束'
+    send_info "Exp: $mode" 'All training experiments have been completed.'
 }
 
 run_aug() {
     mode="aug"
-    echo_rb '所有测试进程已启动'
+    echo_rb 'All test processes have started in the background'
 
     # n_640
     python -u cfg/ultralytics/test.py --mode=$mode --aug_json=all --album=0.01 > logs/test/ultra_test_yolov8n_aug_all_01_640.log 2>&1
@@ -286,12 +291,12 @@ run_aug() {
     # python -u cfg/ultralytics/test.py --mode=$mode --stru=p2 --aug_json=color_blur --album=0.10 --size=1280 > logs/test/ultra_test_yolov8n_p2_aug_color_blur_10_1280.log 2>&1
     # python -u cfg/ultralytics/test.py --mode=$mode --stru=p2 --aug_json=color_blur_geo --album=0.10 --size=1280 > logs/test/ultra_test_yolov8n_p2_aug_color_blur_geo_10_1280.log 2>&1
     
-    send_info "实验: $mode" '全部测试实验结束'
+    send_info "Exp: $mode" 'All training experiments have been completed.'
 }
 
 run_merge() {
     mode="merge"
-    echo_rb '所有测试进程已启动'
+    echo_rb 'All test processes have started in the background'
 
     ## 640
     # ATT + FPN
@@ -428,12 +433,12 @@ run_merge() {
     # python -u cfg/ultralytics/test.py --mode=$mode --stru=p2 --cfg=lsk_bifpn_carafe --iou_type=DIoU --album=0.05 --size=1280 > logs/test/ultra_test_yolov8n_merge_p2_lsk_bifpn_carafe_diou_aug05_1280.log 2>&1
     # python -u cfg/ultralytics/test.py --mode=$mode --stru=p2 --cfg=lsk_bifpn_carafe --iou_type=DIoU --album=0.10 --size=1280 > logs/test/ultra_test_yolov8n_merge_p2_lsk_bifpn_carafe_diou_aug10_1280.log 2>&1
 
-    send_info "实验: $mode" '全部测试实验结束'
+    send_info "Exp: $mode" 'All training experiments have been completed.'
 }
 
 run_finetune() {
     mode="finetune"
-    echo_rb '所有测试进程已启动'
+    echo_rb 'All test processes have started in the background'
 
     # bars
     python -u cfg/ultralytics/test_finetune.py \
@@ -617,12 +622,13 @@ run_finetune() {
     #     --album=0.1 \
     #     --size=1280 > logs/test/ultra_test_last_yolov8n_finetune_triple_split_p2_lsk_bifpn_diou_aug10_1280.log 2>&1
 
-    send_info "实验: $mode" '全部测试实验结束'
+    send_info "Exp: $mode" 'All training experiments have been completed.'
 }
 
+# Conduct different experiments based on parameter `mode`.
 # 依据参数开展不同实验
 
-# 1. 基础模型
+# 1. All exp
 if [ $mode == "all" ]; then
 (
     run_base
@@ -634,64 +640,64 @@ if [ $mode == "all" ]; then
     run_up
     run_merge
     run_finetune
-    send_info "实验: 全部test_mode" '全部测试实验结束'
+    send_info "实验: 全部test_mode" 'All training experiments have been completed.'
 ) &
 
-# 1. 基础模型
+# 1. base model
 elif [ $mode == "base" ]; then
 (
     run_base
 ) &
 
-# 2. 基础模型+ATT
+# 2. base model + ATT
 elif [ $mode == "att" ]; then
 (
     run_att
 ) &
 
-# 3. 基础模型+Transformer
+# 3. base model + Transformer
 elif [ $mode == "tf" ]; then
 (
     run_tf
 ) &
 
-# 4. 基础模型+fpn
+# 4. base model + fpn
 elif [ $mode == "fpn" ]; then
 (
     run_fpn
 ) &
 
-# 5. 基础模型+IOU
+# 5. base model + IOU
 elif [ $mode == "iou" ]; then
 (
     run_iou
 ) &
 
-# 6. 基础模型+AUG
+# 6. base model + AUG
 elif [ $mode == "aug" ]; then
 (
     run_aug
 ) &
 
-# 7. 基础模型+UP
+# 7. base model + UP
 elif [ $mode == "up" ]; then
 (
     run_up
 ) &
 
-# 8. 融合模型
+# 8. merge models
 elif [ $mode == "merge" ]; then
 (
     run_merge
 ) &
 
-# 9. 融合模型
+# 9. finetune models
 elif [ $mode == "finetune" ]; then
 (
     run_finetune
 ) &
 
-# -1. 异常处理
+# -1. exception
 else
-    echo_rb "参数错误: $mode"
+    echo_rb "wrong mode: $mode"
 fi
