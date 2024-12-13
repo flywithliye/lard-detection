@@ -7,24 +7,31 @@
 # !path/to/directory/**/
 
 .vscode/
+.idea/
 .DS_Store
 *.pyc
 __pycache__/
 
 3rdparty/assets
 
+cfg/ultralytics/pre_coco_yolov8n_p2.py
 cfg/ultralytics/weights/*
+!cfg/ultralytics/weights/
 
 datasets/bars_runway/
 datasets/coco/
 datasets/coco128/
 datasets/fs2020_runway/
 datasets/video/
+datasets/lard/**
+
+docs/README.OLD.md
 
 logs/
 
 papers/airport_weather_eda/figs
 papers/metrics
+papers/filelist.txt
 
 results/figs/eda/
 results/figs/papers/
@@ -36,7 +43,8 @@ results/images/predictions/
 
 results/tables/info/
 results/tables/metrics/
-results/videos/
+results/videos/**
+!results/videos/ 
 
 runs/**
 !runs/
@@ -49,5 +57,6 @@ src/others
 src/tools/pushplus.sh
 src/tools/pushplus.py
 src/tools/etc.sh
+src/tools/heapmap_old.py
 
 quantization.ipynb
