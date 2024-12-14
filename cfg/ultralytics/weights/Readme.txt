@@ -1,0 +1,1 @@
+Download YOLOv8 pretrained weights here, using code from `src/tools/download_yolov8_weights.sh`.
