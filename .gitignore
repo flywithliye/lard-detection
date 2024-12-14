@@ -20,7 +20,8 @@ datasets/lard/**
 
 docs/README.OLD.md
 
-logs/
+logs/nopretrained/**
+logs/pretrianed/**
 logs/train/*
 logs/test/*
 !logs/train/.gitkeep
