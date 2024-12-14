@@ -50,17 +50,23 @@ export LARD_PROJECT_ROOT_PATH='/home/yeli/workspace/lard/lard-detection'  # indi
 ## Project outline
 
 * `3rdparty/`: holds the modified thirdparty projects and codes.
-* `cfg/mmdet`: holds the model configs for **mmdetection** models.
-* `cfg/mmyolo`: holds the model configs for **mmyolo** models.
-* `cfg/ultralytics/datasets`: holds the dataset YAML files and the JSON files of the proposed EDA enhancement module.
-* `cfg/ultralytics/models`: holds the model structure YAML files.
-* `cfg/ultralytics/weights`: holds the pretrained weights of YOLOv8.
-* `cfg/ultralytics/`: holds the **main train and test scripts** of the YOLO-RWY.
-* `datasets/`: holds the links to the datasets. You should prepare this folder according to [Dataset prepare](#dataset-prepare).
+  * `3rdparty/mmdetection`: mmdet codes with modifications for LARD det.
+  * `3rdparty/mmyolo`: mmyolo codes with modifications for LARD det.
+  * `3rdparty/ultralytics`: ultralytics codes with modifications for LARD det.
+  * `3rdparty/Merge_COCO_FILES`: functions for merging coco json files.
+* `cfg/`: holds config files for mmdet, mmyolo, and ultralytics.
+  * `cfg/mmdet`: holds the model configs for **mmdetection** models.
+  * `cfg/mmyolo`: holds the model configs for **mmyolo** models.
+  * `cfg/ultralytics/`: holds the **main train and test scripts** of the YOLO-RWY.
+    * `cfg/ultralytics/datasets/`: holds the dataset YAML files and the JSON files of the proposed EDA enhancement module.
+    * `cfg/ultralytics/models/`: holds the model structure YAML files.
+    * `cfg/ultralytics/weights/`: holds the pretrained weights of original YOLOv8.
+* `datasets/`: holds the links to the datasets. You should prepare this folder according to [Dataset prepare](#dataset-prepare) section.
+* `docs/`: holds the documentations.
 * `logs/`: holds the logs of training and test.
-* `papers/`: holds the notebook for results analysis and visulizations.
-* `results/`: holds the output results of EDA and paper.
-* `runs/`: holds the experimental details during training and test.
+* `papers/`: holds the notebook for results analysis and visulizations in the paper.
+* `results/`: holds all kinds of the output results.
+* `runs/`: holds the experimental details during training and test for mmdet, mmyolo, and ultralytics.
 * `scripts/`: holds the scrpts for training, test, and evaluation of mmdet and mmyolo models.
 * `src/`: holds the codes for dataset prepare, data analysis, and tools functions.
 * `weights/`: just a link to the `cfg/ultralytics/weights`.
