@@ -1,0 +1,6 @@
+output_directory: data
+dataset_name: train_dataset
+included_datasets:
+  LARD_train:
+    type: earth_studio
+    path: scenarios/LARD_train
