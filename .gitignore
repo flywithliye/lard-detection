@@ -35,8 +35,10 @@ results/figs/test/*
 !results/figs/train/.gitkeep
 !results/figs/test/.gitkeep
 
-results/images/heatmaps/
-results/images/predictions/
+results/images/heatmaps/*
+!results/images/heatmaps/.gitkeep
+results/images/predictions/*
+!results/images/predictions/.gitkeep
 
 results/tables/info/
 results/tables/metrics/
