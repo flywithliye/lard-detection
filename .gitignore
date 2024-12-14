@@ -30,6 +30,10 @@ results/figs/eda/
 results/figs/paper/
 results/figs/train/
 results/figs/test/
+!results/figs/eda/.gitkeep
+!results/figs/paper/.gitkeep
+!results/figs/train/.gitkeep
+!results/figs/test/.gitkeep
 
 results/images/heatmaps/
 results/images/predictions/
