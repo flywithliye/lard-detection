@@ -91,6 +91,7 @@ You can prepare LARD datasets using code from `src/data`, please refer to the [P
 
 1. we use `push plus` for notification with `Wechat`, you should comment out all the python code including `send_info`, and all the shell code including `send_info`.
 2. Make sure to change the absolute path for dataset `yaml` files in `cfg/ultralytics/datasets`.
+3. Make sure to update all the soft links using `ln -s` command. 
 
 ## Train
 
@@ -102,10 +103,21 @@ For directly reproducing the training of YOLO-RWY, run:
 
 ```bash
 # simple training
-python cfg/ultralytics/train.py --mode=merge --cfg=lska_bifpn --iou_type=EIoU --aug_json=all --album=0.05
+python cfg/ultralytics/train.py \
+	--mode=merge \
+	--cfg=lska_bifpn \
+	--iou_type=EIoU \
+	--aug_json=all \
+	--album=0.05
 
 # run in background and save log
-python -u cfg/ultralytics/train.py --mode=merge --cfg=lska_bifpn --iou_type=EIoU --aug_json=all --album=0.05 > logs/train/ultra_train_yolov8n_merge_att_fpn_iou_aug_lska_bifpn_eiou_aug_all_05_640.log 2>&1
+python -u cfg/ultralytics/train.py \
+	--mode=merge \
+	--cfg=lska_bifpn \
+	--iou_type=EIoU \
+	--aug_json=all \
+	--album=0.05 > logs/train/ultra_train_yolov8n_merge_att_fpn_iou_aug_lska_bifpn_eiou_aug_all_05_640.log 2>&1
+
 ```
 
 For directly reproducing the finetuning of YOLO-RWY, run:

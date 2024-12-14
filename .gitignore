@@ -21,6 +21,10 @@ datasets/lard/**
 docs/README.OLD.md
 
 logs/
+logs/train/*
+logs/test/*
+!logs/train/.gitkeep
+!logs/test/.gitkeep
 
 papers/airport_weather_eda/figs
 papers/metrics
