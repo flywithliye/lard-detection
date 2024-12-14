@@ -60,4 +60,5 @@ src/tools/pushplus.py
 src/tools/etc.sh
 src/tools/heapmap_old.py
 
+models_compare.ipynb
 quantization.ipynb
