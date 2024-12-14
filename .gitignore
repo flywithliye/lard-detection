@@ -27,7 +27,7 @@ papers/metrics
 papers/filelist.txt
 
 results/figs/eda/
-results/figs/papers/*
+results/figs/papers/
 results/figs/train/
 results/figs/test/
 
