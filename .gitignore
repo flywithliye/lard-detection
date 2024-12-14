@@ -20,10 +20,10 @@ cfg/ultralytics/pre_coco_yolov8n_p2.py
 cfg/ultralytics/weights/*
 !cfg/ultralytics/weights/
 
-datasets/bars_runway/
-datasets/coco/
-datasets/coco128/
-datasets/fs2020_runway/
+datasets/bars_runway
+datasets/coco
+datasets/coco128
+datasets/fs2020_runway
 datasets/video/
 datasets/lard/**
 
