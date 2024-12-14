@@ -26,10 +26,10 @@ papers/airport_weather_eda/figs
 papers/metrics
 papers/filelist.txt
 
-results/figs/eda/
-results/figs/paper/
-results/figs/train/
-results/figs/test/
+results/figs/eda/*
+results/figs/paper/*
+results/figs/train/*
+results/figs/test/*
 !results/figs/eda/.gitkeep
 !results/figs/paper/.gitkeep
 !results/figs/train/.gitkeep
