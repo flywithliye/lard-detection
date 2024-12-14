@@ -91,7 +91,7 @@ You can prepare LARD datasets using code from `src/data`, please refer to the [P
 
 1. we use `push plus` for notification with `Wechat`, you should comment out all the python code including `send_info`, and all the shell code including `send_info`.
 2. Make sure to change the absolute path for dataset `yaml` files in `cfg/ultralytics/datasets`.
-3. Make sure to update all the soft links using `ln -s` command. 
+3. Make sure to update all the soft links using `ln -s` command.
 
 ## Train
 
@@ -99,7 +99,7 @@ You can prepare LARD datasets using code from `src/data`, please refer to the [P
 
 The training/finetuning codes for YOLO-RWY is `cfg/ultralytics/train.py`. All the command lines for different configurations are in `exp_yolov8_train.sh`.
 
-For directly reproducing the training of YOLO-RWY, run:
+For directly reproducing the training of YOLO-RWY (640 image size by default), run:
 
 ```bash
 # simple training
@@ -120,7 +120,9 @@ python -u cfg/ultralytics/train.py \
 
 ```
 
-For directly reproducing the finetuning of YOLO-RWY, run:
+> Note that, you should change `num_gpu` in `cfg/ultralytics/train.py`, in which we set to 10 by default.
+
+For directly reproducing the finetuning of YOLO-RWY (640 image size by default), run:
 
 ```bash
 # simple training
@@ -144,7 +146,7 @@ python -u cfg/ultralytics/train.py \
         --album=0.05 > logs/train/ultra_train_yolov8n_finetune_single_lska_bifpn_eiou_aug_all_05_640.log 2>&1
 ```
 
-For other configurations, please check `exp_yolov8_train.sh`.
+For other configurations, please check `exp_yolov8_train.sh` and `cfg/ultralytics/train.py`.
 
 ### Train mmdet models
 
@@ -181,34 +183,75 @@ You can run the following command line for the training of mmyolo models.
 
 The test codes for YOLO-RWY is `cfg/ultralytics/test.py`. All the command lines for different configurations are in `exp_yolov8_test.sh`.
 
+> Note: The following test code will try to locate the corresponding trained weigths with the same training configs, so you have to train first.
+
 For directly reproducing the test of YOLO-RWY, run:
 
 ```bash
 # simple test
-python cfg/ultralytics/test.py --mode=merge --merge_mode=att_fpn_iou_aug --cfg=lska_bifpn --iou_type=EIoU --aug_json=all --album=0.05
+python cfg/ultralytics/test.py \
+	--mode=merge \
+	--merge_mode=att_fpn_iou_aug \
+	--cfg=lska_bifpn \
+	--iou_type=EIoU \
+	--aug_json=all \
+	--album=0.05
 
 # simple test using image size of 1280
-python cfg/ultralytics/test.py --mode=merge --merge_mode=att_fpn_iou_aug  --cfg=lska_bifpn --iou_type=EIoU --aug_json=all --album=0.05 --test_size=1280
+python cfg/ultralytics/test.py \
+	--mode=merge \
+	--merge_mode=att_fpn_iou_aug \
+	--cfg=lska_bifpn \
+	--iou_type=EIoU \
+	--aug_json=all \
+	--album=0.05 \
+	--test_size=1280
 
 # run in background
-python -u cfg/ultralytics/test.py --mode=merge --merge_mode=att_fpn_iou_aug --cfg=lska_bifpn --iou_type=EIoU --aug_json=all --album=0.05 > logs/test/ultra_test_yolov8n_merge_att_fpn_iou_aug_lska_bifpn_eiou_aug_all_05_640_640.log 2>&1
+python -u cfg/ultralytics/test.py \
+	--mode=merge \
+	--merge_mode=att_fpn_iou_aug \
+	--cfg=lska_bifpn \
+	--iou_type=EIoU \
+	--aug_json=all \
+	--album=0.05 > logs/test/ultra_test_yolov8n_merge_att_fpn_iou_aug_lska_bifpn_eiou_aug_all_05_640_640.log 2>&1
 
-python -u cfg/ultralytics/test.py --mode=merge --merge_mode=att_fpn_iou_aug --cfg=lska_bifpn --iou_type=EIoU --aug_json=all --album=0.05 --test_size=1280 > logs/test/ultra_test_yolov8n_merge_att_fpn_iou_aug_lska_bifpn_eiou_aug_all_05_640_1280.log 2>&1
+python -u cfg/ultralytics/test.py \
+	--mode=merge \
+	--merge_mode=att_fpn_iou_aug \
+	--cfg=lska_bifpn \
+	--iou_type=EIoU \
+	--aug_json=all \
+	--album=0.05 \
+	--test_size=1280 > logs/test/ultra_test_yolov8n_merge_att_fpn_iou_aug_lska_bifpn_eiou_aug_all_05_640_1280.log 2>&1
 ```
 
 for testing the finetuned YOLO-RWY, run:
 
 ```bash
-@123
+# test the YOLO-RWY finetuned using `triple_split` strategy and 5% EDA prob.
+python -u cfg/ultralytics/test_finetune.py \
+        --mode=finetune \
+        --finetune_mode=triple_split \
+        --cfg=lska_bifpn \
+        --iou_type=EIoU \
+        --aug_json=all \
+        --album=0.05 > logs/test/ultra_test_yolov8n_finetune_triple_split_lska_bifpn_eiou_aug_all_05_640.log 2>&1
 ```
 
-### Test mmdet models
+For other configurations, please check `exp_yolov8_test.sh` and `cfg/ultralytics/test.py`.
+
+Test mmdet models
 
 Please check the corresponding notebook files in the root path of this project.
 
 ### Test mmyolo models
 
 Please check the corresponding notebook files in the root path of this project.
+
+# Pretrained weights of YOLO-RWY
+
+Coming soon. Will be uploaded to Release.
 
 ## Deployment
 
