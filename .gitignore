@@ -42,8 +42,9 @@ results/images/predictions/*
 
 results/tables/info/
 results/tables/metrics/
-results/videos/**
-!results/videos/ 
+
+results/videos/*
+!results/videos/.gitkeep
 
 runs/**
 !runs/
