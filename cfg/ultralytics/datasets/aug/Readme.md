@@ -1,0 +1,1 @@
+The json files of albumentation can be generated using code from `src/eda/4.augmentation.ipynb`.

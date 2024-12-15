@@ -183,7 +183,7 @@ You can run the following command line for the training of mmyolo models.
 
 The test codes for YOLO-RWY is `cfg/ultralytics/test.py`. All the command lines for different configurations are in `exp_yolov8_test.sh`.
 
-> Note: The following test code will try to locate the corresponding trained weigths with the same training configs, so you have to train first.
+> Note: The following test code will try to locate the corresponding trained weights with the same training configs, so you have to train first.
 
 For directly reproducing the test of YOLO-RWY, run:
 
@@ -241,7 +241,7 @@ python -u cfg/ultralytics/test_finetune.py \
 
 For other configurations, please check `exp_yolov8_test.sh` and `cfg/ultralytics/test.py`.
 
-Test mmdet models
+### Test mmdet models
 
 Please check the corresponding notebook files in the root path of this project.
 

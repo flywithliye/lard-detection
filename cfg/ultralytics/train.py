@@ -132,8 +132,8 @@ def main():
 
     # end
     end_time = datetime.now()
-    print(f'End time: {start_time}')
-    print(f'Time used: {end_time}')
+    print(f'Exp start at: {start_time}')
+    print(f'Exp end at: {end_time}')
 
     # get duration
     duration = end_time - start_time

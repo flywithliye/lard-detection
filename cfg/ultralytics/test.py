@@ -26,14 +26,14 @@ def parse_arguments():
 
     parser.add_argument("--size", type=int, default=640, help="training image size, 训练图像尺寸")
     parser.add_argument("--test_size", type=int, default=640, help="test image size, 测试图像尺寸")
-    parser.add_argument("--album", type=float, default=0.0, help="albumentatio prob, albumentation增强概率")
-    parser.add_argument("--aug_json", type=str, default='', help="albumentatio config file, albumentation增强配置文件")
+    parser.add_argument("--album", type=float, default=0.0, help="albumentation prob, albumentation增强概率")
+    parser.add_argument("--aug_json", type=str, default='', help="albumentation config file, albumentation增强配置文件")
     parser.add_argument("--iou_type", type=str, default='CIoU', choices=['GIoU', 'DIoU', 'CIoU', 'SIoU', 'EIoU', 'WIoU', 'MDPIoU1', 'MDPIoU2', 'ShapeIoU', 'NWD'], help="IOU type, IOU类型")
 
-    parser.add_argument("--batch_size", type=int, default=64, help="test batch, 测试批次大小")
+    parser.add_argument("--batch_size", type=int, default=64, help="test batch size, 测试批次大小")
     parser.add_argument("--nms_conf", type=float, default=0.001, help="nms conf, NMS-CONF阈值, 过滤掉置信度过低的bbox, 越大越严格")
     parser.add_argument("--nms_iou", type=float, default=0.6, help="nms iou, NMS-IOU阈值, 过滤掉重合度过高的bbox, 越小越严格")
-    parser.add_argument("--max_det", type=int, default=8, help="max det, 最大检测数量")
+    parser.add_argument("--max_det", type=int, default=8, help="max detection, 最大检测数量")
     parser.add_argument("--half_fp16", action='store_true', help="fp16, FP16量化")
     parser.add_argument("--soft_nms", action='store_true', help="using soft nms, 使用soft nms")
 
@@ -67,7 +67,7 @@ def test(args):
 
     test_speed = True  # ! if test speed 是否计算测试时间
     test_complex = True  # ! if get number of mdoel params 是否计算参数量
-    BEST_OR_LAST = 'best'  # ! todo plear change this variable accordingly 同步修改本变量
+    BEST_OR_LAST = 'best'  # ! please change this variable accordingly 同步修改本变量
 
     # exp path 实验路径构建
     exp_name = f'{model}{stru}{cfg}{iou_type}{album}{size}'  # yolov8n-p2_cbam_siou_aug2_1280
@@ -117,7 +117,7 @@ def test(args):
             project=project,
             name=f'{mode}/{exp_name}/test/{data_type}{quantization}',
             exist_ok=True,  # 允许覆盖
-            # self define params 自定义参数
+            # self defined params 自定义参数
             soft_nms=soft_nms,  # 使用softnms
         )
 
@@ -161,7 +161,7 @@ def test(args):
         for data_type in ['test_synth', 'test_real_nominal', 'test_real_edge', 'test_real', 'test']:
             all_complex[data_type] = [n_p, flops]  # for data concatenation 仅为便于数据拼接
 
-        # constructe params df 构建速度dataframe
+        # construct params df 构建速度dataframe
         all_complex = pd.DataFrame(
             data=all_complex,
             index=['Param', 'FLOPs']
@@ -235,7 +235,7 @@ def main():
 
     # start 实验开始
     start_time = datetime.now()
-    print(f'实验开始时间: {start_time}')
+    print(f'Start time: {start_time}')
 
     # start training 开始实验
     args = parse_arguments()
@@ -243,8 +243,8 @@ def main():
 
     # end 实验结束
     end_time = datetime.now()
-    print(f'实验开始时间: {start_time}')
-    print(f'实验结束时间: {end_time}')
+    print(f'Exp start at: {start_time}')
+    print(f'Exp end at: {end_time}')
 
     # get duration 计算耗时
     duration = end_time - start_time
